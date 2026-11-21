@@ -1,7 +1,7 @@
 # Ledgerly Project Roadmap
 
 Created: 2026-11-21
-Status: Milestone 0 complete — ready for Milestone 1 (core API and accounting).
+Status: Milestone 1 in progress — core models, API, and atomic accounting.
 Project name: Ledgerly. The current workspace directory is named `Ledgerdy`.
 
 ## How to use this file
@@ -88,9 +88,9 @@ Acceptance: a clean checkout can boot the services, create/migrate the database,
 
 ## Milestone 1 — Core API and accounting (Week 1)
 
-- [ ] Implement migrations, models, relationships, and required database constraints.
+- [x] Implement migrations, models, relationships, and required database constraints.
 - [ ] Implement customer and plan creation/read endpoints plus subscription creation, retrieval, and supported lifecycle transitions.
-- [ ] Document usage idempotency scope, subscription overlap rules, rounding, billing boundaries, and late-usage handling.
+- [x] Document usage idempotency scope, subscription overlap rules, rounding, billing boundaries, and late-usage handling. See [billing rules](docs/BILLING_RULES.md).
 - [ ] Implement `POST /usage_events` with request fingerprints and database-backed idempotency.
 - [ ] Implement invoice generation for one subscription-period in a database transaction, including line items, usage allocation, and a balanced issuance journal.
 - [ ] Implement paginated customer invoice lists, invoice detail, and ledger-derived balance endpoints.
@@ -185,31 +185,26 @@ Store the commit and fixture identity with each run. Keep secrets and customer d
 | 2026-11-21 | Keep the application in `app/` | The workspace currently contains reference repositories rather than an application. |
 | 2026-11-21 | Use Stripe-managed invoice collection for the initial release | Map each local invoice to one remote invoice and avoid competing collection paths. Verify contracts during Milestone 2. |
 | 2026-11-21 | Add journal headers and durable dispatch records | Provide business-effect uniqueness and recovery across database/queue boundaries. |
-
 | 2026-11-21 | Move the foundation from Rails 7 to Rails 8.1 | Rails 7.2 reached its final release; use a security-supported release for new development. Sources: https://rubyonrails.org/2026/9/24/Rails-Version-7-2-4-has-been-released and https://rubyonrails.org/maintenance. |
 | 2026-11-21 | Commit logical batches near 1,000 changed lines to `amovingman/Ledgerly` | User requested frequent commits; exclude bundled reference repositories and generated runtime files. |
-
 | 2026-11-21 | Pin Ruby 3.4.13, Rails 8.1.4.1, Bundler 4.1.0 and all direct gems | RubyGems versions checked; `app/Gemfile.lock` includes macOS arm64 and Linux arm64/x86_64. Local tools: PostgreSQL 17.12, Redis 8.10.3, Docker 29.10.0, Compose 5.8.0, Colima 0.10.3. Container Redis is pinned independently in Compose. |
-
 | 2026-11-21 | Scope the initial Sorbet check to strict pagination value objects | Keep the type check useful and passing now; model/service signatures expand in Milestone 4. |
 | 2026-11-21 | Isolate test database settings from development | Tests use `TEST_DB_DATABASE` / `TEST_DATABASE_URL`, ignore inherited generic database overrides, and refuse names without a test suffix; CI/specs reject production invocation. |
 
-Open before invoice implementation: late usage cutoff/carry-forward policy, subscription overlap rules, and the exact account mapping for issuance, payment, refund, and any credit adjustment.
+Milestone 1 billing decisions are defined in [docs/BILLING_RULES.md](docs/BILLING_RULES.md): UTC calendar months, late usage accepted until issuance, non-overlapping customer/metric subscriptions, contract price snapshots, and issuance debits to receivables/credits to usage revenue. Payments/refunds remain in Milestone 2; credit adjustments are outside initial scope.
 
 ## Work log
 
 | Date | Work completed | Validation / evidence | Next task |
 | --- | --- | --- | --- |
 | 2026-11-21 | Created the roadmap and persistent project-reference instructions | Inspected workspace; no Rails application found. No application tests or benchmarks run. | Milestone 0: confirm versions and scaffold the Rails API. |
-
 | 2026-11-21 | Installed development tools; scaffolded Rails 8.1 API in `app/`; pinned dependencies | `ruby --version`, `bundle --version`, `bundle exec rails --version`, and `bundle check` passed. Colima VM started. Application acceptance checks still pending. | Add and verify auth, errors, health, tests, Compose, and CI. |
-
 | 2026-11-21 | Implemented API auth, JSON errors, pagination, health endpoints, test database guards, and quality tooling | Container `bin/ci`: 44 examples, 0 failures; RuboCop: 41 files, no offenses; scoped Sorbet: no errors. Foundation-only SimpleCov line coverage: 102/110 (92.72%). Native Rails autoload and database isolation/production guard checks passed. | Complete live worker/HTTP and clean-checkout acceptance; commit infrastructure and documentation. |
-
 | 2026-11-21 | Added Compose, pinned development images, setup docs, environment example, and GitHub Actions | Full stack healthy; real `bin/smoke` passed; live HTTP checks returned 200 health/authenticated, 401 unauthenticated, 404 unknown route, 400 malformed JSON. First commits pushed: `f8e7d19`, `d443842`. | Verify the committed infrastructure from a clean checkout and inspect hosted CI. |
-
 | 2026-11-21 | Completed Milestone 0 acceptance from clean GitHub source at `70aea13`; saved outputs and setup evidence | [Verification report](docs/verification/milestone-0/README.md): healthy full stack, real worker execution, 44 specs passing, 41 Ruby files lint clean, initial Sorbet passing; [hosted CI passed](https://github.com/amovingman/Ledgerly/actions/runs/44962119095). Workflow checkout runtime updated to the verified Node 24 release after a deprecation annotation. | Milestone 1: implement migrations/models and core API, beginning with billing rules and database constraints. |
+| 2026-11-21 | Started Milestone 1 and documented billing, lifecycle, late-usage, locking, and account-mapping rules | Implementation and checks in progress; no new acceptance claims yet. | Verify migrations, model constraints and schema round-trip, then build the API and billing services. |
+| 2026-11-21 | Implemented eight core models, database constraints, schema dump, contract price snapshots and subscription lifecycle services | Migration and fresh `db:schema:load` verified in isolated test databases; full batch check: 70 specs passing, 52 linted files clean, Sorbet passing. Invoice/usage services and endpoints are still pending. | Build resource endpoints and customer-scoped idempotent usage ingestion. |
 
 ## Next action
 
-Start Milestone 1: resolve late-usage handling, subscription overlap, and account mappings; then implement the core migrations and models with the database constraints and accounting checks defined above. No billing or Stripe implementation has started.
+Continue Milestone 1: implement customer/plan/subscription endpoints and idempotent usage ingestion, then atomic invoice generation, read endpoints, and concurrency/rollback acceptance checks.

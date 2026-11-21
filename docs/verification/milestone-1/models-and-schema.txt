@@ -1,0 +1,123 @@
+ Container ledgerly-postgres-1 Running
+ Container ledgerly-redis-1 Running
+ Container ledgerly-setup-1 Recreate
+ Container ledgerly-setup-1 Recreated
+ Container ledgerly-postgres-1 Waiting
+ Container ledgerly-redis-1 Waiting
+ Container ledgerly-postgres-1 Healthy
+ Container ledgerly-redis-1 Healthy
+ Container ledgerly-setup-1 Starting
+ Container ledgerly-setup-1 Started
+ Container ledgerly-setup-1 Waiting
+ Container ledgerly-setup-1 Exited
+ Container ledgerly-m1-model-checks Creating
+ Container ledgerly-m1-model-checks Created
+
+Randomized with seed 45053
+
+ApplicationController
+  renders missing database resources as JSON
+  renders model validation errors as JSON
+  renders missing required input as a JSON client error
+  exposes validated pagination to API controllers
+  renders invalid pagination as a JSON client error
+
+API authentication
+  rejects invalid credentials ("Bearer wrong")
+  fails closed for an unconfigured key ""
+  rejects invalid credentials ("Bearer foundation-test-key extra")
+  returns service status for an authenticated request
+  rejects malformed JSON with the documented envelope
+  fails closed for an unconfigured key nil
+  filters sensitive parameters
+  fails closed for an unconfigured key "   "
+  rejects invalid credentials ("Basic foundation-test-key")
+  returns JSON for an unknown route
+  returns JSON for the unmapped root route
+  rejects missing credentials (nil)
+
+Health endpoints
+  checks the real database and Redis connections
+  reports database failure without exposing connection details
+  serves public JSON liveness without API authentication
+  reports Redis failure and closes the connection
+
+Core billing models
+  rejects two-sided ledger entries at the model layer
+  normalizes customer identity and rejects invalid email addresses
+  rejects a journal in a different currency from its invoice
+  keeps posted journal entries read-only through the models
+  requires a supported currency and positive integral plan price
+  creates a balanced complete journal
+  rejects unbalanced journals before persisting any rows
+  requires cancellation to have an effective end timestamp
+
+Billing::Subscriptions
+  cancels a future subscription as an empty interval
+  cancels at the current time and preserves that timestamp on replay
+  rejects invalid calendar timestamps
+  defaults a new contract to the current time
+  turns overlap violations into a recoverable conflict
+  snapshots plan pricing and normalizes an explicit start to UTC
+
+Billing database constraints
+  prevents duplicate customer emails even when model validation is bypassed
+  prevents a ledger row from having two positive sides
+  prevents multiple invoices for one subscription month
+  requires a full calendar month in PostgreSQL
+  rejects overlapping customer and metric subscriptions in PostgreSQL
+  allows overlapping subscriptions for different metrics
+  enforces exact invoice line multiplication
+  rejects zero quantities without model validation
+  prevents usage from referencing another customer subscription
+  prevents invoices from referencing another customer subscription
+  enforces usage idempotency uniqueness in the customer scope
+  allows adjacent subscription intervals
+
+PaginationParams
+  rejects invalid per_page "1.5"
+  rejects invalid page ["1"]
+  rejects invalid page ""
+  calculates a bounded page offset
+  rejects a page size above the maximum
+  rejects invalid per_page "abc"
+  rejects invalid per_page "-1"
+  rejects invalid page "1.5"
+  rejects invalid page "0"
+  rejects invalid per_page {"page" => "1"}
+  rejects invalid per_page "0"
+  rejects invalid page {"page" => "1"}
+  rejects invalid per_page " 1"
+  rejects invalid page "-1"
+  rejects invalid page " 1"
+  rejects invalid per_page ""
+  rejects invalid page "01"
+  rejects invalid per_page ["1"]
+  defaults to page one with 25 results
+  rejects invalid page "abc"
+  rejects invalid per_page "01"
+
+ApiExceptions
+  hides internal failure details in its JSON fallback
+  preserves a known HTTP status outside controller handlers
+
+Finished in 0.57454 seconds (files took 0.98945 seconds to load)
+70 examples, 0 failures
+
+Randomized with seed 45053
+
+Coverage report generated for RSpec to coverage/index.html
+Line coverage: 229 / 242 (94.62%)
+Branch coverage: 46 / 54 (85.18%)
+Inspecting 52 files
+....................................................
+
+52 files inspected, no offenses detected
+
+Tip: Based on detected gems, the following RuboCop extension libraries might be helpful:
+  * rubocop-rspec_rails (https://rubygems.org/gems/rubocop-rspec_rails)
+
+You can opt out of this message by adding the following to your config (see https://docs.rubocop.org/rubocop/plugins.html#plugin-suggestions for more options):
+  AllCops:
+    SuggestExtensions: false
+No errors! Great job.

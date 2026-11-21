@@ -1,3 +1,7 @@
+inherit_mode:
+  merge:
+    - Exclude
+
 plugins:
   - rubocop-rails
   - rubocop-rspec
@@ -22,3 +26,17 @@ RSpec/MultipleExpectations:
   Max: 5
 RSpec/ExampleLength:
   Max: 12
+
+# Migrations describe a schema; keep its constraints together.
+Metrics/AbcSize:
+  Exclude: [db/migrate/*]
+Metrics/MethodLength:
+  Exclude: [db/migrate/*]
+Metrics/ClassLength:
+  Exclude: [db/migrate/*]
+# These integration specs deliberately cross model classes and bypass validations
+# to exercise PostgreSQL constraints directly.
+RSpec/DescribeClass:
+  Exclude: [spec/models/billing_constraints_spec.rb, spec/models/core_models_spec.rb]
+Rails/SkipsModelValidations:
+  Exclude: [spec/models/billing_constraints_spec.rb]
