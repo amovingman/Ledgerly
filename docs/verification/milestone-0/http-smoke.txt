@@ -1,0 +1,6 @@
+GET /up: 200 {"status": "ok"}
+GET /ready: 200 {"checks": {"postgres": "ok", "redis": "ok"}, "status": "ok"}
+GET /api/v1/status: 401 {"error": {"code": "unauthorized", "message": "A valid Bearer API key is required."}}
+GET /api/v1/status: 200 {"data": {"service": "ledgerly", "status": "ok"}}
+GET /missing: 404 {"error": {"code": "not_found", "message": "The requested resource was not found."}}
+POST /missing: 400 {"error": {"code": "invalid_json", "message": "The request body must contain valid JSON."}}

@@ -1,0 +1,91 @@
+ Container ledgerly-postgres-1 Running
+ Container ledgerly-redis-1 Running
+ Container ledgerly-setup-1 Recreate
+ Container ledgerly-setup-1 Recreated
+ Container ledgerly-redis-1 Waiting
+ Container ledgerly-postgres-1 Waiting
+ Container ledgerly-redis-1 Healthy
+ Container ledgerly-postgres-1 Healthy
+ Container ledgerly-setup-1 Starting
+ Container ledgerly-setup-1 Started
+ Container ledgerly-setup-1 Waiting
+ Container ledgerly-setup-1 Exited
+ Container ledgerly-api-run-82b3cc5651e3 Creating
+ Container ledgerly-api-run-82b3cc5651e3 Created
+
+Randomized with seed 14161
+
+PaginationParams
+  rejects invalid per_page ["1"]
+  rejects invalid page "01"
+  rejects invalid page " 1"
+  rejects invalid page ["1"]
+  rejects invalid page "1.5"
+  rejects invalid page {"page" => "1"}
+  rejects invalid per_page "1.5"
+  calculates a bounded page offset
+  rejects invalid per_page "01"
+  rejects invalid per_page "-1"
+  rejects invalid page "-1"
+  rejects invalid per_page "0"
+  rejects invalid per_page {"page" => "1"}
+  rejects invalid per_page "abc"
+  rejects invalid per_page " 1"
+  rejects invalid page "abc"
+  defaults to page one with 25 results
+  rejects invalid per_page ""
+  rejects a page size above the maximum
+  rejects invalid page ""
+  rejects invalid page "0"
+
+ApplicationController
+  renders model validation errors as JSON
+  renders missing required input as a JSON client error
+  exposes validated pagination to API controllers
+  renders invalid pagination as a JSON client error
+  renders missing database resources as JSON
+
+ApiExceptions
+  preserves a known HTTP status outside controller handlers
+  hides internal failure details in its JSON fallback
+
+API authentication
+  returns JSON for the unmapped root route
+  rejects invalid credentials ("Basic foundation-test-key")
+  returns service status for an authenticated request
+  rejects invalid credentials ("Bearer wrong")
+  fails closed for an unconfigured key nil
+  filters sensitive parameters
+  fails closed for an unconfigured key ""
+  returns JSON for an unknown route
+  rejects missing credentials (nil)
+  rejects invalid credentials ("Bearer foundation-test-key extra")
+  rejects malformed JSON with the documented envelope
+  fails closed for an unconfigured key "   "
+
+Health endpoints
+  checks the real database and Redis connections
+  reports Redis failure and closes the connection
+  serves public JSON liveness without API authentication
+  reports database failure without exposing connection details
+
+Finished in 0.10559 seconds (files took 0.85184 seconds to load)
+44 examples, 0 failures
+
+Randomized with seed 14161
+
+Coverage report generated for RSpec to coverage/index.html
+Line coverage: 102 / 110 (92.72%)
+Branch coverage: 29 / 30 (96.66%)
+Inspecting 41 files
+.........................................
+
+41 files inspected, no offenses detected
+
+Tip: Based on detected gems, the following RuboCop extension libraries might be helpful:
+  * rubocop-rspec_rails (https://rubygems.org/gems/rubocop-rspec_rails)
+
+You can opt out of this message by adding the following to your config (see https://docs.rubocop.org/rubocop/plugins.html#plugin-suggestions for more options):
+  AllCops:
+    SuggestExtensions: false
+No errors! Great job.

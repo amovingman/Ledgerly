@@ -1,7 +1,7 @@
 # Ledgerly Project Roadmap
 
 Created: 2026-11-21
-Status: Milestone 0 in progress — toolchain setup and API foundation.
+Status: Milestone 0 complete — ready for Milestone 1 (core API and accounting).
 Project name: Ledgerly. The current workspace directory is named `Ledgerdy`.
 
 ## How to use this file
@@ -82,7 +82,7 @@ Add foreign keys and correctness constraints from the start. Preserve those in t
 - [x] Establish API-key authentication, JSON validation/error conventions, pagination limits, and a health endpoint. Stripe webhooks use signature verification instead of API-key authentication.
 - [x] Create an initial GitHub Actions workflow for RSpec and RuboCop; expand it in Week 4.
 
-Acceptance status: local full-stack boot, HTTP checks, and actual worker execution passed; clean-checkout verification and the first hosted CI run are pending.
+Acceptance status: passed from a clean GitHub checkout. All services booted healthy, setup exited 0, the real worker smoke passed, and `bin/ci` passed (44 examples; clean lint and initial typing). The first hosted GitHub Actions run passed. See [verification evidence](docs/verification/milestone-0/README.md).
 
 Acceptance: a clean checkout can boot the services, create/migrate the database, serve health checks, and run a smoke test using documented commands. No secrets are committed.
 
@@ -144,7 +144,7 @@ Acceptance: clean setup succeeds, all CI checks pass, the demo is repeatable, an
 
 ## Evidence and measurement register
 
-All values below are targets or examples from the proposal, not achieved results.
+Targets/examples come from the proposal. Only the actual-result column records achieved measurements, with the scope stated explicitly.
 
 | Claim | Target / example | Required proof | Actual result |
 | --- | --- | --- | --- |
@@ -152,7 +152,7 @@ All values below are targets or examples from the proposal, not achieved results
 | Duplicate billing prevention | Zero duplicates in the tested scenarios | Concurrent, repeated and shuffled event replay; unique logical payment/refund journals; outgoing collection count; balanced ledger assertions | Not tested |
 | Dataset size | At least 50,000 invoices | Seed command, deterministic seed, counts, and integrity checks | Not generated |
 | Heavy-endpoint latency | Example: p95 480 ms → 90 ms | Comparable baseline/optimized runs with identical fixtures and resources; request failures; cold/warm cache disclosure | Not measured |
-| RSpec coverage | Greater than 90%; stretch 94% | Full-suite command, SimpleCov configuration and report showing actual line coverage | Not measured |
+| RSpec coverage | Greater than 90%; stretch 94% | Full-suite command, SimpleCov configuration and report showing actual line coverage | Foundation only: 102/110 lines (92.72%), 44 specs; full billing coverage pending. [Evidence](docs/verification/milestone-0/README.md) |
 
 Suggested evidence layout, to create as measurements are produced:
 
@@ -208,6 +208,8 @@ Open before invoice implementation: late usage cutoff/carry-forward policy, subs
 
 | 2026-11-21 | Added Compose, pinned development images, setup docs, environment example, and GitHub Actions | Full stack healthy; real `bin/smoke` passed; live HTTP checks returned 200 health/authenticated, 401 unauthenticated, 404 unknown route, 400 malformed JSON. First commits pushed: `f8e7d19`, `d443842`. | Verify the committed infrastructure from a clean checkout and inspect hosted CI. |
 
+| 2026-11-21 | Completed Milestone 0 acceptance from clean GitHub source at `70aea13`; saved outputs and setup evidence | [Verification report](docs/verification/milestone-0/README.md): healthy full stack, real worker execution, 44 specs passing, 41 Ruby files lint clean, initial Sorbet passing; [hosted CI passed](https://github.com/amovingman/Ledgerly/actions/runs/44962119095). Workflow checkout runtime updated to the verified Node 24 release after a deprecation annotation. | Milestone 1: implement migrations/models and core API, beginning with billing rules and database constraints. |
+
 ## Next action
 
-Finish Milestone 0 acceptance: boot the committed source from a clean checkout, run the complete checks, inspect the first GitHub Actions run, and record the evidence. Milestone 1 implementation has not started.
+Start Milestone 1: resolve late-usage handling, subscription overlap, and account mappings; then implement the core migrations and models with the database constraints and accounting checks defined above. No billing or Stripe implementation has started.
