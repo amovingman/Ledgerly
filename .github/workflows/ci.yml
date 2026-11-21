@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: app
+    env:
+      RAILS_ENV: test
+      API_KEY: ci-test-key
+      DB_HOST: 127.0.0.1
+      DB_PORT: "5432"
+      TEST_DB_DATABASE: ledgerly_test
+      DB_USERNAME: ledgerly
+      DB_PASSWORD: ci-postgres-password
+      REDIS_URL: redis://127.0.0.1:6379/1
+      RAILS_MAX_THREADS: "5"
+    services:
+      postgres:
+        image: postgres:17.12-bookworm
+        env:
+          POSTGRES_DB: ledgerly_test
+          POSTGRES_USER: ledgerly
+          POSTGRES_PASSWORD: ci-postgres-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ledgerly -d ledgerly_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 12
+      redis:
+        image: redis:8.2.3-bookworm
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 12
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Set up Ruby and install locked dependencies
+        uses: ruby/setup-ruby@be3c7df29b3349ec6bcfc6b4792f1cf9f5237d18 # v1, verified 2026-11-21
+        with:
+          # Reads app/.ruby-version and app/Gemfile.lock.
+          working-directory: app
+          bundler-cache: true
+      - name: Prepare test database
+        run: bin/rails db:prepare
+      - name: Run request and application specs
+        run: bundle exec rspec
+      - name: Run RuboCop
+        run: bundle exec rubocop
+      - name: Typecheck foundation value objects
+        run: bundle exec srb tc

@@ -1,0 +1,12 @@
+.git
+.bundle
+.env*
+.DS_Store
+coverage
+log
+tmp
+storage
+vendor/bundle
+node_modules
+config/master.key
+config/credentials/*.key

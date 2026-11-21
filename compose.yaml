@@ -1,0 +1,99 @@
+name: ledgerly
+
+x-app: &app
+  image: ledgerly-app:development
+  pull_policy: never
+  init: true
+  environment: &app-environment
+    RAILS_ENV: development
+    RAILS_MAX_THREADS: "5"
+    API_KEY: ${API_KEY:?Set API_KEY in .env; see README.md}
+    DB_HOST: postgres
+    DB_PORT: "5432"
+    DB_DATABASE: ledgerly_development
+    DB_USERNAME: ledgerly
+    DB_PASSWORD: ${DB_PASSWORD:-ledgerly_local}
+    REDIS_URL: redis://redis:6379/0
+
+services:
+  postgres:
+    image: postgres:17.12-bookworm
+    environment:
+      POSTGRES_DB: ledgerly_development
+      POSTGRES_USER: ledgerly
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-ledgerly_local}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  redis:
+    image: redis:8.2.3-bookworm
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  setup:
+    <<: *app
+    command: ["bin/rails", "db:prepare"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    <<: *app
+    build:
+      context: ./app
+    command: ["bin/rails", "server", "-b", "0.0.0.0"]
+    ports:
+      - "127.0.0.1:${PORT:-3000}:3000"
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - ruby
+        - -rnet/http
+        - -e
+        - 'exit(Net::HTTP.get_response(URI("http://127.0.0.1:3000/ready")).code == "200" ? 0 : 1)'
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
+
+  sidekiq:
+    <<: *app
+    command: ["bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"]
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - bundle
+        - exec
+        - ruby
+        - -rsidekiq/api
+        - -rsocket
+        - -e
+        - 'exit(Sidekiq::ProcessSet.new.any? { |process| process["hostname"] == Socket.gethostname && Time.now.to_f - process["beat"].to_f < 60 } ? 0 : 1)'
+      interval: 20s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  postgres_data:
+  redis_data:

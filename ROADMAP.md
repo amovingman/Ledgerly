@@ -76,11 +76,13 @@ Add foreign keys and correctness constraints from the start. Preserve those in t
 
 - [x] Confirm Ruby/Rails/dependency versions and record them in the decision log.
 - [x] Scaffold the API application in a dedicated `app/` directory, keeping the existing reference repositories separate.
-- [ ] Add Docker Compose services for API, PostgreSQL, Redis, and Sidekiq, with health checks and persistent database storage.
-- [ ] Add `.env.example`, ignored secrets, and documented setup/migration/test commands.
+- [x] Add Docker Compose services for API, PostgreSQL, Redis, and Sidekiq, with health checks and persistent database storage.
+- [x] Add `.env.example`, ignored secrets, and documented setup/migration/test commands.
 - [x] Configure RSpec, SimpleCov, RuboCop, and Sorbet. Start coverage collection before application code loads.
 - [x] Establish API-key authentication, JSON validation/error conventions, pagination limits, and a health endpoint. Stripe webhooks use signature verification instead of API-key authentication.
-- [ ] Create an initial GitHub Actions workflow for RSpec and RuboCop; expand it in Week 4.
+- [x] Create an initial GitHub Actions workflow for RSpec and RuboCop; expand it in Week 4.
+
+Acceptance status: local full-stack boot, HTTP checks, and actual worker execution passed; clean-checkout verification and the first hosted CI run are pending.
 
 Acceptance: a clean checkout can boot the services, create/migrate the database, serve health checks, and run a smoke test using documented commands. No secrets are committed.
 
@@ -204,6 +206,8 @@ Open before invoice implementation: late usage cutoff/carry-forward policy, subs
 
 | 2026-11-21 | Implemented API auth, JSON errors, pagination, health endpoints, test database guards, and quality tooling | Container `bin/ci`: 44 examples, 0 failures; RuboCop: 41 files, no offenses; scoped Sorbet: no errors. Foundation-only SimpleCov line coverage: 102/110 (92.72%). Native Rails autoload and database isolation/production guard checks passed. | Complete live worker/HTTP and clean-checkout acceptance; commit infrastructure and documentation. |
 
+| 2026-11-21 | Added Compose, pinned development images, setup docs, environment example, and GitHub Actions | Full stack healthy; real `bin/smoke` passed; live HTTP checks returned 200 health/authenticated, 401 unauthenticated, 404 unknown route, 400 malformed JSON. First commits pushed: `f8e7d19`, `d443842`. | Verify the committed infrastructure from a clean checkout and inspect hosted CI. |
+
 ## Next action
 
-Continue Milestone 0: configure the API foundation and its tests, boot the complete Compose stack, verify health/authentication and a real Sidekiq job, then run RSpec, RuboCop, and the initial Sorbet check.
+Finish Milestone 0 acceptance: boot the committed source from a clean checkout, run the complete checks, inspect the first GitHub Actions run, and record the evidence. Milestone 1 implementation has not started.
