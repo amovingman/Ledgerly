@@ -2,7 +2,7 @@
 
 Ledgerly is a Rails API project for metered usage, invoicing, and reliable Stripe reconciliation. The application lives in `app/`; the existing reference repositories are separate from application code.
 
-Work follows [ROADMAP.md](ROADMAP.md), the source of truth for milestones, acceptance checks, decisions, and measured evidence. Milestone 0 establishes the development foundation. Billing models, usage ingestion, invoice generation, and Stripe webhooks belong to later milestones and are not implemented yet. No throughput or latency benchmark has been achieved.
+Work follows [ROADMAP.md](ROADMAP.md), the source of truth for milestones, acceptance checks, decisions, and measured evidence. Milestone 0 establishes the development foundation. Milestone 1 is adding core billing models and API endpoints; see [the core API reference](docs/API.md) and [billing rules](docs/BILLING_RULES.md) for implemented contracts. Stripe webhooks and collection remain in Milestone 2. No throughput or latency benchmark has been achieved.
 
 ## Foundation stack
 
@@ -84,7 +84,7 @@ With the API and worker running, execute `bin/smoke` from `app/` in another term
 
 ## API foundation
 
-All responses use JSON. Business endpoints are not present yet.
+All responses use JSON. Core business routes and examples are documented in [docs/API.md](docs/API.md).
 
 | Request | Authentication | Response |
 | --- | --- | --- |
@@ -105,7 +105,7 @@ Errors have the shape `{"error":{"code":"...","message":"..."}}`:
 | Unknown route with valid authentication | 404 | `not_found` |
 | Active Record validation failure | 422 | `validation_failed` |
 
-Future list endpoints will default to `page=1&per_page=25`, allow at most 100 records per page, and require strictly positive integer parameters. No list endpoint exists in this milestone.
+List endpoints default to `page=1&per_page=25`, allow at most 100 records per page, and require strictly positive integer parameters.
 
 ## Checks and CI
 

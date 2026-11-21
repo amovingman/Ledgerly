@@ -89,9 +89,9 @@ Acceptance: a clean checkout can boot the services, create/migrate the database,
 ## Milestone 1 — Core API and accounting (Week 1)
 
 - [x] Implement migrations, models, relationships, and required database constraints.
-- [ ] Implement customer and plan creation/read endpoints plus subscription creation, retrieval, and supported lifecycle transitions.
+- [x] Implement customer and plan creation/read endpoints plus subscription creation, retrieval, and supported lifecycle transitions.
 - [x] Document usage idempotency scope, subscription overlap rules, rounding, billing boundaries, and late-usage handling. See [billing rules](docs/BILLING_RULES.md).
-- [ ] Implement `POST /usage_events` with request fingerprints and database-backed idempotency.
+- [x] Implement `POST /api/v1/usage_events` with request fingerprints and database-backed idempotency.
 - [ ] Implement invoice generation for one subscription-period in a database transaction, including line items, usage allocation, and a balanced issuance journal.
 - [ ] Implement paginated customer invoice lists, invoice detail, and ledger-derived balance endpoints.
 - [ ] Add request/service tests for validation, authentication, boundary timestamps, price snapshots, duplicate requests, payload conflicts, rollback, and concurrent invoice generation.
@@ -205,6 +205,8 @@ Milestone 1 billing decisions are defined in [docs/BILLING_RULES.md](docs/BILLIN
 | 2026-11-21 | Started Milestone 1 and documented billing, lifecycle, late-usage, locking, and account-mapping rules | Implementation and checks in progress; no new acceptance claims yet. | Verify migrations, model constraints and schema round-trip, then build the API and billing services. |
 | 2026-11-21 | Implemented eight core models, database constraints, schema dump, contract price snapshots and subscription lifecycle services | Migration and fresh `db:schema:load` verified in isolated test databases; full batch check: 70 specs passing, 52 linted files clean, Sorbet passing. Invoice/usage services and endpoints are still pending. | Build resource endpoints and customer-scoped idempotent usage ingestion. |
 
+| 2026-11-21 | Implemented authenticated customer/plan/subscription endpoints, cancellation and idempotent usage API | Full container check: 113 passing specs, 63 linted files clean, scoped Sorbet passing. Tests cover normalized timestamps, cross-customer isolation, key conflicts/replays, late usage, payload types and boundaries. Model batch `9318d52` passed hosted CI. | Implement atomic invoice generation, invoice/balance reads, and real concurrency/rollback checks. |
+
 ## Next action
 
-Continue Milestone 1: implement customer/plan/subscription endpoints and idempotent usage ingestion, then atomic invoice generation, read endpoints, and concurrency/rollback acceptance checks.
+Continue Milestone 1: implement transactional invoice generation, paginated invoice/detail/balance reads, and concurrency/rollback acceptance tests.

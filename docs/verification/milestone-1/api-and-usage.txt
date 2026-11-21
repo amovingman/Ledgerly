@@ -1,0 +1,173 @@
+time="2026-11-21T18:51:19-05:00" level=warning msg="Found orphan containers (ledgerly-m1-model-checks) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+ Container ledgerly-postgres-1 Running
+ Container ledgerly-redis-1 Running
+ Container ledgerly-setup-1 Recreate
+ Container ledgerly-setup-1 Recreated
+ Container ledgerly-redis-1 Waiting
+ Container ledgerly-postgres-1 Waiting
+ Container ledgerly-redis-1 Healthy
+ Container ledgerly-postgres-1 Healthy
+ Container ledgerly-setup-1 Starting
+ Container ledgerly-setup-1 Started
+ Container ledgerly-setup-1 Waiting
+ Container ledgerly-setup-1 Exited
+ Container ledgerly-m1-api-checks Creating
+ Container ledgerly-m1-api-checks Created
+
+Randomized with seed 20805
+
+API authentication
+  filters sensitive parameters
+  rejects malformed JSON with the documented envelope
+  returns JSON for the unmapped root route
+  fails closed for an unconfigured key ""
+  rejects invalid credentials ("Bearer foundation-test-key extra")
+  rejects invalid credentials ("Basic foundation-test-key")
+  rejects missing credentials (nil)
+  returns JSON for an unknown route
+  fails closed for an unconfigured key nil
+  fails closed for an unconfigured key "   "
+  returns service status for an authenticated request
+  rejects invalid credentials ("Bearer wrong")
+
+ApiExceptions
+  hides internal failure details in its JSON fallback
+  preserves a known HTTP status outside controller handlers
+
+Usage ingestion API
+  replays an immutable response and creates only one event
+  rejects malformed JSON on the real ingestion route
+  does not attach usage to another customer subscription
+  returns a conflict for changed payloads
+  requires an idempotency header
+
+ApplicationController
+  renders missing database resources as JSON
+  exposes validated pagination to API controllers
+  renders missing required input as a JSON client error
+  renders model validation errors as JSON
+  renders invalid pagination as a JSON client error
+
+PaginationParams
+  defaults to page one with 25 results
+  rejects invalid page "abc"
+  rejects invalid page "01"
+  rejects invalid page "0"
+  calculates a bounded page offset
+  rejects invalid per_page " 1"
+  rejects invalid page " 1"
+  rejects a page size above the maximum
+  rejects invalid per_page ""
+  rejects invalid per_page "01"
+  rejects invalid page ""
+  rejects invalid per_page "abc"
+  rejects invalid per_page ["1"]
+  rejects invalid page ["1"]
+  rejects invalid per_page "-1"
+  rejects invalid per_page "1.5"
+  rejects invalid page {"page" => "1"}
+  rejects invalid per_page {"page" => "1"}
+  rejects invalid page "-1"
+  rejects invalid per_page "0"
+  rejects invalid page "1.5"
+
+Core billing models
+  rejects unbalanced journals before persisting any rows
+  rejects a journal in a different currency from its invoice
+  requires a supported currency and positive integral plan price
+  rejects two-sided ledger entries at the model layer
+  keeps posted journal entries read-only through the models
+  normalizes customer identity and rejects invalid email addresses
+  creates a balanced complete journal
+  requires cancellation to have an effective end timestamp
+
+Core resource API
+  rejects invalid plan price "7"
+  requires authentication before creating resources
+  rejects invalid plan price 0
+  rejects a page size above the API limit
+  returns a conflict for duplicate customer identity
+  creates and reads a normalized customer
+  rejects malformed root shapes and invalid customer attributes
+  paginates customers in deterministic ID order
+  rejects invalid plan price 1.5
+  returns JSON when a referenced resource does not exist
+  rejects invalid plan price true
+  exposes overlap conflicts and scoped reference validation
+  creates, reads and lists metered plans
+  cancels subscriptions safely on repeat requests
+  creates a subscription using server-side price and lifecycle snapshots
+
+Health endpoints
+  reports Redis failure and closes the connection
+  reports database failure without exposing connection details
+  serves public JSON liveness without API authentication
+  checks the real database and Redis connections
+
+Billing::Subscriptions
+  cancels a future subscription as an empty interval
+  defaults a new contract to the current time
+  snapshots plan pricing and normalizes an explicit start to UTC
+  rejects invalid calendar timestamps
+  cancels at the current time and preserves that timestamp on replay
+  turns overlap violations into a recoverable conflict
+
+Billing database constraints
+  prevents duplicate customer emails even when model validation is bypassed
+  prevents invoices from referencing another customer subscription
+  prevents multiple invoices for one subscription month
+  enforces exact invoice line multiplication
+  requires a full calendar month in PostgreSQL
+  enforces usage idempotency uniqueness in the customer scope
+  allows overlapping subscriptions for different metrics
+  rejects overlapping customer and metric subscriptions in PostgreSQL
+  rejects zero quantities without model validation
+  prevents a ledger row from having two positive sides
+  prevents usage from referencing another customer subscription
+  allows adjacent subscription intervals
+
+Billing::IngestUsage
+  rejects a changed quantity without altering the original event
+  rejects invalid quantity "10"
+  scopes keys to the customer across different subscriptions
+  rejects invalid quantity 1.5
+  rejects an invalid key nil
+  rejects a mismatched metric
+  rejects invalid occurrence timestamp 123
+  allows the same key for distinct customers
+  rejects future usage
+  rejects invalid occurrence timestamp "2026-01-15T00:00:00"
+  rejects invalid quantity true
+  rejects invalid quantity -1
+  rejects an invalid key "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  rejects an invalid key "spaces are invalid"
+  rejects an invalid key ""
+  rejects invalid quantity 1000000001
+  returns the original event for a repeated key and normalized payload
+  rejects invalid occurrence timestamp "2026-02-31T00:00:00Z"
+  rejects invalid quantity 0
+  rejects invalid occurrence timestamp "2026-01-15T00:00:00.1234567Z"
+  returns an original result after cancellation and invoice issuance
+  rejects new late usage after an invoice closes the period
+  includes the start and excludes the subscription end
+
+Finished in 0.56934 seconds (files took 0.79209 seconds to load)
+113 examples, 0 failures
+
+Randomized with seed 20805
+
+Coverage report generated for RSpec to coverage/index.html
+Line coverage: 362 / 370 (97.83%)
+Branch coverage: 71 / 76 (93.42%)
+Inspecting 63 files
+...............................................................
+
+63 files inspected, no offenses detected
+
+Tip: Based on detected gems, the following RuboCop extension libraries might be helpful:
+  * rubocop-rspec_rails (https://rubygems.org/gems/rubocop-rspec_rails)
+
+You can opt out of this message by adding the following to your config (see https://docs.rubocop.org/rubocop/plugins.html#plugin-suggestions for more options):
+  AllCops:
+    SuggestExtensions: false
+No errors! Great job.

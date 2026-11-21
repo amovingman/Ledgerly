@@ -24,6 +24,11 @@ module Billing
       value
     end
 
+    def self.identifier(value)
+      value = value.to_i if value.is_a?(String) && /\A[1-9]\d{0,18}\z/.match?(value)
+      positive_integer(value, field: 'id')
+    end
+
     def self.text(value, field:, maximum: 200)
       unless value.is_a?(String) && value.present? && value.length <= maximum
         raise Error.new('invalid_input', "#{field} must be a nonblank string of at most #{maximum} characters.")

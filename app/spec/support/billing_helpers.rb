@@ -31,6 +31,17 @@ module BillingHelpers
                        LedgerEntry.new(account: 'usage_revenue', credit: amount)] }
   end
 
+  def ingest(subscription:, key: SecureRandom.uuid, **attributes)
+    payload = { metric: subscription.metric, quantity: 10, occurred_at: '2026-01-15T00:00:00Z' }.merge(attributes)
+    Billing::IngestUsage.new(customer: subscription.customer, subscription: subscription,
+                             attributes: payload, idempotency_key: key).call
+  end
+
+  def authenticate_api
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with('API_KEY').and_return('request-test-key')
+  end
+
   def expect_database_rejection(constraint, &)
     expect { ApplicationRecord.transaction(requires_new: true, &) }
       .to raise_error(ActiveRecord::StatementInvalid, /#{constraint}/)

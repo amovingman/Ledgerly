@@ -7,6 +7,8 @@ module ApiErrors
     rescue_from ActionDispatch::Http::Parameters::ParseError, with: :invalid_json
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
     rescue_from ActiveRecord::RecordInvalid, with: :validation_failed
+    rescue_from Billing::Error, with: :billing_error
+    rescue_from ActiveRecord::RecordNotUnique, with: :resource_conflict
     rescue_from PaginationParams::Invalid, with: :invalid_pagination
   end
 
@@ -14,6 +16,14 @@ module ApiErrors
 
   def render_error(status, code, message)
     render json: { error: { code: code, message: message } }, status: status
+  end
+
+  def billing_error(error)
+    render_error(error.status, error.code, error.message)
+  end
+
+  def resource_conflict
+    render_error(:conflict, 'resource_conflict', 'A resource with this unique identity already exists.')
   end
 
   def bad_request
