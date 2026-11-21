@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
-require_relative "../config/boot"
-require "active_support/continuous_integration"
+require 'fileutils'
 
-CI = ActiveSupport::ContinuousIntegration
-require_relative "../config/ci.rb"
+FileUtils.chdir File.expand_path('..', __dir__) do
+  abort 'Refusing to run checks from a production environment' if ENV['RAILS_ENV'] == 'production'
+  ENV['RAILS_ENV'] = 'test'
+  system('bin/rails', 'db:prepare', exception: true)
+  system('bundle', 'exec', 'rspec', exception: true)
+  system('bundle', 'exec', 'rubocop', exception: true)
+  system('bundle', 'exec', 'srb', 'tc', exception: true)
+end

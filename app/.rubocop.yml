@@ -1,0 +1,24 @@
+plugins:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.4
+  Exclude:
+    - db/schema.rb
+    - vendor/**/*
+    - coverage/**/*
+
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Layout/LineLength:
+  Max: 120
+
+# Keep assertions for one HTTP response in the same behavioral example.
+RSpec/MultipleExpectations:
+  Max: 5
+RSpec/ExampleLength:
+  Max: 12
