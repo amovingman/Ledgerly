@@ -1,0 +1,1 @@
+{"cache_status": "miss", "completed_seconds": 0.048089207999999994, "elapsed_ms": 48.08920799999999, "http_ms": 43.60366699999996, "index": 0, "response_bytes": 26239, "response_sha256": "8eb66845ea14e9f2514e88b19590a751e4e3f8194a96671e487ffed29f57a947", "sql_ms": 1.635, "sql_queries": 4, "start_delay_ms": 4.485541000000037, "status": 200, "valid": true}

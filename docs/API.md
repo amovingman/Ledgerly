@@ -1,4 +1,4 @@
-# Core API
+# API reference
 
 All business routes are under `/api/v1`, require `Authorization: Bearer <API_KEY>`, accept JSON, and return JSON. [Billing rules](BILLING_RULES.md) define the contract and accounting behavior; [ROADMAP.md](../ROADMAP.md) tracks completion.
 
@@ -8,7 +8,7 @@ All business routes are under `/api/v1`, require `Authorization: Bearer <API_KEY
 | --- | --- | --- |
 | POST | `/api/v1/customers` | `{"customer":{"name":"Acme","email":"billing@example.test"}}` |
 | GET | `/api/v1/customers` | Paginated customer list in ascending ID order |
-| GET | `/api/v1/customers/:id` | Customer detail |
+| GET | `/api/v1/customers/:id` | Customer detail including server-managed `stripe_customer_id` |
 | POST | `/api/v1/plans` | `{"plan":{"name":"API calls","metric":"api_calls","unit_amount":7,"currency":"USD"}}` |
 | GET | `/api/v1/plans` | Paginated plan list in ascending ID order |
 | GET | `/api/v1/plans/:id` | Plan detail |
@@ -43,6 +43,9 @@ Send a key such as `Idempotency-Key: customer-1-request-123`. A first ingestion 
 | GET | `/api/v1/customers/:customer_id/invoices` | Paginated invoice headers ordered by `created_at DESC, id DESC` |
 | GET | `/api/v1/invoices/:id` | Invoice header, snapshotted `line_items`, and balanced `journals` with entries |
 | GET | `/api/v1/customers/:customer_id/balance` | `{"data":{"customer_id":1,"balances":[{"currency":"USD","amount":70}]}}` |
+| POST | `/api/v1/invoices/:invoice_id/collection` | No body; `202` with persisted collection status; repeats return the same intent |
+| GET | `/api/v1/invoices/:invoice_id/collection` | Collection status, attempt count, safe last-error code, remote invoice ID |
+| GET | `/api/v1/stripe_events/:stripe_id` | Receipt processing metadata; excludes raw payload |
 
 Invoice creation is synchronous and transactional. It returns 201 for first issuance and 200 for a repeat subscription/month, with `Idempotency-Replayed` identifying a replay. It never invokes Stripe or collects money. The server derives the month end, unit price, usage quantity, currency and amount; client overrides are ignored. Completed calendar months with no usage return 422 `no_usage`, open months return 422 `period_not_closed`, and non-month-boundary starts return 422 `invalid_period`.
 
@@ -50,8 +53,16 @@ Invoice detail includes ledger accounts/debits/credits for auditability. Header 
 
 A first issuance closes only that subscription's month. New late usage is rejected afterward, while existing usage-key and invoice-generation retries remain safe. A failed posting rolls back the invoice, line, allocation, and journal together.
 
+Collection is asynchronous and requires test-mode Stripe configuration. A `202` or collection `succeeded` means the collection intent/finalized remote invoice exists, not that payment is recognized. Invoice headers include server-managed `stripe_invoice_id`. Signed reconciliation changes the local status to `payment_failed`, `paid`, or fully `refunded`; partial refunds leave it `paid` and add refund journals. Repeating collection never starts a second intent. Totals below the configured currency minimum or above the application cap return `422 unsupported_collection_amount`. See [Stripe contracts and recovery](STRIPE_RELIABILITY.md).
+
+## Stripe webhook
+
+`POST /webhooks/stripe` requires a valid `Stripe-Signature` rather than an application API key. Send the exact signed bytes using the pinned `2026-11-18.endive` snapshot version. The test-mode receipt and outbox commit before `200 {"received":true,"duplicate":false}`. Repeated delivery returns `duplicate:true`; asynchronous processing can still be pending when acknowledgment succeeds. Redis unavailability does not discard a stored receipt.
+
+Invalid signatures, live/Connect events, and unexpected API versions return 400 before storage. Requests larger than 1 MiB return 413. Conflicting payloads for a stored event ID return 409. A missing webhook signing secret returns 503. Unknown event types are accepted then marked `ignored`; supported types are `invoice.paid`, `invoice.payment_failed`, and `charge.refunded`. Inspect event processing through the authenticated metadata endpoint.
+
 ## Errors
 
 Errors use `{"error":{"code":"...","message":"..."}}`. Malformed JSON or a missing/wrong-shaped root object returns 400. Invalid fields return 422. Missing referenced resources return 404. Duplicate customer emails return 409 `resource_conflict`; subscription overlap returns 409 `subscription_overlap`; changed payloads under a used key return 409 `idempotency_conflict`; late new usage after issuance returns 409 `usage_period_closed`. Internal database details are not exposed.
 
-Public `/up` and `/ready` health routes and authenticated `/api/v1/status` remain available. Stripe webhooks and collection are not implemented in this milestone.
+Public `/up` and `/ready` health routes and authenticated `/api/v1/status` remain available. Missing Stripe credentials affect collection/webhook capabilities; core local billing remains available.

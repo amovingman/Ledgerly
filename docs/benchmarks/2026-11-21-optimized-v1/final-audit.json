@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "head_unchanged": "23e0e76c90429375bcc6331d12ec1a171a642517",
+  "staged_changes": false,
+  "diff_whitespace_clean": true,
+  "source_manifest_matches": true,
+  "private_values_checked": 4,
+  "public_files_scanned": 371,
+  "credential_matches": 0,
+  "documentation_links_valid": true,
+  "no_commit_or_push_performed": true
+}

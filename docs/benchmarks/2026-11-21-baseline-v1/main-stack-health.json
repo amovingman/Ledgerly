@@ -1,0 +1,18 @@
+{
+  "/up": {
+    "http_status": 200,
+    "body": {
+      "status": "ok"
+    }
+  },
+  "/ready": {
+    "http_status": 200,
+    "body": {
+      "status": "ok",
+      "checks": {
+        "postgres": "ok",
+        "redis": "ok"
+      }
+    }
+  }
+}

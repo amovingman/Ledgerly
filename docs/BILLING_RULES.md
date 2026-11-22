@@ -1,6 +1,6 @@
 # Core billing rules
 
-These rules implement [Milestone 1](../ROADMAP.md#milestone-1--core-api-and-accounting-week-1). Stripe collection and reconciliation remain in Milestone 2.
+These rules implement [Milestone 1](../ROADMAP.md#milestone-1--core-api-and-accounting-week-1) accounting and [Milestone 2](../ROADMAP.md#milestone-2--stripe-integration-and-recovery-week-2) test-mode payment reconciliation. See [Stripe collection and recovery](STRIPE_RELIABILITY.md) for supported payment contracts and operational commands.
 
 ## Contracts and periods
 
@@ -28,7 +28,7 @@ These rules implement [Milestone 1](../ROADMAP.md#milestone-1--core-api-and-acco
 - Issuance creates the invoice, price/quantity snapshot, usage allocation and complete journal in one transaction. Repeating or concurrently generating the same subscription-period returns the existing invoice. A failure rolls back every effect.
 - One usage event has at most one line-item allocation. Issuance only allocates previously unbilled events within its subscription and half-open month.
 - Issuance journal: debit `accounts_receivable`, credit `usage_revenue`, each for the invoice amount. Journal currency must match the invoice, with at least two rows and equal debit/credit totals. Each row has exactly one positive side.
-- Reserved for Milestone 2: payments debit `stripe_clearing` and credit `accounts_receivable`; refunds debit `sales_returns` and credit `stripe_clearing`. Credit adjustments and payment/refund reconciliation are not implemented in Milestone 1.
+- Recognized full card payments debit `stripe_clearing` and credit `accounts_receivable`; succeeded refunds debit `sales_returns` and credit `stripe_clearing`. The underlying charge and each individual refund have unique business-effect keys. Distinct/repeated webhook events cannot post the same logical effect again. Refunds do not reopen receivables; a partial refund leaves the invoice `paid`, while full refund sets `refunded`. Credit adjustments remain outside scope.
 - Journal balance and aggregate invoice/allocation consistency are validated by the posting service transaction and tests. Row checks alone do not enforce sums across rows; administrative SQL bypassing the service is outside that application guarantee. Ledger rows and line snapshots are read-only through models and the API. Entries must be built and validated with a new complete journal; appending rows to a persisted journal is rejected.
 - Customer balances come from `accounts_receivable` debits minus credits grouped by journal currency, using PostgreSQL rather than a cache or invoice status. Currencies are never added together.
 

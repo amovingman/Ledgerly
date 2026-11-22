@@ -75,12 +75,20 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
+    addressable (2.9.2)
+      public_suffix (>= 2.0.2, < 8.0)
     ast (2.4.3)
     base64 (0.3.0)
     bigdecimal (4.1.3)
     builder (3.3.0)
+    bullet (8.3.1)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     concurrent-ruby (1.3.8)
     connection_pool (3.0.3)
+    crack (1.0.1)
+      bigdecimal
+      rexml
     crass (1.0.8)
     date (3.6.0)
     diff-lcs (1.6.2)
@@ -89,6 +97,7 @@ GEM
     erubi (1.13.1)
     globalid (1.4.0)
       activesupport (>= 6.1)
+    hashdiff (1.2.2)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     io-console (0.9.5)
@@ -162,6 +171,7 @@ GEM
     prism (2.1.0-x86_64-darwin)
     prism (2.1.0-x86_64-linux-gnu)
     prism (2.1.0-x86_64-linux-musl)
+    public_suffix (7.0.5)
     puma (8.1.2)
       nio4r (~> 2.0)
     racc (1.8.1)
@@ -221,6 +231,7 @@ GEM
     regexp_parser (2.13.4)
     reline (0.7.0)
       io-console (~> 0.5)
+    rexml (3.4.4)
     rspec-core (3.13.7)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.6)
@@ -279,6 +290,9 @@ GEM
     sorbet-static (0.6.13715-aarch64-linux)
     sorbet-static (0.6.13715-universal-darwin)
     sorbet-static (0.6.13715-x86_64-linux)
+    stripe (21.1.0)
+      bigdecimal
+      logger
     thor (1.5.0)
     timeout (0.6.1)
     tsort (0.2.0)
@@ -287,8 +301,13 @@ GEM
     unicode-display_width (3.3.0)
       unicode-emoji (~> 4.3)
     unicode-emoji (4.3.0)
+    uniform_notifier (1.18.1)
     uri (1.1.2)
     useragent (0.16.11)
+    webmock (3.38.0)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     websocket-driver (0.9.0)
       base64
       websocket-extensions (>= 0.2.0)
@@ -307,6 +326,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  bullet (= 8.3.1)
   pg (= 1.7.0)
   puma (= 8.1.2)
   rails (= 8.1.4.1)
@@ -319,6 +339,8 @@ DEPENDENCIES
   simplecov (= 1.3.2)
   sorbet (= 0.6.13715)
   sorbet-runtime (= 0.6.13715)
+  stripe (= 21.1.0)
+  webmock (= 3.38.0)
 
 CHECKSUMS
   action_text-trix (2.1.19) sha256=7012f59421009cf284aa651294896414d653a61a2417c9b8714c8476d2f74009
@@ -333,12 +355,15 @@ CHECKSUMS
   activerecord (8.1.4.1) sha256=bd65599ca0b5d210937f835d42c7aff69d271741c75aab022730be6cbce67e87
   activestorage (8.1.4.1) sha256=0f4e2f114f3584723a80a2c089aacc6170e765a0b2c385c9782e26ed78f05c66
   activesupport (8.1.4.1) sha256=16ac4f341ca65c85a1fcdb8ac73f68891aae9e3c4a6f9c3a27daed8b00017ed7
+  addressable (2.9.2) sha256=9117c7e7d6ee07230e75ce41fb9401ae55354dc654fcd0e862ba41d539e9a610
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bigdecimal (4.1.3) sha256=61ebe1e5e559bdc3cc6f2c0ee7f427321fc838f59611c294356eb04d6e21cf66
   builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
+  bullet (8.3.1) sha256=e38418cc49c9cf3fae2a2a0f04ec152fec4b57f12752b6e678f54bf847baab53
   concurrent-ruby (1.3.8) sha256=b2f1be836e968ccc78ccfce277ea79c72a88633f22306782c16ff23fb415d1e1
   connection_pool (3.0.3) sha256=e0f8ee3ee0039396753e06e8a2dde0ef028e40f7df29e97f57da7577c489cb5e
+  crack (1.0.1) sha256=ff4a10390cd31d66440b7524eb1841874db86201d5b70032028553130b6d4c7e
   crass (1.0.8) sha256=7a0145c7a2c59f8e7923b3a69ce819c444823a00a5127d805298fea13be24efe
   date (3.6.0) sha256=18ac945c4e24ebd93534f8eab8c2fd8c5604b3e977105b3798d62a1e8d27b580
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
@@ -346,6 +371,7 @@ CHECKSUMS
   erb (6.0.7) sha256=c5ca6dc25b0ef974a44dc8f59fe847577122483b1968a38dec305c60bf91ee92
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
   globalid (1.4.0) sha256=037f12fbf1d9d7a014d501c2d5c77356fd4ddd96d7a7991d6700bba96706f427
+  hashdiff (1.2.2) sha256=e2e287452b42f18d2a8d82dd48c435e214a81dbadccf49344b956842a3b9127f
   i18n (1.15.2) sha256=00f9eb62412fe593b2a65a97daa75300d37abb8f7202ec748e94b6d46a9dd1b5
   io-console (0.9.5) sha256=83dd9bbf4c4680416629245b39cd4212eb5f4d9a4ea91804870c1f6b846414d5
   irb (1.19.0) sha256=55ee56acbdd6c9fe06a2e6909f46a24e5c41f45f16906bab04e8049cf46f1d27
@@ -389,6 +415,7 @@ CHECKSUMS
   prism (2.1.0-x86_64-darwin) sha256=6c645d8e6afc742956c7518220ce5106367727c4d9980ac9ab386d55004ddab4
   prism (2.1.0-x86_64-linux-gnu) sha256=b2b647afce09551e650b8bb3e2fc91d7d73d392a09534ca307ec0d619c33bfd4
   prism (2.1.0-x86_64-linux-musl) sha256=249f45981726923e259b927902246219fa25ad10a76f43849c9aee1a3d3ec5b8
+  public_suffix (7.0.5) sha256=1a8bb08f1bbea19228d3bed6e5ed908d1cb4f7c2726d18bd9cadf60bc676f623
   puma (8.1.2) sha256=3a6d9a34c9a4d0175eabd11b703939b5d43ebe08bc2534ac7dfd4df33a6ceedc
   racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
   rack (3.2.9) sha256=8235c1d08f0c461bedcff4413bbeba888173e5b09e1332ae951c98f0ee460dcc
@@ -407,6 +434,7 @@ CHECKSUMS
   redis-client (0.30.1) sha256=5151bc5c7bbfe48623732cdae3b900d8a22dc691cc7cdfacfb351ac55116522d
   regexp_parser (2.13.4) sha256=1d0547814f57e6f00946957bd0ca201bc42f42cfb08eee89df60998aedcd8a3b
   reline (0.7.0) sha256=5b012d8e55dbf9d450f12bde2cf7d15ff546ae80b3f8f3b30e570d431815583d
+  rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142
   rspec-core (3.13.7) sha256=c64ff16d9788119805cbc6a3f4b6d87cc22417c2d25976a3330de136896b5469
   rspec-expectations (3.13.6) sha256=bf538ca6d367ff5b0d85a87fdb5c0c6038f2cd1308a0eeba07476caa02d22f35
   rspec-mocks (3.13.9) sha256=ea5c7ff3054a6098ca6039aacef80aec69d5a8a3ef80be8fc88337359b672a30
@@ -425,14 +453,17 @@ CHECKSUMS
   sorbet-static (0.6.13715-aarch64-linux) sha256=cf6b78e99c163b9d7513a34b828ec514e436750d73ab48288df91703b013187f
   sorbet-static (0.6.13715-universal-darwin) sha256=35b367b48bac6b51ebe9152e171d1999935f2d6c425fa4be252dff96e44d876c
   sorbet-static (0.6.13715-x86_64-linux) sha256=f1e044481fff29cc41cab7af5baea7f818cbe58ced97f1e4499928078e3288fe
+  stripe (21.1.0) sha256=6186d4621b054621f418cf8e51fc222938ed4b0dd0bd1e61af460c6d412d423d
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   timeout (0.6.1) sha256=78f57368a7e7bbadec56971f78a3f5ecbcfb59b7fcbb0a3ed6ddc08a5094accb
   tsort (0.2.0) sha256=9650a793f6859a43b6641671278f79cfead60ac714148aabe4e3f0060480089f
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
   unicode-display_width (3.3.0) sha256=4b7aa66a4b11db50f6f7e98411215cd0dd10eaecb665d36eec5bcacb3fa0b613
   unicode-emoji (4.3.0) sha256=11c02fa73290378c066bb0562cd4c87d8e1b706fbbe0059ca12746a4244de8ce
+  uniform_notifier (1.18.1) sha256=3745b83a6ed88daa5cf08c662f5b8786a8c438c21e103466519f1c6e641fd204
   uri (1.1.2) sha256=89292e98eabbef6248b0a0ed5e7e398e152f83f17560023a6d94a7f492b169fb
   useragent (0.16.11) sha256=700e6413ad4bb954bb63547fa098dddf7b0ebe75b40cc6f93b8d54255b173844
+  webmock (3.38.0) sha256=8fa3f656ee73c88fb85f1b136eb5467443cfa1424bfe2b44a538e224c5fbfde7
   websocket-driver (0.9.0) sha256=4dfcc6ac0ea1b6771daf5fb54cbbca131e4d5922ea0a65ba2da980370dadbe9f
   websocket-extensions (0.2.0) sha256=6fb0d0f687aa8adc8eafa5ce68db36dfd6a8ebf232515040ce27c33c1291e589
   zeitwerk (2.8.3) sha256=2c85125a8467ce069e20123d1e709a08955c9d29c118c25b46b7b7fafdbb92e5

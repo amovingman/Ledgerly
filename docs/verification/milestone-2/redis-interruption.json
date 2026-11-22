@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "initial_event": "evt_e40cf899010e467eb5a5eda8bec37318",
+  "initial_processing_status": "ignored",
+  "duplicate_receipt_acknowledged": true,
+  "bad_signature_status": 400,
+  "queue_outage_event": "evt_79df5884dfbc47f08e8a97711de13963",
+  "queue_outage_http_status": 200,
+  "status_while_queue_down": "received",
+  "status_after_restart_and_sweep": "ignored",
+  "attempts_after_recovery": 1,
+  "provider_api_calls_required": false
+}

@@ -1,0 +1,30 @@
+{
+  "baseline_immutable_files_verified": 59,
+  "runs": {
+    "seed-high.log": {
+      "business_fingerprints_match": true,
+      "counts_match": true
+    },
+    "seed-profile.log": {
+      "business_fingerprints_match": true,
+      "counts_match": true
+    },
+    "seed-restored.log": {
+      "business_fingerprints_match": true,
+      "counts_match": true
+    },
+    "seed-uncached.log": {
+      "business_fingerprints_match": true,
+      "counts_match": true
+    },
+    "seed-warm-repeat.log": {
+      "business_fingerprints_match": true,
+      "counts_match": true
+    },
+    "seed-warm.log": {
+      "business_fingerprints_match": true,
+      "counts_match": true
+    }
+  },
+  "note": "Fingerprint all original business columns in all 11 tables. The newly added monotonic customers.read_version cache counter is excluded; all other columns retained."
+}

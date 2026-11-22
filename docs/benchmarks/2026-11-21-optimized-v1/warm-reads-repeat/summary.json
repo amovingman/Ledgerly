@@ -1,0 +1,459 @@
+{
+  "cache_state": "Application cache status recorded per request; optional cold first observation clears only read-cache keys; database/OS caches never flushed",
+  "scenarios": {
+    "invoice_list_first": {
+      "path": "/api/v1/customers/1/invoices?page=1&per_page=100",
+      "first_observation": {
+        "offered_requests": 1,
+        "completed_requests": 1,
+        "dropped_arrivals": 0,
+        "failures": 0,
+        "arrival_rate_per_second": 1,
+        "offering_duration_seconds": 1,
+        "including_tail_seconds": 0.04395741599999997,
+        "http_latency_ms": {
+          "p50": 33.659792000000024,
+          "p95": 33.659792000000024,
+          "p99": 33.659792000000024,
+          "max": 33.659792000000024
+        },
+        "scheduled_to_completion_ms": {
+          "p50": 43.81737499999999,
+          "p95": 43.81737499999999,
+          "p99": 43.81737499999999,
+          "max": 43.81737499999999
+        },
+        "generator_start_delay_ms": {
+          "p50": 10.15758299999997,
+          "p95": 10.15758299999997,
+          "p99": 10.15758299999997,
+          "max": 10.15758299999997
+        },
+        "sql_queries_per_request": {
+          "p50": 4.0,
+          "p95": 4.0,
+          "p99": 4.0,
+          "max": 4
+        },
+        "sql_time_ms": {
+          "p50": 4.073,
+          "p95": 4.073,
+          "p99": 4.073,
+          "max": 4.073
+        },
+        "cache_status_counts": {
+          "hit": 0,
+          "miss": 1,
+          "off": 0
+        },
+        "duplicate_acknowledgments": 0,
+        "response_hashes": [
+          "8eb66845ea14e9f2514e88b19590a751e4e3f8194a96671e487ffed29f57a947"
+        ]
+      },
+      "warmup": {
+        "offered_requests": 200,
+        "completed_requests": 200,
+        "dropped_arrivals": 0,
+        "failures": 0,
+        "arrival_rate_per_second": 40.0,
+        "offering_duration_seconds": 5.0,
+        "including_tail_seconds": 4.989890792,
+        "http_latency_ms": {
+          "p50": 5.673333500000044,
+          "p95": 21.018269050000036,
+          "p99": 54.537218330000016,
+          "max": 72.336167
+        },
+        "scheduled_to_completion_ms": {
+          "p50": 11.762999999999856,
+          "p95": 27.338564900000048,
+          "p99": 55.760097999999914,
+          "max": 73.1737920000004
+        },
+        "generator_start_delay_ms": {
+          "p50": 5.704666499999789,
+          "p95": 10.059543749999984,
+          "p99": 10.115687920000074,
+          "max": 10.153582999999688
+        },
+        "sql_queries_per_request": {
+          "p50": 2.0,
+          "p95": 2.0,
+          "p99": 2.0,
+          "max": 2
+        },
+        "sql_time_ms": {
+          "p50": 0.313,
+          "p95": 1.258499999999995,
+          "p99": 5.60690999999985,
+          "max": 60.998
+        },
+        "cache_status_counts": {
+          "hit": 200,
+          "miss": 0,
+          "off": 0
+        },
+        "duplicate_acknowledgments": 0,
+        "response_hashes": [
+          "8eb66845ea14e9f2514e88b19590a751e4e3f8194a96671e487ffed29f57a947"
+        ]
+      },
+      "measured": {
+        "offered_requests": 800,
+        "completed_requests": 800,
+        "dropped_arrivals": 0,
+        "failures": 0,
+        "arrival_rate_per_second": 40.0,
+        "offering_duration_seconds": 20.0,
+        "including_tail_seconds": 19.993300792,
+        "http_latency_ms": {
+          "p50": 4.779270499999377,
+          "p95": 15.934493750000286,
+          "p99": 50.212195589999794,
+          "max": 208.22841599999896
+        },
+        "scheduled_to_completion_ms": {
+          "p50": 10.457917000000094,
+          "p95": 21.247114900001826,
+          "p99": 62.905927500000345,
+          "max": 240.30875000000052
+        },
+        "generator_start_delay_ms": {
+          "p50": 4.9591255000001055,
+          "p95": 10.068945849998912,
+          "p99": 10.11853125000112,
+          "max": 32.08033400000154
+        },
+        "sql_queries_per_request": {
+          "p50": 2.0,
+          "p95": 2.0,
+          "p99": 2.0,
+          "max": 2
+        },
+        "sql_time_ms": {
+          "p50": 0.323,
+          "p95": 1.5832499999999998,
+          "p99": 11.694649999999985,
+          "max": 116.154
+        },
+        "cache_status_counts": {
+          "hit": 800,
+          "miss": 0,
+          "off": 0
+        },
+        "duplicate_acknowledgments": 0,
+        "response_hashes": [
+          "8eb66845ea14e9f2514e88b19590a751e4e3f8194a96671e487ffed29f57a947"
+        ]
+      }
+    },
+    "invoice_list_deep": {
+      "path": "/api/v1/customers/1/invoices?page=10&per_page=100",
+      "first_observation": {
+        "offered_requests": 1,
+        "completed_requests": 1,
+        "dropped_arrivals": 0,
+        "failures": 0,
+        "arrival_rate_per_second": 1,
+        "offering_duration_seconds": 1,
+        "including_tail_seconds": 0.023241582999997235,
+        "http_latency_ms": {
+          "p50": 21.687790999997958,
+          "p95": 21.687790999997958,
+          "p99": 21.687790999997958,
+          "max": 21.687790999997958
+        },
+        "scheduled_to_completion_ms": {
+          "p50": 23.099832999996295,
+          "p95": 23.099832999996295,
+          "p99": 23.099832999996295,
+          "max": 23.099832999996295
+        },
+        "generator_start_delay_ms": {
+          "p50": 1.412041999998337,
+          "p95": 1.412041999998337,
+          "p99": 1.412041999998337,
+          "max": 1.412041999998337
+        },
+        "sql_queries_per_request": {
+          "p50": 4.0,
+          "p95": 4.0,
+          "p99": 4.0,
+          "max": 4
+        },
+        "sql_time_ms": {
+          "p50": 2.039,
+          "p95": 2.039,
+          "p99": 2.039,
+          "max": 2.039
+        },
+        "cache_status_counts": {
+          "hit": 0,
+          "miss": 1,
+          "off": 0
+        },
+        "duplicate_acknowledgments": 0,
+        "response_hashes": [
+          "4565161318488408fcf6b96dda51f418d8890b965639f48e254a0c64f7905e01"
+        ]
+      },
+      "warmup": {
+        "offered_requests": 200,
+        "completed_requests": 200,
+        "dropped_arrivals": 0,
+        "failures": 0,
+        "arrival_rate_per_second": 40.0,
+        "offering_duration_seconds": 5.0,
+        "including_tail_seconds": 4.982479791999996,
+        "http_latency_ms": {
+          "p50": 4.667208000000755,
+          "p95": 11.121443749999926,
+          "p99": 17.667650409999208,
+          "max": 37.73470799999856
+        },
+        "scheduled_to_completion_ms": {
+          "p50": 9.036270499997556,
+          "p95": 17.694533349996174,
+          "p99": 27.808294249999257,
+          "max": 45.293332999996494
+        },
+        "generator_start_delay_ms": {
+          "p50": 3.1767914999996094,
+          "p95": 10.085985399994968,
+          "p99": 10.154869169995209,
+          "max": 15.507707999997677
+        },
+        "sql_queries_per_request": {
+          "p50": 2.0,
+          "p95": 2.0,
+          "p99": 2.0,
+          "max": 2
+        },
+        "sql_time_ms": {
+          "p50": 0.31,
+          "p95": 0.8644499999999998,
+          "p99": 2.676499999999994,
+          "max": 4.519
+        },
+        "cache_status_counts": {
+          "hit": 200,
+          "miss": 0,
+          "off": 0
+        },
+        "duplicate_acknowledgments": 0,
+        "response_hashes": [
+          "4565161318488408fcf6b96dda51f418d8890b965639f48e254a0c64f7905e01"
+        ]
+      },
+      "measured": {
+        "offered_requests": 800,
+        "completed_requests": 800,
+        "dropped_arrivals": 0,
+        "failures": 0,
+        "arrival_rate_per_second": 40.0,
+        "offering_duration_seconds": 20.0,
+        "including_tail_seconds": 19.9904865,
+        "http_latency_ms": {
+          "p50": 4.7130210000005945,
+          "p95": 10.45620624999834,
+          "p99": 34.00178356999877,
+          "max": 173.92904199999748
+        },
+        "scheduled_to_completion_ms": {
+          "p50": 10.670353999998383,
+          "p95": 17.444509749998,
+          "p99": 38.38872875000086,
+          "max": 178.2594999999958
+        },
+        "generator_start_delay_ms": {
+          "p50": 5.912478999999138,
+          "p95": 10.09256635000213,
+          "p99": 10.205145999999914,
+          "max": 65.14737499999512
+        },
+        "sql_queries_per_request": {
+          "p50": 2.0,
+          "p95": 2.0,
+          "p99": 2.0,
+          "max": 2
+        },
+        "sql_time_ms": {
+          "p50": 0.322,
+          "p95": 0.7129999999999991,
+          "p99": 2.318309999999999,
+          "max": 128.784
+        },
+        "cache_status_counts": {
+          "hit": 800,
+          "miss": 0,
+          "off": 0
+        },
+        "duplicate_acknowledgments": 0,
+        "response_hashes": [
+          "4565161318488408fcf6b96dda51f418d8890b965639f48e254a0c64f7905e01"
+        ]
+      }
+    },
+    "customer_balance": {
+      "path": "/api/v1/customers/1/balance",
+      "first_observation": {
+        "offered_requests": 1,
+        "completed_requests": 1,
+        "dropped_arrivals": 0,
+        "failures": 0,
+        "arrival_rate_per_second": 1,
+        "offering_duration_seconds": 1,
+        "including_tail_seconds": 0.044155709000001764,
+        "http_latency_ms": {
+          "p50": 43.463957999996694,
+          "p95": 43.463957999996694,
+          "p99": 43.463957999996694,
+          "max": 43.463957999996694
+        },
+        "scheduled_to_completion_ms": {
+          "p50": 44.064124999998455,
+          "p95": 44.064124999998455,
+          "p99": 44.064124999998455,
+          "max": 44.064124999998455
+        },
+        "generator_start_delay_ms": {
+          "p50": 0.6001670000017612,
+          "p95": 0.6001670000017612,
+          "p99": 0.6001670000017612,
+          "max": 0.6001670000017612
+        },
+        "sql_queries_per_request": {
+          "p50": 3.0,
+          "p95": 3.0,
+          "p99": 3.0,
+          "max": 3
+        },
+        "sql_time_ms": {
+          "p50": 12.412,
+          "p95": 12.412,
+          "p99": 12.412,
+          "max": 12.412
+        },
+        "cache_status_counts": {
+          "hit": 0,
+          "miss": 1,
+          "off": 0
+        },
+        "duplicate_acknowledgments": 0,
+        "response_hashes": [
+          "3e18287099a61618e88897206e3b71bad36146fea31098accdf9475530677dbd"
+        ]
+      },
+      "warmup": {
+        "offered_requests": 200,
+        "completed_requests": 200,
+        "dropped_arrivals": 0,
+        "failures": 0,
+        "arrival_rate_per_second": 40.0,
+        "offering_duration_seconds": 5.0,
+        "including_tail_seconds": 4.981001667000001,
+        "http_latency_ms": {
+          "p50": 3.7115420000013444,
+          "p95": 12.080127400000478,
+          "p99": 72.03300165999536,
+          "max": 85.88120900000007
+        },
+        "scheduled_to_completion_ms": {
+          "p50": 9.048979500001053,
+          "p95": 17.999046150000094,
+          "p99": 76.08861041999657,
+          "max": 106.02520800000548
+        },
+        "generator_start_delay_ms": {
+          "p50": 4.016791500003336,
+          "p95": 10.066618450003872,
+          "p99": 10.194360329998334,
+          "max": 25.997792000005404
+        },
+        "sql_queries_per_request": {
+          "p50": 2.0,
+          "p95": 2.0,
+          "p99": 2.0,
+          "max": 2
+        },
+        "sql_time_ms": {
+          "p50": 0.325,
+          "p95": 1.3998499999999992,
+          "p99": 11.153209999999996,
+          "max": 11.952
+        },
+        "cache_status_counts": {
+          "hit": 200,
+          "miss": 0,
+          "off": 0
+        },
+        "duplicate_acknowledgments": 0,
+        "response_hashes": [
+          "3e18287099a61618e88897206e3b71bad36146fea31098accdf9475530677dbd"
+        ]
+      },
+      "measured": {
+        "offered_requests": 800,
+        "completed_requests": 800,
+        "dropped_arrivals": 0,
+        "failures": 0,
+        "arrival_rate_per_second": 40.0,
+        "offering_duration_seconds": 20.0,
+        "including_tail_seconds": 19.989288790999993,
+        "http_latency_ms": {
+          "p50": 3.8548125000019695,
+          "p95": 12.072973250000626,
+          "p99": 38.705261170001386,
+          "max": 99.45249999999817
+        },
+        "scheduled_to_completion_ms": {
+          "p50": 9.73085399999718,
+          "p95": 17.95094340000034,
+          "p99": 42.52429500001012,
+          "max": 106.15404099999637
+        },
+        "generator_start_delay_ms": {
+          "p50": 4.972124999998329,
+          "p95": 10.102295799995531,
+          "p99": 10.176842579995622,
+          "max": 15.57387500000118
+        },
+        "sql_queries_per_request": {
+          "p50": 2.0,
+          "p95": 2.0,
+          "p99": 2.0,
+          "max": 2
+        },
+        "sql_time_ms": {
+          "p50": 0.345,
+          "p95": 1.11625,
+          "p99": 4.072419999999998,
+          "max": 10.279
+        },
+        "cache_status_counts": {
+          "hit": 800,
+          "miss": 0,
+          "off": 0
+        },
+        "duplicate_acknowledgments": 0,
+        "response_hashes": [
+          "3e18287099a61618e88897206e3b71bad36146fea31098accdf9475530677dbd"
+        ]
+      }
+    }
+  },
+  "started_at_utc": "2026-11-22T04:27:52Z",
+  "scenario": "reads",
+  "arguments": {
+    "scenario": "reads",
+    "output": ".tooling/m3-final/warm-reads-repeat",
+    "rate": 40.0,
+    "duration": 20.0,
+    "warmup": 5.0,
+    "run_id": "baseline_v1",
+    "cold_first": true,
+    "drain_timeout": 180
+  },
+  "generator": "Python stdlib open-loop, 32 threads, 64 in-flight limit"
+}

@@ -1,0 +1,9 @@
+{
+  "observed_open_descriptors": 1021,
+  "soft_open_file_limit": 1024,
+  "hard_open_file_limit": 524288,
+  "error": "Errno::EMFILE / Too many open files",
+  "result": "902 unique events processed, 4465 received; stopped at unchanged 180s drain deadline",
+  "fix": "One SDK client per thread and configuration; no raised file limits",
+  "source": "Live /proc/7/fd and /proc/7/limits inspection during saved trial; worker log retained."
+}

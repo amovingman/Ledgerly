@@ -1,6 +1,9 @@
 class LedgerTransaction < ApplicationRecord
   belongs_to :invoice
+  belongs_to :stripe_event, optional: true
   has_many :ledger_entries, inverse_of: :ledger_transaction, autosave: true, dependent: :restrict_with_exception
+
+  after_create :advance_read_version
 
   validates :journal_type, inclusion: { in: %w[issuance payment refund] }
   validates :business_effect_key, presence: true
@@ -13,6 +16,10 @@ class LedgerTransaction < ApplicationRecord
   end
 
   private
+
+  def advance_read_version
+    Billing::ReadVersion.advance!(invoice.customer_id)
+  end
 
   def balanced_journal
     entries = ledger_entries.to_a

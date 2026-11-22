@@ -1,0 +1,238 @@
+{
+  "fully_drained": false,
+  "drain_error": "Processing did not drain: {\"total\": 5367, \"processed\": 902, \"ignored\": 0, \"received\": 4465, \"dead\": 0, \"review\": 0, \"retried_events\": 0, \"max_attempts\": 1, \"receipt_to_attempt_ms\": [15236.29, 42822.6276, 47291.38267], \"completion_ms\": [15296.288499999999, 42472.8135, 46972.79534], \"max_event_id\": 56060, \"queues\": {\"webhooks\": 4455}, \"oldest_webhook_queue_latency_seconds\": 230.682, \"retry_size\": 5, \"scheduled_size\": 0, \"dead_size\": 0}",
+  "http": {
+    "offered_requests": 6000,
+    "completed_requests": 5962,
+    "dropped_arrivals": 38,
+    "failures": 0,
+    "arrival_rate_per_second": 100.0,
+    "offering_duration_seconds": 60.0,
+    "including_tail_seconds": 60.00715279200001,
+    "http_latency_ms": {
+      "p50": 8.02650000000149,
+      "p95": 196.60392115000343,
+      "p99": 538.3342331300006,
+      "max": 1004.9462090000034
+    },
+    "scheduled_to_completion_ms": {
+      "p50": 10.612750500001766,
+      "p95": 278.89465239999527,
+      "p99": 800.4735452500086,
+      "max": 1016.1099590000049
+    },
+    "generator_start_delay_ms": {
+      "p50": 2.5976880000015967,
+      "p95": 5.012940250000408,
+      "p99": 285.1976426200012,
+      "max": 696.1721670000003
+    },
+    "sql_queries_per_request": {
+      "p50": 7.0,
+      "p95": 7.0,
+      "p99": 7.0,
+      "max": 8
+    },
+    "sql_time_ms": {
+      "p50": 1.8805,
+      "p95": 37.50935,
+      "p99": 82.64286000000051,
+      "max": 302.531
+    },
+    "cache_status_counts": {
+      "hit": 0,
+      "miss": 0,
+      "off": 5962
+    },
+    "duplicate_acknowledgments": 595,
+    "response_hashes": []
+  },
+  "before": {
+    "fixture_version": "v1",
+    "seed": 20261121,
+    "counts": {
+      "customers": 1000,
+      "plans": 80,
+      "subscriptions": 1460,
+      "invoices": 50000,
+      "invoice_line_items": 50000,
+      "usage_events": 150000
+    },
+    "violations": {
+      "invoice_totals": 0,
+      "usage_allocations": 0,
+      "journal_balance": 0,
+      "payment_identity": 0,
+      "refund_totals": 0,
+      "invoice_states": 0,
+      "issuance_identity": 0,
+      "refund_identity": 0
+    },
+    "financial_counts": {
+      "stripe_payments": 40000,
+      "stripe_refunds": 5000,
+      "ledger_transactions": 95000,
+      "ledger_entries": 190000,
+      "stripe_events": 40000,
+      "outbox_records": 40000
+    },
+    "invoice_statuses": {
+      "paid": 37500,
+      "issued": 5000,
+      "refunded": 2500,
+      "payment_failed": 5000
+    },
+    "database_bytes": 188430003
+  },
+  "after_warmup": {
+    "fixture_version": "v1",
+    "seed": 20261121,
+    "counts": {
+      "customers": 1000,
+      "plans": 80,
+      "subscriptions": 1460,
+      "invoices": 50000,
+      "invoice_line_items": 50000,
+      "usage_events": 150000
+    },
+    "violations": {
+      "invoice_totals": 0,
+      "usage_allocations": 0,
+      "journal_balance": 0,
+      "payment_identity": 0,
+      "refund_totals": 0,
+      "invoice_states": 0,
+      "issuance_identity": 0,
+      "refund_identity": 0
+    },
+    "financial_counts": {
+      "stripe_payments": 40100,
+      "stripe_refunds": 5000,
+      "ledger_transactions": 95100,
+      "ledger_entries": 190200,
+      "stripe_events": 40100,
+      "outbox_records": 40100
+    },
+    "invoice_statuses": {
+      "paid": 37600,
+      "issued": 4947,
+      "refunded": 2500,
+      "payment_failed": 4953
+    },
+    "database_bytes": 188815027
+  },
+  "after": {
+    "fixture_version": "v1",
+    "seed": 20261121,
+    "counts": {
+      "customers": 1000,
+      "plans": 80,
+      "subscriptions": 1460,
+      "invoices": 50000,
+      "invoice_line_items": 50000,
+      "usage_events": 150000
+    },
+    "violations": {
+      "invoice_totals": 0,
+      "usage_allocations": 0,
+      "journal_balance": 0,
+      "payment_identity": 0,
+      "refund_totals": 0,
+      "invoice_states": 0,
+      "issuance_identity": 0,
+      "refund_identity": 0
+    },
+    "financial_counts": {
+      "stripe_payments": 40902,
+      "stripe_refunds": 5000,
+      "ledger_transactions": 95902,
+      "ledger_entries": 191804,
+      "stripe_events": 45467,
+      "outbox_records": 45467
+    },
+    "invoice_statuses": {
+      "paid": 38402,
+      "issued": 4555,
+      "refunded": 2500,
+      "payment_failed": 4543
+    },
+    "database_bytes": 195409587
+  },
+  "expected_new_payment_effects": 4771,
+  "unique_accepted_events": 5367,
+  "at_end_of_offering": {
+    "total": 5367,
+    "processed": 902,
+    "ignored": 0,
+    "received": 4465,
+    "dead": 0,
+    "review": 0,
+    "retried_events": 0,
+    "max_attempts": 1,
+    "receipt_to_attempt_ms": [
+      15236.29,
+      42822.6276,
+      47291.38267
+    ],
+    "completion_ms": [
+      15296.288499999999,
+      42472.8135,
+      46972.79534
+    ],
+    "max_event_id": 56060,
+    "queues": {
+      "webhooks": 4455
+    },
+    "oldest_webhook_queue_latency_seconds": 49.923,
+    "retry_size": 5,
+    "scheduled_size": 0,
+    "dead_size": 0
+  },
+  "after_drain": {
+    "total": 5367,
+    "processed": 902,
+    "ignored": 0,
+    "received": 4465,
+    "dead": 0,
+    "review": 0,
+    "retried_events": 0,
+    "max_attempts": 1,
+    "receipt_to_attempt_ms": [
+      15236.29,
+      42822.6276,
+      47291.38267
+    ],
+    "completion_ms": [
+      15296.288499999999,
+      42472.8135,
+      46972.79534
+    ],
+    "max_event_id": 56060,
+    "queues": {
+      "webhooks": 4455
+    },
+    "oldest_webhook_queue_latency_seconds": 230.686,
+    "retry_size": 5,
+    "scheduled_size": 0,
+    "dead_size": 0
+  },
+  "observation_including_drain_seconds": 241.068219125,
+  "unique_processed_per_minute_during_offering": 901.8924825111038,
+  "unique_processed_per_minute_including_drain": 224.5007666146876,
+  "new_payment_effects": 802,
+  "new_refund_effects": 0,
+  "provider": "Isolated read-only HTTP stub, fixed 2ms minimum delay per SDK request; no live Stripe calls",
+  "started_at_utc": "2026-11-22T04:17:01Z",
+  "scenario": "webhooks",
+  "arguments": {
+    "scenario": "webhooks",
+    "output": ".tooling/m3-after/high-webhooks",
+    "rate": 100.0,
+    "duration": 60.0,
+    "warmup": 5,
+    "run_id": "baseline_v1",
+    "cold_first": false,
+    "drain_timeout": 180
+  },
+  "generator": "Python stdlib open-loop, 32 threads, 64 in-flight limit"
+}

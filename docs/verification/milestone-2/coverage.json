@@ -1,0 +1,14 @@
+{
+  "tool": "SimpleCov",
+  "source": "fresh-schema bin/ci run",
+  "examples": 195,
+  "failures": 0,
+  "random_seed": 33014,
+  "covered_lines": 952,
+  "total_lines": 985,
+  "line_coverage_percent": 96.64,
+  "covered_branches": 212,
+  "total_branches": 251,
+  "branch_coverage_percent": 84.46,
+  "scope": "Application files tracked by the current SimpleCov configuration; not a throughput or universal reliability guarantee."
+}

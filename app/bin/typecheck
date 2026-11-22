@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'bundler/setup'
+
+Dir.chdir(File.expand_path('..', __dir__)) do
+  # Keep the Milestone 0 scope. Stripe's bundled RBIs depend on SDK base-class
+  # signatures that are not part of this initial value-object check. Preserve
+  # other gems' RBI discovery; add complete Stripe/service typing in Milestone 4.
+  signatures = Bundler.load.specs.reject { |gem| gem.name == 'stripe' }
+                      .map { |gem| File.join(gem.full_gem_path, 'rbi') }.select { |path| File.directory?(path) }
+  exec({ 'SRB_SKIP_GEM_RBIS' => '1' }, 'bundle', 'exec', 'srb', 'tc', *signatures, *ARGV)
+end

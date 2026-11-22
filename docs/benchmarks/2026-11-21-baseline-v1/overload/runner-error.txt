@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/benchmark.py", line 272, in <module>
+    output.mkdir(parents=True, exist_ok=True)
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/benchmark.py", line 261, in main
+    parser.add_argument('--rate', type=float, default=40)
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/benchmark.py", line 202, in webhooks
+    try:
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/benchmark.py", line 155, in wait_drain
+    raise RuntimeError('Processing did not drain: ' + json.dumps(current))
+RuntimeError: Processing did not drain: {"total": 3160, "processed": 1101, "ignored": 0, "received": 2059, "dead": 0, "review": 0, "retried_events": 0, "max_attempts": 1, "receipt_to_attempt_ms": [122861.023, 211315.03809999998, 221294.37853000002], "completion_ms": [123075.605, 211368.394, 221997.876], "max_event_id": 53546, "queues": {"webhooks": 2054}, "oldest_webhook_queue_latency_seconds": 223.417, "retry_size": 0, "scheduled_size": 0, "dead_size": 0}

@@ -1,0 +1,7 @@
+{
+  "external_stripe_calls_required": false,
+  "write_requests_observed": 0,
+  "steady_phase_http_gets": 1850,
+  "expected_gets": 1850,
+  "includes_warmup": true
+}

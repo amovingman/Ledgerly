@@ -1,0 +1,30 @@
+{
+  "same_seed_fingerprints": true,
+  "same_application_image": true,
+  "scenarios": {
+    "invoice_list_first": {
+      "same_path": true,
+      "same_response": true,
+      "response_variants_per_pass": [
+        1,
+        1
+      ]
+    },
+    "invoice_list_deep": {
+      "same_path": true,
+      "same_response": true,
+      "response_variants_per_pass": [
+        1,
+        1
+      ]
+    },
+    "customer_balance": {
+      "same_path": true,
+      "same_response": true,
+      "response_variants_per_pass": [
+        1,
+        1
+      ]
+    }
+  }
+}

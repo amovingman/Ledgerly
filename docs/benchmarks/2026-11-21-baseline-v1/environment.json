@@ -1,0 +1,19 @@
+{
+  "recorded_at_utc": "2026-11-22T03:01:25.089402+00:00",
+  "host_platform": "macOS-15.6.1-arm64-arm-64bit",
+  "host_architecture": "arm64",
+  "load_generator_python": "3.9.6",
+  "base_git_revision": "23e0e76c90429375bcc6331d12ec1a171a642517",
+  "source_state": "local_uncommitted",
+  "provider": "read-only deterministic HTTP stub, 2ms minimum service delay",
+  "application_cache": "NullStore; OS/PG caches not flushed",
+  "arrival_scheduler": "Python standard library; open-loop; max32 worker threads/max64 in-flight; records dropped arrivals and scheduling delays",
+  "docker": {
+    "ServerVersion": "29.5.2",
+    "NCPU": 2,
+    "MemTotal": 4094382080,
+    "Architecture": "aarch64",
+    "OperatingSystem": "Ubuntu 24.04.4 LTS",
+    "KernelVersion": "6.8.0-117-generic"
+  }
+}

@@ -7,5 +7,5 @@ FileUtils.chdir File.expand_path('..', __dir__) do
   system('bin/rails', 'db:prepare', exception: true)
   system('bundle', 'exec', 'rspec', exception: true)
   system('bundle', 'exec', 'rubocop', exception: true)
-  system('bundle', 'exec', 'srb', 'tc', exception: true)
+  system('bin/typecheck', exception: true)
 end

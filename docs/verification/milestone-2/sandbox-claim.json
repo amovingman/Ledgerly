@@ -1,0 +1,17 @@
+{
+  "claimed_date_local": "2026-11-21",
+  "timezone": "America/Toronto",
+  "verified_at_utc": "2026-11-22T02:48:56.111817+00:00",
+  "account_id": "acct_1UeObYCbPgJp5f4v",
+  "dashboard_name": "Ledgerly sandbox",
+  "dashboard_url": "https://dashboard.stripe.com/acct_1UeObYCbPgJp5f4v/test/dashboard",
+  "claim_verified": true,
+  "existing_test_credentials_verified": {
+    "credentials_working": true,
+    "invoice_id": "in_1UeQgGCbPgJp5f4v4oSdejcu",
+    "livemode": false,
+    "status": "paid",
+    "amount_paid": 70
+  },
+  "verification_scope": "Dashboard claim flow completed after user-created account; read-only invoice retrieval succeeded. No new payments, key changes, commits, or pushes."
+}

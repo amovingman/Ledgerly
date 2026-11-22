@@ -1,0 +1,125 @@
+{
+  "result": "overloaded; did not drain within 180-second post-offering budget",
+  "offered_requests": 6000,
+  "offering_rate_per_second": 100,
+  "offering_duration_seconds": 60,
+  "completed_http_requests": 3447,
+  "http_failures": 0,
+  "dropped_client_arrivals": 2553,
+  "unique_accepted_events": 3160,
+  "duplicate_acknowledgments": 287,
+  "expected_new_payment_effects_if_drained": 2859,
+  "last_http_completion_seconds": 60.79651683299999,
+  "http_latency_ms": {
+    "p50": 417.50004200000035,
+    "p95": 1423.8094625000026,
+    "p99": 1821.2603723199975,
+    "max": 2646.8969999999954
+  },
+  "scheduled_to_completion_ms": {
+    "p50": 802.8425420000005,
+    "p95": 2323.0965376000017,
+    "p99": 3025.6002776799996,
+    "max": 3357.226832999999
+  },
+  "generator_start_delay_ms": {
+    "p50": 364.3989999999988,
+    "p95": 1402.912354400004,
+    "p99": 1816.1754351799982,
+    "max": 2541.224332999995
+  },
+  "at_drain_deadline": {
+    "total": 3160,
+    "processed": 1101,
+    "ignored": 0,
+    "received": 2059,
+    "dead": 0,
+    "review": 0,
+    "retried_events": 0,
+    "max_attempts": 1,
+    "receipt_to_attempt_ms": [
+      122861.023,
+      211315.03809999998,
+      221294.37853000002
+    ],
+    "completion_ms": [
+      123075.605,
+      211368.394,
+      221997.876
+    ],
+    "max_event_id": 53546,
+    "queues": {
+      "webhooks": 2054
+    },
+    "oldest_webhook_queue_latency_seconds": 223.417,
+    "retry_size": 0,
+    "scheduled_size": 0,
+    "dead_size": 0
+  },
+  "after_worker_stop": {
+    "total": 3160,
+    "processed": 1411,
+    "ignored": 0,
+    "received": 1749,
+    "dead": 0,
+    "review": 0,
+    "retried_events": 0,
+    "max_attempts": 1,
+    "receipt_to_attempt_ms": [
+      135187.883,
+      266258.77650000004,
+      270523.36250000005
+    ],
+    "completion_ms": [
+      136574.876,
+      266543.5385,
+      270829.7841
+    ],
+    "max_event_id": 53546,
+    "queues": {
+      "webhooks": 1749
+    },
+    "oldest_webhook_queue_latency_seconds": 285.524,
+    "retry_size": 0,
+    "scheduled_size": 0,
+    "dead_size": 0
+  },
+  "accounting_after_worker_stop": {
+    "fixture_version": "v1",
+    "seed": 20261121,
+    "counts": {
+      "customers": 1000,
+      "plans": 80,
+      "subscriptions": 1460,
+      "invoices": 50000,
+      "invoice_line_items": 50000,
+      "usage_events": 150000
+    },
+    "violations": {
+      "invoice_totals": 0,
+      "usage_allocations": 0,
+      "journal_balance": 0,
+      "payment_identity": 0,
+      "refund_totals": 0,
+      "invoice_states": 0,
+      "issuance_identity": 0,
+      "refund_identity": 0
+    },
+    "financial_counts": {
+      "stripe_payments": 41365,
+      "stripe_refunds": 5000,
+      "ledger_transactions": 96365,
+      "ledger_entries": 192730,
+      "stripe_events": 43260,
+      "outbox_records": 43260
+    },
+    "invoice_statuses": {
+      "paid": 38865,
+      "issued": 4305,
+      "refunded": 2500,
+      "payment_failed": 4330
+    },
+    "database_bytes": 190854835
+  },
+  "limitations": "Original harness raised on drain timeout before saving its in-memory queue samples. Raw HTTP rows, deadline snapshot, extra observations, worker/resource samples and original harness are preserved. This overload trial is not a successful sustained-throughput result."
+}

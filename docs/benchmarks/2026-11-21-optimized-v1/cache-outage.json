@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "customer_id": 1,
+  "invoice_id": 1,
+  "payment_amount": 2940,
+  "currency": "USD",
+  "old_version": 224,
+  "committed_version": 226,
+  "cached_before": {
+    "data": {
+      "customer_id": 1,
+      "balances": [
+        {
+          "currency": "USD",
+          "amount": 4333958
+        }
+      ]
+    }
+  },
+  "database_fallback_during_outage": {
+    "data": {
+      "customer_id": 1,
+      "balances": [
+        {
+          "currency": "USD",
+          "amount": 4331018
+        }
+      ]
+    }
+  },
+  "cached_after_restart": {
+    "data": {
+      "customer_id": 1,
+      "balances": [
+        {
+          "currency": "USD",
+          "amount": 4331018
+        }
+      ]
+    }
+  },
+  "old_cache_entry_survived_restart": true,
+  "old_cache_entry_value": [
+    {
+      "currency": "USD",
+      "amount": 4333958
+    }
+  ],
+  "note": "Real Redis stopped/restarted; payment committed using read-only local provider while cache was down. Main development stack untouched."
+}

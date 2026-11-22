@@ -1,0 +1,843 @@
+{
+  "plans": {
+    "invoice_list_first_page": {
+      "sql": "SELECT * FROM invoices WHERE customer_id=1 ORDER BY created_at DESC,id DESC LIMIT 100",
+      "explain": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 78.73,
+            "Total Cost": 78.98,
+            "Plan Rows": 100,
+            "Plan Width": 88,
+            "Actual Startup Time": 1.646,
+            "Actual Total Time": 1.654,
+            "Actual Rows": 100,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 25,
+            "Shared Read Blocks": 2,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 78.73,
+                "Total Cost": 81.22,
+                "Plan Rows": 995,
+                "Plan Width": 88,
+                "Actual Startup Time": 1.645,
+                "Actual Total Time": 1.648,
+                "Actual Rows": 100,
+                "Actual Loops": 1,
+                "Sort Key": [
+                  "created_at DESC",
+                  "id DESC"
+                ],
+                "Sort Method": "top-N heapsort",
+                "Sort Space Used": 49,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 25,
+                "Shared Read Blocks": 2,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Index Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Scan Direction": "Forward",
+                    "Index Name": "index_invoices_on_customer_id",
+                    "Relation Name": "invoices",
+                    "Alias": "invoices",
+                    "Startup Cost": 0.29,
+                    "Total Cost": 40.7,
+                    "Plan Rows": 995,
+                    "Plan Width": 88,
+                    "Actual Startup Time": 0.913,
+                    "Actual Total Time": 1.112,
+                    "Actual Rows": 1000,
+                    "Actual Loops": 1,
+                    "Index Cond": "(customer_id = 1)",
+                    "Rows Removed by Index Recheck": 0,
+                    "Shared Hit Blocks": 19,
+                    "Shared Read Blocks": 2,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Settings": {},
+          "Planning": {
+            "Shared Hit Blocks": 166,
+            "Shared Read Blocks": 8,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 3.958,
+          "Triggers": [],
+          "Execution Time": 1.68
+        }
+      ]
+    },
+    "invoice_list_deep_page": {
+      "sql": "SELECT * FROM invoices WHERE customer_id=1 ORDER BY created_at DESC,id DESC LIMIT 100 OFFSET 900",
+      "explain": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 92.5,
+            "Total Cost": 92.73,
+            "Plan Rows": 95,
+            "Plan Width": 88,
+            "Actual Startup Time": 0.394,
+            "Actual Total Time": 0.401,
+            "Actual Rows": 100,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 18,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 90.25,
+                "Total Cost": 92.73,
+                "Plan Rows": 995,
+                "Plan Width": 88,
+                "Actual Startup Time": 0.341,
+                "Actual Total Time": 0.367,
+                "Actual Rows": 1000,
+                "Actual Loops": 1,
+                "Sort Key": [
+                  "created_at DESC",
+                  "id DESC"
+                ],
+                "Sort Method": "quicksort",
+                "Sort Space Used": 157,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 18,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Index Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Scan Direction": "Forward",
+                    "Index Name": "index_invoices_on_customer_id",
+                    "Relation Name": "invoices",
+                    "Alias": "invoices",
+                    "Startup Cost": 0.29,
+                    "Total Cost": 40.7,
+                    "Plan Rows": 995,
+                    "Plan Width": 88,
+                    "Actual Startup Time": 0.022,
+                    "Actual Total Time": 0.09,
+                    "Actual Rows": 1000,
+                    "Actual Loops": 1,
+                    "Index Cond": "(customer_id = 1)",
+                    "Rows Removed by Index Recheck": 0,
+                    "Shared Hit Blocks": 18,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Settings": {},
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.083,
+          "Triggers": [],
+          "Execution Time": 0.424
+        }
+      ]
+    },
+    "invoice_count": {
+      "sql": "SELECT count(*) FROM invoices WHERE customer_id=1",
+      "explain": [
+        {
+          "Plan": {
+            "Node Type": "Aggregate",
+            "Strategy": "Plain",
+            "Partial Mode": "Simple",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 43.19,
+            "Total Cost": 43.2,
+            "Plan Rows": 1,
+            "Plan Width": 8,
+            "Actual Startup Time": 0.125,
+            "Actual Total Time": 0.125,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 18,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Index Only Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Scan Direction": "Forward",
+                "Index Name": "index_invoices_on_customer_id",
+                "Relation Name": "invoices",
+                "Alias": "invoices",
+                "Startup Cost": 0.29,
+                "Total Cost": 40.7,
+                "Plan Rows": 995,
+                "Plan Width": 0,
+                "Actual Startup Time": 0.014,
+                "Actual Total Time": 0.09,
+                "Actual Rows": 1000,
+                "Actual Loops": 1,
+                "Index Cond": "(customer_id = 1)",
+                "Rows Removed by Index Recheck": 0,
+                "Heap Fetches": 1000,
+                "Shared Hit Blocks": 18,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          },
+          "Settings": {},
+          "Planning": {
+            "Shared Hit Blocks": 2,
+            "Shared Read Blocks": 1,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.127,
+          "Triggers": [],
+          "Execution Time": 0.144
+        }
+      ]
+    },
+    "balance": {
+      "sql": "SELECT j.currency,sum(e.debit-e.credit) FROM ledger_entries e JOIN ledger_transactions j ON j.id=e.ledger_transaction_id JOIN invoices i ON i.id=j.invoice_id WHERE i.customer_id=1 AND e.account='accounts_receivable' GROUP BY j.currency",
+      "explain": [
+        {
+          "Plan": {
+            "Node Type": "Aggregate",
+            "Strategy": "Hashed",
+            "Partial Mode": "Simple",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 3635.56,
+            "Total Cost": 3635.61,
+            "Plan Rows": 4,
+            "Plan Width": 36,
+            "Actual Startup Time": 52.394,
+            "Actual Total Time": 52.396,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Group Key": [
+              "j.currency"
+            ],
+            "Planned Partitions": 0,
+            "HashAgg Batches": 1,
+            "Peak Memory Usage": 24,
+            "Disk Usage": 0,
+            "Shared Hit Blocks": 10778,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Nested Loop",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Join Type": "Inner",
+                "Startup Cost": 53.56,
+                "Total Cost": 3622.02,
+                "Plan Rows": 1806,
+                "Plan Width": 20,
+                "Actual Startup Time": 2.679,
+                "Actual Total Time": 52.029,
+                "Actual Rows": 1800,
+                "Actual Loops": 1,
+                "Inner Unique": false,
+                "Shared Hit Blocks": 10778,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Hash Join",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Join Type": "Inner",
+                    "Startup Cost": 53.14,
+                    "Total Cost": 2512.54,
+                    "Plan Rows": 1891,
+                    "Plan Width": 12,
+                    "Actual Startup Time": 2.651,
+                    "Actual Total Time": 46.24,
+                    "Actual Rows": 1900,
+                    "Actual Loops": 1,
+                    "Inner Unique": true,
+                    "Hash Cond": "(j.invoice_id = i.id)",
+                    "Shared Hit Blocks": 1278,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0,
+                    "Plans": [
+                      {
+                        "Node Type": "Seq Scan",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Relation Name": "ledger_transactions",
+                        "Alias": "j",
+                        "Startup Cost": 0.0,
+                        "Total Cost": 2210.0,
+                        "Plan Rows": 95000,
+                        "Plan Width": 20,
+                        "Actual Startup Time": 0.049,
+                        "Actual Total Time": 36.197,
+                        "Actual Rows": 95000,
+                        "Actual Loops": 1,
+                        "Shared Hit Blocks": 1260,
+                        "Shared Read Blocks": 0,
+                        "Shared Dirtied Blocks": 0,
+                        "Shared Written Blocks": 0,
+                        "Local Hit Blocks": 0,
+                        "Local Read Blocks": 0,
+                        "Local Dirtied Blocks": 0,
+                        "Local Written Blocks": 0,
+                        "Temp Read Blocks": 0,
+                        "Temp Written Blocks": 0
+                      },
+                      {
+                        "Node Type": "Hash",
+                        "Parent Relationship": "Inner",
+                        "Parallel Aware": false,
+                        "Async Capable": false,
+                        "Startup Cost": 40.7,
+                        "Total Cost": 40.7,
+                        "Plan Rows": 995,
+                        "Plan Width": 8,
+                        "Actual Startup Time": 1.126,
+                        "Actual Total Time": 1.127,
+                        "Actual Rows": 1000,
+                        "Actual Loops": 1,
+                        "Hash Buckets": 1024,
+                        "Original Hash Buckets": 1024,
+                        "Hash Batches": 1,
+                        "Original Hash Batches": 1,
+                        "Peak Memory Usage": 48,
+                        "Shared Hit Blocks": 18,
+                        "Shared Read Blocks": 0,
+                        "Shared Dirtied Blocks": 0,
+                        "Shared Written Blocks": 0,
+                        "Local Hit Blocks": 0,
+                        "Local Read Blocks": 0,
+                        "Local Dirtied Blocks": 0,
+                        "Local Written Blocks": 0,
+                        "Temp Read Blocks": 0,
+                        "Temp Written Blocks": 0,
+                        "Plans": [
+                          {
+                            "Node Type": "Index Scan",
+                            "Parent Relationship": "Outer",
+                            "Parallel Aware": false,
+                            "Async Capable": false,
+                            "Scan Direction": "Forward",
+                            "Index Name": "index_invoices_on_customer_id",
+                            "Relation Name": "invoices",
+                            "Alias": "i",
+                            "Startup Cost": 0.29,
+                            "Total Cost": 40.7,
+                            "Plan Rows": 995,
+                            "Plan Width": 8,
+                            "Actual Startup Time": 0.073,
+                            "Actual Total Time": 0.991,
+                            "Actual Rows": 1000,
+                            "Actual Loops": 1,
+                            "Index Cond": "(customer_id = 1)",
+                            "Rows Removed by Index Recheck": 0,
+                            "Shared Hit Blocks": 18,
+                            "Shared Read Blocks": 0,
+                            "Shared Dirtied Blocks": 0,
+                            "Shared Written Blocks": 0,
+                            "Local Hit Blocks": 0,
+                            "Local Read Blocks": 0,
+                            "Local Dirtied Blocks": 0,
+                            "Local Written Blocks": 0,
+                            "Temp Read Blocks": 0,
+                            "Temp Written Blocks": 0
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "Node Type": "Index Scan",
+                    "Parent Relationship": "Inner",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Scan Direction": "Forward",
+                    "Index Name": "index_ledger_entries_on_ledger_transaction_id",
+                    "Relation Name": "ledger_entries",
+                    "Alias": "e",
+                    "Startup Cost": 0.42,
+                    "Total Cost": 0.58,
+                    "Plan Rows": 1,
+                    "Plan Width": 24,
+                    "Actual Startup Time": 0.002,
+                    "Actual Total Time": 0.003,
+                    "Actual Rows": 1,
+                    "Actual Loops": 1900,
+                    "Index Cond": "(ledger_transaction_id = j.id)",
+                    "Rows Removed by Index Recheck": 0,
+                    "Filter": "((account)::text = 'accounts_receivable'::text)",
+                    "Rows Removed by Filter": 1,
+                    "Shared Hit Blocks": 9500,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Settings": {},
+          "Planning": {
+            "Shared Hit Blocks": 186,
+            "Shared Read Blocks": 10,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 3.02,
+          "Triggers": [],
+          "Execution Time": 52.448
+        }
+      ]
+    }
+  },
+  "indexes": [
+    {
+      "tablename": "ar_internal_metadata",
+      "indexname": "ar_internal_metadata_pkey",
+      "indexdef": "CREATE UNIQUE INDEX ar_internal_metadata_pkey ON public.ar_internal_metadata USING btree (key)"
+    },
+    {
+      "tablename": "customers",
+      "indexname": "customers_pkey",
+      "indexdef": "CREATE UNIQUE INDEX customers_pkey ON public.customers USING btree (id)"
+    },
+    {
+      "tablename": "customers",
+      "indexname": "customers_unique_email",
+      "indexdef": "CREATE UNIQUE INDEX customers_unique_email ON public.customers USING btree (lower((email)::text))"
+    },
+    {
+      "tablename": "customers",
+      "indexname": "index_customers_on_stripe_customer_id",
+      "indexdef": "CREATE UNIQUE INDEX index_customers_on_stripe_customer_id ON public.customers USING btree (stripe_customer_id)"
+    },
+    {
+      "tablename": "invoice_collections",
+      "indexname": "index_invoice_collections_on_invoice_id",
+      "indexdef": "CREATE UNIQUE INDEX index_invoice_collections_on_invoice_id ON public.invoice_collections USING btree (invoice_id)"
+    },
+    {
+      "tablename": "invoice_collections",
+      "indexname": "invoice_collections_pkey",
+      "indexdef": "CREATE UNIQUE INDEX invoice_collections_pkey ON public.invoice_collections USING btree (id)"
+    },
+    {
+      "tablename": "invoice_line_items",
+      "indexname": "index_invoice_line_items_on_invoice_id",
+      "indexdef": "CREATE INDEX index_invoice_line_items_on_invoice_id ON public.invoice_line_items USING btree (invoice_id)"
+    },
+    {
+      "tablename": "invoice_line_items",
+      "indexname": "index_invoice_line_items_on_invoice_id_and_metric",
+      "indexdef": "CREATE UNIQUE INDEX index_invoice_line_items_on_invoice_id_and_metric ON public.invoice_line_items USING btree (invoice_id, metric)"
+    },
+    {
+      "tablename": "invoice_line_items",
+      "indexname": "invoice_line_items_pkey",
+      "indexdef": "CREATE UNIQUE INDEX invoice_line_items_pkey ON public.invoice_line_items USING btree (id)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "index_invoices_on_customer_id",
+      "indexdef": "CREATE INDEX index_invoices_on_customer_id ON public.invoices USING btree (customer_id)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "index_invoices_on_id_and_currency",
+      "indexdef": "CREATE UNIQUE INDEX index_invoices_on_id_and_currency ON public.invoices USING btree (id, currency)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "index_invoices_on_stripe_invoice_id",
+      "indexdef": "CREATE UNIQUE INDEX index_invoices_on_stripe_invoice_id ON public.invoices USING btree (stripe_invoice_id)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "index_invoices_on_subscription_id",
+      "indexdef": "CREATE INDEX index_invoices_on_subscription_id ON public.invoices USING btree (subscription_id)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "index_invoices_on_subscription_id_and_period_start",
+      "indexdef": "CREATE UNIQUE INDEX index_invoices_on_subscription_id_and_period_start ON public.invoices USING btree (subscription_id, period_start)"
+    },
+    {
+      "tablename": "invoices",
+      "indexname": "invoices_pkey",
+      "indexdef": "CREATE UNIQUE INDEX invoices_pkey ON public.invoices USING btree (id)"
+    },
+    {
+      "tablename": "ledger_entries",
+      "indexname": "index_ledger_entries_on_ledger_transaction_id",
+      "indexdef": "CREATE INDEX index_ledger_entries_on_ledger_transaction_id ON public.ledger_entries USING btree (ledger_transaction_id)"
+    },
+    {
+      "tablename": "ledger_entries",
+      "indexname": "ledger_entries_pkey",
+      "indexdef": "CREATE UNIQUE INDEX ledger_entries_pkey ON public.ledger_entries USING btree (id)"
+    },
+    {
+      "tablename": "ledger_transactions",
+      "indexname": "index_ledger_transactions_on_business_effect_key",
+      "indexdef": "CREATE UNIQUE INDEX index_ledger_transactions_on_business_effect_key ON public.ledger_transactions USING btree (business_effect_key)"
+    },
+    {
+      "tablename": "ledger_transactions",
+      "indexname": "index_ledger_transactions_on_invoice_id",
+      "indexdef": "CREATE INDEX index_ledger_transactions_on_invoice_id ON public.ledger_transactions USING btree (invoice_id)"
+    },
+    {
+      "tablename": "ledger_transactions",
+      "indexname": "index_ledger_transactions_on_stripe_event_id",
+      "indexdef": "CREATE INDEX index_ledger_transactions_on_stripe_event_id ON public.ledger_transactions USING btree (stripe_event_id)"
+    },
+    {
+      "tablename": "ledger_transactions",
+      "indexname": "ledger_transactions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX ledger_transactions_pkey ON public.ledger_transactions USING btree (id)"
+    },
+    {
+      "tablename": "ledger_transactions",
+      "indexname": "one_issuance_journal_per_invoice",
+      "indexdef": "CREATE UNIQUE INDEX one_issuance_journal_per_invoice ON public.ledger_transactions USING btree (invoice_id) WHERE ((journal_type)::text = 'issuance'::text)"
+    },
+    {
+      "tablename": "outbox_records",
+      "indexname": "index_outbox_records_on_invoice_collection_id",
+      "indexdef": "CREATE UNIQUE INDEX index_outbox_records_on_invoice_collection_id ON public.outbox_records USING btree (invoice_collection_id)"
+    },
+    {
+      "tablename": "outbox_records",
+      "indexname": "index_outbox_records_on_stripe_event_id",
+      "indexdef": "CREATE UNIQUE INDEX index_outbox_records_on_stripe_event_id ON public.outbox_records USING btree (stripe_event_id)"
+    },
+    {
+      "tablename": "outbox_records",
+      "indexname": "outbox_records_pkey",
+      "indexdef": "CREATE UNIQUE INDEX outbox_records_pkey ON public.outbox_records USING btree (id)"
+    },
+    {
+      "tablename": "plans",
+      "indexname": "plans_pkey",
+      "indexdef": "CREATE UNIQUE INDEX plans_pkey ON public.plans USING btree (id)"
+    },
+    {
+      "tablename": "schema_migrations",
+      "indexname": "schema_migrations_pkey",
+      "indexdef": "CREATE UNIQUE INDEX schema_migrations_pkey ON public.schema_migrations USING btree (version)"
+    },
+    {
+      "tablename": "stripe_events",
+      "indexname": "index_stripe_events_on_stripe_id",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_events_on_stripe_id ON public.stripe_events USING btree (stripe_id)"
+    },
+    {
+      "tablename": "stripe_events",
+      "indexname": "stripe_events_pkey",
+      "indexdef": "CREATE UNIQUE INDEX stripe_events_pkey ON public.stripe_events USING btree (id)"
+    },
+    {
+      "tablename": "stripe_operations",
+      "indexname": "index_stripe_operations_on_customer_id",
+      "indexdef": "CREATE INDEX index_stripe_operations_on_customer_id ON public.stripe_operations USING btree (customer_id)"
+    },
+    {
+      "tablename": "stripe_operations",
+      "indexname": "index_stripe_operations_on_idempotency_key",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_operations_on_idempotency_key ON public.stripe_operations USING btree (idempotency_key)"
+    },
+    {
+      "tablename": "stripe_operations",
+      "indexname": "index_stripe_operations_on_invoice_id",
+      "indexdef": "CREATE INDEX index_stripe_operations_on_invoice_id ON public.stripe_operations USING btree (invoice_id)"
+    },
+    {
+      "tablename": "stripe_operations",
+      "indexname": "index_stripe_operations_on_invoice_line_item_id",
+      "indexdef": "CREATE INDEX index_stripe_operations_on_invoice_line_item_id ON public.stripe_operations USING btree (invoice_line_item_id)"
+    },
+    {
+      "tablename": "stripe_operations",
+      "indexname": "index_stripe_operations_on_operation_key",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_operations_on_operation_key ON public.stripe_operations USING btree (operation_key)"
+    },
+    {
+      "tablename": "stripe_operations",
+      "indexname": "index_stripe_operations_on_remote_id",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_operations_on_remote_id ON public.stripe_operations USING btree (remote_id) WHERE ((kind)::text <> 'finalize'::text)"
+    },
+    {
+      "tablename": "stripe_operations",
+      "indexname": "stripe_operations_pkey",
+      "indexdef": "CREATE UNIQUE INDEX stripe_operations_pkey ON public.stripe_operations USING btree (id)"
+    },
+    {
+      "tablename": "stripe_payments",
+      "indexname": "index_stripe_payments_on_charge_id",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_payments_on_charge_id ON public.stripe_payments USING btree (charge_id)"
+    },
+    {
+      "tablename": "stripe_payments",
+      "indexname": "index_stripe_payments_on_id_and_currency",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_payments_on_id_and_currency ON public.stripe_payments USING btree (id, currency)"
+    },
+    {
+      "tablename": "stripe_payments",
+      "indexname": "index_stripe_payments_on_invoice_id",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_payments_on_invoice_id ON public.stripe_payments USING btree (invoice_id)"
+    },
+    {
+      "tablename": "stripe_payments",
+      "indexname": "index_stripe_payments_on_invoice_payment_id",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_payments_on_invoice_payment_id ON public.stripe_payments USING btree (invoice_payment_id)"
+    },
+    {
+      "tablename": "stripe_payments",
+      "indexname": "index_stripe_payments_on_ledger_transaction_id",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_payments_on_ledger_transaction_id ON public.stripe_payments USING btree (ledger_transaction_id)"
+    },
+    {
+      "tablename": "stripe_payments",
+      "indexname": "index_stripe_payments_on_payment_intent_id",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_payments_on_payment_intent_id ON public.stripe_payments USING btree (payment_intent_id)"
+    },
+    {
+      "tablename": "stripe_payments",
+      "indexname": "stripe_payments_pkey",
+      "indexdef": "CREATE UNIQUE INDEX stripe_payments_pkey ON public.stripe_payments USING btree (id)"
+    },
+    {
+      "tablename": "stripe_refunds",
+      "indexname": "index_stripe_refunds_on_ledger_transaction_id",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_refunds_on_ledger_transaction_id ON public.stripe_refunds USING btree (ledger_transaction_id)"
+    },
+    {
+      "tablename": "stripe_refunds",
+      "indexname": "index_stripe_refunds_on_stripe_id",
+      "indexdef": "CREATE UNIQUE INDEX index_stripe_refunds_on_stripe_id ON public.stripe_refunds USING btree (stripe_id)"
+    },
+    {
+      "tablename": "stripe_refunds",
+      "indexname": "index_stripe_refunds_on_stripe_payment_id",
+      "indexdef": "CREATE INDEX index_stripe_refunds_on_stripe_payment_id ON public.stripe_refunds USING btree (stripe_payment_id)"
+    },
+    {
+      "tablename": "stripe_refunds",
+      "indexname": "stripe_refunds_pkey",
+      "indexdef": "CREATE UNIQUE INDEX stripe_refunds_pkey ON public.stripe_refunds USING btree (id)"
+    },
+    {
+      "tablename": "subscriptions",
+      "indexname": "index_subscriptions_on_customer_id",
+      "indexdef": "CREATE INDEX index_subscriptions_on_customer_id ON public.subscriptions USING btree (customer_id)"
+    },
+    {
+      "tablename": "subscriptions",
+      "indexname": "index_subscriptions_on_plan_id",
+      "indexdef": "CREATE INDEX index_subscriptions_on_plan_id ON public.subscriptions USING btree (plan_id)"
+    },
+    {
+      "tablename": "subscriptions",
+      "indexname": "index_subscriptions_on_stripe_subscription_id",
+      "indexdef": "CREATE UNIQUE INDEX index_subscriptions_on_stripe_subscription_id ON public.subscriptions USING btree (stripe_subscription_id)"
+    },
+    {
+      "tablename": "subscriptions",
+      "indexname": "subscriptions_invoice_identity",
+      "indexdef": "CREATE UNIQUE INDEX subscriptions_invoice_identity ON public.subscriptions USING btree (id, customer_id, currency)"
+    },
+    {
+      "tablename": "subscriptions",
+      "indexname": "subscriptions_no_overlap",
+      "indexdef": "CREATE INDEX subscriptions_no_overlap ON public.subscriptions USING gist (customer_id, metric, tsrange(starts_at, ends_at, '[)'::text))"
+    },
+    {
+      "tablename": "subscriptions",
+      "indexname": "subscriptions_pkey",
+      "indexdef": "CREATE UNIQUE INDEX subscriptions_pkey ON public.subscriptions USING btree (id)"
+    },
+    {
+      "tablename": "subscriptions",
+      "indexname": "subscriptions_usage_identity",
+      "indexdef": "CREATE UNIQUE INDEX subscriptions_usage_identity ON public.subscriptions USING btree (id, customer_id, metric)"
+    },
+    {
+      "tablename": "usage_events",
+      "indexname": "index_usage_events_on_customer_id",
+      "indexdef": "CREATE INDEX index_usage_events_on_customer_id ON public.usage_events USING btree (customer_id)"
+    },
+    {
+      "tablename": "usage_events",
+      "indexname": "index_usage_events_on_customer_id_and_idempotency_key",
+      "indexdef": "CREATE UNIQUE INDEX index_usage_events_on_customer_id_and_idempotency_key ON public.usage_events USING btree (customer_id, idempotency_key)"
+    },
+    {
+      "tablename": "usage_events",
+      "indexname": "index_usage_events_on_invoice_line_item_id",
+      "indexdef": "CREATE INDEX index_usage_events_on_invoice_line_item_id ON public.usage_events USING btree (invoice_line_item_id)"
+    },
+    {
+      "tablename": "usage_events",
+      "indexname": "index_usage_events_on_subscription_id",
+      "indexdef": "CREATE INDEX index_usage_events_on_subscription_id ON public.usage_events USING btree (subscription_id)"
+    },
+    {
+      "tablename": "usage_events",
+      "indexname": "usage_events_pkey",
+      "indexdef": "CREATE UNIQUE INDEX usage_events_pkey ON public.usage_events USING btree (id)"
+    }
+  ],
+  "cache_store": "ActiveSupport::Cache::NullStore",
+  "ruby": "ruby 3.4.13 (2026-11-19 revision 48857d6f2e) +YJIT +PRISM [aarch64-linux]",
+  "rails": "8.1.4.1",
+  "postgres": "PostgreSQL 17.12 (Debian 17.12-1.pgdg12+1) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit",
+  "sidekiq_concurrency": "5",
+  "database": "ledgerly_benchmark"
+}

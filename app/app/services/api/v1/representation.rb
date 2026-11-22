@@ -2,7 +2,7 @@ module Api
   module V1
     module Representation
       def self.customer(record)
-        attributes(record, %i[id name email created_at])
+        attributes(record, %i[id name email stripe_customer_id created_at])
       end
 
       def self.plan(record)
@@ -18,7 +18,9 @@ module Api
       end
 
       def self.invoice_summary(record)
-        attributes(record, %i[id customer_id subscription_id period_start period_end currency amount status created_at])
+        attributes(record,
+                   %i[id customer_id subscription_id period_start period_end currency amount status stripe_invoice_id
+                      created_at])
       end
 
       def self.invoice(record)

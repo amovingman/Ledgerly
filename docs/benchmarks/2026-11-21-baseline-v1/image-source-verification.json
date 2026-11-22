@@ -1,0 +1,10 @@
+{
+  "verified": true,
+  "source_files": 157,
+  "network": "none",
+  "excluded_empty_runtime_placeholders": [
+    "log/.keep",
+    "tmp/.keep"
+  ],
+  "scope": "Executable source/configuration match the measured image; empty runtime placeholders are excluded by .dockerignore."
+}

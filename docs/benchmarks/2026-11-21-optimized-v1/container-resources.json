@@ -1,0 +1,63 @@
+[
+  {
+    "name": "ledgerly-benchmark-api-1",
+    "image_id": "sha256:a1b8378ce20816c5389f55b555c1f06c9f8a84603301b4d68e1b80164d9ab58f",
+    "memory_limit_bytes": 536870912,
+    "nano_cpus": 1000000000,
+    "networks": [
+      "ledgerly-benchmark_edge",
+      "ledgerly-benchmark_isolated"
+    ],
+    "state": "exited"
+  },
+  {
+    "name": "ledgerly-benchmark-benchmark-postgres-1",
+    "image_id": "sha256:837bed18782820fe967067cb5328b02b0d9992c1be9a37ee0c9c492cfc03af3b",
+    "memory_limit_bytes": 805306368,
+    "nano_cpus": 1000000000,
+    "networks": [
+      "ledgerly-benchmark_isolated"
+    ],
+    "state": "running"
+  },
+  {
+    "name": "ledgerly-benchmark-benchmark-provider-1",
+    "image_id": "sha256:a1b8378ce20816c5389f55b555c1f06c9f8a84603301b4d68e1b80164d9ab58f",
+    "memory_limit_bytes": 134217728,
+    "nano_cpus": 500000000,
+    "networks": [
+      "ledgerly-benchmark_isolated"
+    ],
+    "state": "running"
+  },
+  {
+    "name": "ledgerly-benchmark-benchmark-redis-1",
+    "image_id": "sha256:0908d9af26bf9b985e984a40a5eb82eed229b07a3317eee6843832c3cc3a9619",
+    "memory_limit_bytes": 134217728,
+    "nano_cpus": 500000000,
+    "networks": [
+      "ledgerly-benchmark_isolated"
+    ],
+    "state": "running"
+  },
+  {
+    "name": "ledgerly-benchmark-recovery-1",
+    "image_id": "sha256:a1b8378ce20816c5389f55b555c1f06c9f8a84603301b4d68e1b80164d9ab58f",
+    "memory_limit_bytes": 268435456,
+    "nano_cpus": 500000000,
+    "networks": [
+      "ledgerly-benchmark_isolated"
+    ],
+    "state": "exited"
+  },
+  {
+    "name": "ledgerly-benchmark-sidekiq-1",
+    "image_id": "sha256:a1b8378ce20816c5389f55b555c1f06c9f8a84603301b4d68e1b80164d9ab58f",
+    "memory_limit_bytes": 536870912,
+    "nano_cpus": 1000000000,
+    "networks": [
+      "ledgerly-benchmark_isolated"
+    ],
+    "state": "exited"
+  }
+]

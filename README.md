@@ -2,7 +2,9 @@
 
 Ledgerly is a Rails API project for metered usage, invoicing, and reliable Stripe reconciliation. The application lives in `app/`; the existing reference repositories are separate from application code.
 
-Work follows [ROADMAP.md](ROADMAP.md), the source of truth for milestones, acceptance checks, decisions, and measured evidence. Milestone 0 establishes the development foundation. Milestone 1 provides core billing models, idempotent usage ingestion, atomic invoicing, and ledger-derived balance endpoints; see [the core API reference](docs/API.md) and [billing rules](docs/BILLING_RULES.md) for implemented contracts. Stripe webhooks and collection remain in Milestone 2. No throughput or latency benchmark has been achieved.
+Work follows [ROADMAP.md](ROADMAP.md), the source of truth for milestones, acceptance checks, decisions, and measured evidence. Milestones 0–1 provide the development foundation and core billing API. Milestone 2 adds Stripe test-mode invoice collection, signed webhooks, durable dispatch/recovery, and payment/refund accounting. See [the API reference](docs/API.md), [billing rules](docs/BILLING_RULES.md), and [Stripe setup and recovery](docs/STRIPE_RELIABILITY.md). All new work remains local and uncommitted at the user's request. Milestone 3 is complete locally; Milestone 4 quality and portfolio release is next. Milestone 3 records the [immutable baseline](docs/benchmarks/2026-11-21-baseline-v1/README.md) and [optimized comparison](docs/benchmarks/2026-11-21-optimized-v1/README.md), with reproducible workloads, raw results and correctness boundaries. The 5,000-processed-events/minute target has not been demonstrated.
+
+The [benchmark guide](docs/BENCHMARKS.md) documents the isolated 50,000-invoice dataset and matched workloads. [Cache contracts](docs/CACHING.md) explain committed version invalidation, outage fallback and stale-fill behavior.
 
 ## Foundation stack
 
@@ -12,8 +14,10 @@ Work follows [ROADMAP.md](ROADMAP.md), the source of truth for milestones, accep
 | Rails | 8.1.4.1, API mode |
 | Bundler | 4.1.0; dependency versions are committed in `app/Gemfile.lock` |
 | PostgreSQL | 17.12 container; authoritative application database |
-| Redis | 8.2.3 container; Sidekiq queue and foundation smoke-test coordination |
+| Redis | 8.2.3 container; Sidekiq queues and bounded billing read caches |
 | Background jobs | Sidekiq, concurrency 5 |
+| Stripe | Ruby SDK 21.1.0; API 2026-11-18.endive; test mode only |
+| Recovery | Independent database outbox sweep every 15 seconds |
 | Quality checks | RSpec, SimpleCov, RuboCop, Sorbet |
 
 The roadmap records the change from the original Rails 7 proposal. The Docker image is for development and testing; production deployment is outside this milestone.
@@ -38,12 +42,12 @@ curl --fail http://127.0.0.1:3000/ready
 docker compose exec api bin/smoke
 ```
 
-Compose loads the root `.env` automatically. The `setup` service prepares the development database and exits successfully; this is expected. The API and worker start after setup completes. PostgreSQL and Redis have no published host ports; the API binds to `127.0.0.1:3000` by default. Set `PORT` in `.env` to change the host port.
+Compose loads the root `.env` automatically. The `setup` service prepares the development database and exits successfully; this is expected. The API, worker, and recovery loop start after setup completes. PostgreSQL and Redis have no published host ports; the API binds to `127.0.0.1:3000` by default. Set `PORT` in `.env` to change the host port.
 
 The smoke script verifies database connectivity, enqueues `FoundationSmokeJob`, and waits for the worker's result in a unique Redis key that expires after 60 seconds. It checks actual background-job execution in addition to API readiness.
 
 ```sh
-docker compose logs --tail=100 api sidekiq setup
+docker compose logs --tail=100 api sidekiq recovery setup
 docker compose run --rm -e RAILS_ENV=test -e TEST_DB_DATABASE=ledgerly_test -e REDIS_URL=redis://redis:6379/1 api bin/ci
 docker compose down
 ```
@@ -80,6 +84,8 @@ cd app
 bundle exec sidekiq -C config/sidekiq.yml
 ```
 
+In a third terminal with the same environment, run `bin/rails runner script/recovery_loop.rb` from `app/` to dispatch durable work independently of the API.
+
 With the API and worker running, execute `bin/smoke` from `app/` in another terminal with the same exported environment. Native Redis defaults to database 0 for development; use database 1 for tests. These are logical namespaces, so use an isolated Redis instance when testing alongside other applications.
 
 ## API foundation
@@ -94,7 +100,7 @@ All responses use JSON. Core business routes and examples are documented in [doc
 
 Readiness returns `{"status":"ok","checks":{"postgres":"ok","redis":"ok"}}`. Unavailable dependencies use `"unavailable"` in their check and the overall status; internal exception details are not exposed.
 
-Missing, incorrect, or malformed authentication returns `401`. An empty or missing configured `API_KEY` fails closed with `503`. Future Stripe webhook endpoints will verify Stripe signatures separately from API-key authentication.
+Missing, incorrect, or malformed authentication returns `401`. An empty or missing configured `API_KEY` fails closed with `503`. The `/webhooks/stripe` endpoint verifies Stripe signatures separately from API-key authentication.
 
 Errors have the shape `{"error":{"code":"...","message":"..."}}`:
 
@@ -117,8 +123,10 @@ RAILS_ENV=test TEST_DB_DATABASE=ledgerly_test REDIS_URL=redis://127.0.0.1:6379/1
 
 Test database configuration ignores inherited `DB_DATABASE` and `DATABASE_URL` values. It defaults to `ledgerly_test`; use `TEST_DB_DATABASE` or an explicit `TEST_DATABASE_URL` to override it. The resolved test database name must end in `_test` or `_test_<digits>`, so an accidental development database selection aborts before tests run. Database host and credentials still come from the shared `DB_*` settings unless the test URL overrides them. Use a dedicated test database and Redis namespace.
 
-The check prepares the test database and runs RSpec, RuboCop, and Sorbet. The initial Sorbet check covers `app/value_objects`; model and billing-service typing expands in Milestone 4. RSpec starts SimpleCov before loading Rails and writes its report to `app/coverage/index.html`. Coverage figures are meaningful only for the files and scenarios present in that run; the roadmap's later coverage target is not a completed project result.
+The check prepares the test database and runs RSpec, RuboCop, and Sorbet. The initial Sorbet check uses `bin/typecheck` and covers `app/value_objects`; model and billing-service typing expands in Milestone 4. The wrapper retains other gem RBIs while excluding the Stripe SDK's incomplete bundled RBI graph from this initial scope. RSpec starts SimpleCov before loading Rails and writes its report to `app/coverage/index.html`. Coverage figures are meaningful only for the files and scenarios present in that run; the roadmap's later coverage target is not a completed project result.
 
 GitHub Actions runs on pushes and pull requests using the pinned Ruby version, locked dependencies, PostgreSQL and Redis services, and the same quality checks. See [.github/workflows/ci.yml](.github/workflows/ci.yml). Actual verification results and any remaining limitations are recorded in the [roadmap work log](ROADMAP.md#work-log).
 
-Milestone 1 verification, including live HTTP concurrency, is saved in [docs/verification/milestone-1/README.md](docs/verification/milestone-1/README.md). The next milestone adds Stripe collection, webhook reconciliation, and failure recovery while preserving the billing and idempotency rules in [ROADMAP.md](ROADMAP.md#billing-and-reliability-rules).
+Verification is saved for [Milestone 1](docs/verification/milestone-1/README.md) and [Milestone 2](docs/verification/milestone-2/README.md), including concurrent replay, real Redis interruption, and the Stripe sandbox payment/refund demo. [Stripe setup and recovery](docs/STRIPE_RELIABILITY.md) documents configuration, supported payment contracts, processing states, and manual replay. Milestone 3 has recorded the unoptimized baseline; its 5,000-events/minute target and an optimized latency comparison remain unachieved.
+
+Milestone 3 dataset and baseline tooling is documented in [docs/BENCHMARKS.md](docs/BENCHMARKS.md), with [measured results and limitations](docs/benchmarks/2026-11-21-baseline-v1/README.md). Use its dedicated Compose stack for the 50,000-invoice fixture and load tests; the main development database and Stripe sandbox stay separate.

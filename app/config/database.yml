@@ -21,3 +21,7 @@ test:
 production:
   <<: *default
   database: <%= ENV.fetch("DB_DATABASE", "ledgerly_production") %>
+
+benchmark:
+  <<: *default
+  database: ledgerly_benchmark

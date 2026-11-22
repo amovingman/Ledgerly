@@ -1,0 +1,24 @@
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:49.932Z pid=7 tid=57r jid=68c1064d32e7c256dcc04c9b class=StripeIntegration::ProcessEventJob elapsed=0.651: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:49.954Z pid=7 tid=57r jid=dace9f5ab5d3dc2c61d2919e class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:49.977Z pid=7 tid=57z jid=684a8c30ec303df4406c7101 class=StripeIntegration::ProcessEventJob elapsed=0.517: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:49.979Z pid=7 tid=57z jid=ff278ae26bc1b072673406e0 class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.190Z pid=7 tid=57b jid=dfdad6a5a8ef3beb95da61c9 class=StripeIntegration::ProcessEventJob elapsed=0.651: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.190Z pid=7 tid=57b jid=641cb167c2a19c72c00bedf0 class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.191Z pid=7 tid=57j jid=dd0319beff9d8867461b8a7a class=StripeIntegration::ProcessEventJob elapsed=0.653: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.195Z pid=7 tid=57j jid=18e2c00f86c4105c2a96fe72 class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.417Z pid=7 tid=55z jid=13a9be65e2cf08e72e9764aa class=StripeIntegration::ProcessEventJob elapsed=0.627: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.419Z pid=7 tid=55z jid=0dad6288d3346ee0cef6f807 class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.602Z pid=7 tid=57r jid=dace9f5ab5d3dc2c61d2919e class=StripeIntegration::ProcessEventJob elapsed=0.648: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.603Z pid=7 tid=57r jid=0c7aff04e55324b0792ba14b class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.897Z pid=7 tid=57z jid=ff278ae26bc1b072673406e0 class=StripeIntegration::ProcessEventJob elapsed=0.918: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:50.902Z pid=7 tid=57z jid=7387e872506575a2e32b6bf5 class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.024Z pid=7 tid=55z jid=0dad6288d3346ee0cef6f807 class=StripeIntegration::ProcessEventJob elapsed=0.605: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.027Z pid=7 tid=55z jid=62d93dbcdff134aa97ddba11 class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.028Z pid=7 tid=57b jid=641cb167c2a19c72c00bedf0 class=StripeIntegration::ProcessEventJob elapsed=0.837: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.029Z pid=7 tid=57b jid=d7527497035d35772ec451eb class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.028Z pid=7 tid=57j jid=18e2c00f86c4105c2a96fe72 class=StripeIntegration::ProcessEventJob elapsed=0.833: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.029Z pid=7 tid=57j jid=eaa6bca8a5a7bce03ceca856 class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.095Z pid=7 tid=57r jid=0c7aff04e55324b0792ba14b class=StripeIntegration::ProcessEventJob elapsed=0.491: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.095Z pid=7 tid=57r jid=1107f7e32b8120fd02813526 class=StripeIntegration::ProcessEventJob: start
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.291Z pid=7 tid=57z jid=7387e872506575a2e32b6bf5 class=StripeIntegration::ProcessEventJob elapsed=0.389: done
+sidekiq-1  | [1;34mINFO [0m 2026-11-22T03:13:51.300Z pid=7 tid=57z jid=268c1b3524b21e813d1da323 class=StripeIntegration::ProcessEventJob: start

@@ -26,17 +26,23 @@ RSpec/MultipleExpectations:
   Max: 5
 RSpec/ExampleLength:
   Max: 12
+  CountAsOne: [array, hash, heredoc, method_call]
 
 # Migrations describe a schema; keep its constraints together.
 Metrics/AbcSize:
-  Exclude: [db/migrate/*]
+  Exclude: [db/migrate/*, spec/support/fake_stripe_gateway.rb, lib/ledgerly_benchmark/*]
 Metrics/MethodLength:
-  Exclude: [db/migrate/*]
+  Exclude: [db/migrate/*, spec/support/fake_stripe_gateway.rb, lib/ledgerly_benchmark/*]
 Metrics/ClassLength:
-  Exclude: [db/migrate/*]
+  Exclude: [db/migrate/*, spec/support/fake_stripe_gateway.rb, lib/ledgerly_benchmark/*]
 # These integration specs deliberately cross model classes and bypass validations
 # to exercise PostgreSQL constraints directly.
 RSpec/DescribeClass:
   Exclude: [spec/models/billing_constraints_spec.rb, spec/models/core_models_spec.rb]
 Rails/SkipsModelValidations:
   Exclude: [spec/models/billing_constraints_spec.rb]
+
+# Benchmark helpers contain declarative fixture/resource/SQL mappings, like the
+# provider test double; application service limits remain unchanged.
+Rails/UnknownEnv:
+  Environments: [development, test, production, benchmark]

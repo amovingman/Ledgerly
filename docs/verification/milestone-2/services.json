@@ -1,0 +1,85 @@
+[
+  {
+    "Name": "ledgerly-api-1",
+    "Service": "api",
+    "State": "running",
+    "Health": "healthy",
+    "ExitCode": 0,
+    "Publishers": [
+      {
+        "URL": "127.0.0.1",
+        "TargetPort": 3000,
+        "PublishedPort": 3000,
+        "Protocol": "tcp"
+      }
+    ]
+  },
+  {
+    "Name": "ledgerly-postgres-1",
+    "Service": "postgres",
+    "State": "running",
+    "Health": "healthy",
+    "ExitCode": 0,
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 5432,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ]
+  },
+  {
+    "Name": "ledgerly-recovery-1",
+    "Service": "recovery",
+    "State": "running",
+    "Health": "healthy",
+    "ExitCode": 0,
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 3000,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ]
+  },
+  {
+    "Name": "ledgerly-redis-1",
+    "Service": "redis",
+    "State": "running",
+    "Health": "healthy",
+    "ExitCode": 0,
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 6379,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ]
+  },
+  {
+    "Name": "ledgerly-setup-1",
+    "Service": "setup",
+    "State": "exited",
+    "Health": "",
+    "ExitCode": 0,
+    "Publishers": []
+  },
+  {
+    "Name": "ledgerly-sidekiq-1",
+    "Service": "sidekiq",
+    "State": "running",
+    "Health": "healthy",
+    "ExitCode": 0,
+    "Publishers": [
+      {
+        "URL": "",
+        "TargetPort": 3000,
+        "PublishedPort": 0,
+        "Protocol": "tcp"
+      }
+    ]
+  }
+]

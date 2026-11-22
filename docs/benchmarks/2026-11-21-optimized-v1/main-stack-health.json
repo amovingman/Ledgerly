@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "health": {
+    "up": 200,
+    "ready": 200
+  },
+  "financial_counts": {
+    "customers": 2,
+    "invoices": 2,
+    "payments": 2,
+    "refunds": 4,
+    "journals": 8,
+    "rows": 16
+  },
+  "cache_enabled": true,
+  "balance_reads": [
+    {
+      "status": 200,
+      "database_balance_matches": true
+    },
+    {
+      "status": 200,
+      "database_balance_matches": true
+    }
+  ],
+  "customer_read_version": 0,
+  "financial_counts_unchanged": true,
+  "worker_smoke": "\u001b[1;34mINFO \u001b[0m 2026-11-22T04:48:07.523Z pid=33 tid=3mp: Sidekiq 8.1.7 connecting to Redis with options {size: 10, pool_name: \"internal\", url: \"redis://redis:6379/0\"}\nPASS: Rails -> Redis -> Sidekiq -> PostgreSQL -> Redis",
+  "note": "Ordinary development services refreshed only after timed benchmarks and full replay; no financial API operations performed."
+}

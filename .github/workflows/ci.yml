@@ -67,4 +67,4 @@ jobs:
       - name: Run RuboCop
         run: bundle exec rubocop
       - name: Typecheck foundation value objects
-        run: bundle exec srb tc
+        run: bin/typecheck

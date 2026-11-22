@@ -20,3 +20,7 @@
 /app/.env
 /app/.env.*
 !/app/.env.example
+
+# Local Python benchmark bytecode
+__pycache__/
+*.py[cod]

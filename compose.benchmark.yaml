@@ -1,0 +1,102 @@
+name: ledgerly-benchmark
+
+x-benchmark: &benchmark
+  image: ${BENCHMARK_IMAGE:-ledgerly-benchmark:baseline}
+  pull_policy: never
+  init: true
+  environment:
+    RAILS_ENV: benchmark
+    RAILS_MAX_THREADS: "5"
+    READ_CACHE_ENABLED: ${READ_CACHE_ENABLED:-0}
+    SECRET_KEY_BASE: ledgerly-benchmark-local-only-secret-key-base-not-a-production-secret
+    API_KEY: ledgerly-benchmark-local
+    STRIPE_SECRET_KEY: sk_test_benchmark
+    STRIPE_WEBHOOK_SECRET: whsec_benchmark
+    DB_HOST: benchmark-postgres
+    DB_USERNAME: ledgerly_benchmark
+    DB_PASSWORD: benchmark_local
+    REDIS_URL: redis://benchmark-redis:6379/0
+  networks: [isolated]
+  mem_limit: 512m
+  cpus: 1.0
+
+services:
+  benchmark-postgres:
+    image: postgres:17.12-bookworm
+    environment:
+      POSTGRES_DB: ledgerly_benchmark
+      POSTGRES_USER: ledgerly_benchmark
+      POSTGRES_PASSWORD: benchmark_local
+    volumes: [benchmark_postgres:/var/lib/postgresql/data]
+    networks: [isolated]
+    mem_limit: 768m
+    cpus: 1.0
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U ledgerly_benchmark -d ledgerly_benchmark']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  benchmark-redis:
+    image: redis:8.2.3-bookworm
+    command: [redis-server, --appendonly, "yes"]
+    volumes: [benchmark_redis:/data]
+    networks: [isolated]
+    mem_limit: 128m
+    cpus: 0.5
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  seed:
+    <<: *benchmark
+    build: { context: ./app }
+    command: [sh, -c, 'bin/rails db:prepare && bin/rails runner script/benchmarks/seed.rb']
+    depends_on:
+      benchmark-postgres: { condition: service_healthy }
+      benchmark-redis: { condition: service_healthy }
+
+  benchmark-provider:
+    <<: *benchmark
+    command: [bundle, exec, puma, -t, "8:8", -b, 'tcp://0.0.0.0:4242', script/benchmarks/provider.ru]
+    mem_limit: 128m
+    cpus: 0.5
+
+  api:
+    <<: *benchmark
+    networks: [isolated, edge]
+    command: [bin/rails, server, -b, 0.0.0.0]
+    ports: ["127.0.0.1:3002:3000"]
+    depends_on:
+      seed: { condition: service_completed_successfully }
+      benchmark-provider: { condition: service_started }
+    healthcheck:
+      test: [CMD, ruby, '-rnet/http', '-e', 'exit(Net::HTTP.get_response(URI("http://127.0.0.1:3000/ready")).code == "200" ? 0 : 1)']
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  sidekiq:
+    <<: *benchmark
+    command: [bundle, exec, sidekiq, -C, config/sidekiq.yml]
+    depends_on:
+      seed: { condition: service_completed_successfully }
+      benchmark-provider: { condition: service_started }
+
+  recovery:
+    <<: *benchmark
+    command: [bin/rails, runner, script/recovery_loop.rb]
+    depends_on:
+      seed: { condition: service_completed_successfully }
+    mem_limit: 256m
+    cpus: 0.5
+
+networks:
+  edge: {}
+  isolated:
+    internal: true
+volumes:
+  benchmark_postgres:
+  benchmark_redis:

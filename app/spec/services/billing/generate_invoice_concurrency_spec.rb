@@ -12,8 +12,7 @@ RSpec.describe Billing::GenerateInvoice, :concurrency do
   end
 
   def clean_committed_data
-    [LedgerEntry, LedgerTransaction, UsageEvent, InvoiceLineItem, Invoice, Subscription, Plan,
-     Customer].each(&:delete_all)
+    clean_billing_data
   end
 
   def concurrently(count = 4, &)

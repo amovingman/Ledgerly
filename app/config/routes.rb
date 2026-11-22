@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/up', to: 'health#live'
   get '/ready', to: 'health#ready'
+  post '/webhooks/stripe', to: 'webhooks/stripe#create'
 
   namespace :api do
     namespace :v1 do
@@ -15,7 +16,10 @@ Rails.application.routes.draw do
         resources :invoices, only: :create
       end
       resources :usage_events, only: :create
-      resources :invoices, only: :show
+      resources :invoices, only: :show do
+        resource :collection, only: %i[show create], controller: 'stripe_collections'
+      end
+      get 'stripe_events/:stripe_id', to: 'stripe_events#show'
     end
   end
 

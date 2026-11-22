@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "seed": 20261121,
+  "identical_row_fingerprints_in_two_rebuilds": 11,
+  "tables": [
+    "customers",
+    "plans",
+    "subscriptions",
+    "invoices",
+    "invoice_line_items",
+    "usage_events",
+    "stripe_events",
+    "ledger_transactions",
+    "ledger_entries",
+    "stripe_payments",
+    "stripe_refunds"
+  ],
+  "count_matches": true
+}

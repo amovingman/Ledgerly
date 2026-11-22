@@ -1,0 +1,28 @@
+{
+  "total": 5387,
+  "processed": 4917,
+  "ignored": 0,
+  "received": 470,
+  "dead": 0,
+  "review": 0,
+  "retried_events": 0,
+  "max_attempts": 1,
+  "receipt_to_attempt_ms": [
+    1529.577,
+    4763.37015,
+    5047.977510000003
+  ],
+  "completion_ms": [
+    1583.01,
+    4804.629999999999,
+    5257.162880000022
+  ],
+  "max_event_id": 56083,
+  "queues": {
+    "webhooks": 465
+  },
+  "oldest_webhook_queue_latency_seconds": 5.581,
+  "retry_size": 0,
+  "scheduled_size": 0,
+  "dead_size": 0
+}

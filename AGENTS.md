@@ -5,4 +5,4 @@
 - Reference the relevant roadmap milestone in project progress updates and link back to the roadmap in final project-work responses.
 - Update task checkboxes, the decision/work logs, evidence, and the next action when implementation changes project status. Do not mark untested work complete or present targets as measured results.
 - Keep the application in `app/` as planned. Existing reference repositories have their own instructions; read those instructions before modifying files within them.
-- Commit logical implementation batches near 1,000 changed lines and push them to `amovingman/Ledgerly`, as requested by the user. Include smaller final verification/documentation commits when needed; do not pad changes to hit a line count.
+- On 2026-11-22 the user re-enabled GitHub publishing and requested two commits covering all outstanding work plus Milestone 4. Use two logical commits: verified Milestones 2–3, then Milestone 4 typing/CI/release acceptance. Push to the existing `amovingman/Ledgerly` repository and verify hosted CI. Continue excluding secrets, runtime tooling and unrelated reference repositories.

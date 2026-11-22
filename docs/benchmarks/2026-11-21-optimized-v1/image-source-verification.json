@@ -1,0 +1,11 @@
+{
+  "files_checked": 167,
+  "missing": [],
+  "different": [],
+  "image_id": "sha256:a1b8378ce20816c5389f55b555c1f06c9f8a84603301b4d68e1b80164d9ab58f",
+  "excluded_dockerignore_paths": [
+    "app/log/.keep",
+    "app/tmp/.keep"
+  ],
+  "passed": true
+}
