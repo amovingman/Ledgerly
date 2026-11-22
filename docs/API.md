@@ -35,6 +35,21 @@ Lists accept `page` (default 1) and `per_page` (default 25, maximum 100) and ret
 
 Send a key such as `Idempotency-Key: customer-1-request-123`. A first ingestion returns 201 and `Idempotency-Replayed: false`. Replaying equivalent usage returns 200, the same immutable `data` body, and `Idempotency-Replayed: true`. Fingerprints are internal and allocations are excluded from the response.
 
+## Invoices and balances
+
+| Method | Route | Body / result |
+| --- | --- | --- |
+| POST | `/api/v1/subscriptions/:subscription_id/invoices` | `{"invoice":{"period_start":"2026-01-01T00:00:00Z"}}` |
+| GET | `/api/v1/customers/:customer_id/invoices` | Paginated invoice headers ordered by `created_at DESC, id DESC` |
+| GET | `/api/v1/invoices/:id` | Invoice header, snapshotted `line_items`, and balanced `journals` with entries |
+| GET | `/api/v1/customers/:customer_id/balance` | `{"data":{"customer_id":1,"balances":[{"currency":"USD","amount":70}]}}` |
+
+Invoice creation is synchronous and transactional. It returns 201 for first issuance and 200 for a repeat subscription/month, with `Idempotency-Replayed` identifying a replay. It never invokes Stripe or collects money. The server derives the month end, unit price, usage quantity, currency and amount; client overrides are ignored. Completed calendar months with no usage return 422 `no_usage`, open months return 422 `period_not_closed`, and non-month-boundary starts return 422 `invalid_period`.
+
+Invoice detail includes ledger accounts/debits/credits for auditability. Header amounts and usage/pricing snapshots are immutable through the API. Balances sum receivable journal rows, not invoice statuses, and return one amount per currency; an empty ledger returns `balances: []`.
+
+A first issuance closes only that subscription's month. New late usage is rejected afterward, while existing usage-key and invoice-generation retries remain safe. A failed posting rolls back the invoice, line, allocation, and journal together.
+
 ## Errors
 
 Errors use `{"error":{"code":"...","message":"..."}}`. Malformed JSON or a missing/wrong-shaped root object returns 400. Invalid fields return 422. Missing referenced resources return 404. Duplicate customer emails return 409 `resource_conflict`; subscription overlap returns 409 `subscription_overlap`; changed payloads under a used key return 409 `idempotency_conflict`; late new usage after issuance returns 409 `usage_period_closed`. Internal database details are not exposed.

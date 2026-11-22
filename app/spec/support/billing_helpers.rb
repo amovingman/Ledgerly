@@ -37,6 +37,10 @@ module BillingHelpers
                              attributes: payload, idempotency_key: key).call
   end
 
+  def generate_invoice(subscription:, period_start: '2026-01-01T00:00:00Z')
+    Billing::GenerateInvoice.new(subscription: subscription, period_start: period_start).call
+  end
+
   def authenticate_api
     allow(ENV).to receive(:[]).and_call_original
     allow(ENV).to receive(:[]).with('API_KEY').and_return('request-test-key')

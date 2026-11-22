@@ -29,7 +29,7 @@ These rules implement [Milestone 1](../ROADMAP.md#milestone-1--core-api-and-acco
 - One usage event has at most one line-item allocation. Issuance only allocates previously unbilled events within its subscription and half-open month.
 - Issuance journal: debit `accounts_receivable`, credit `usage_revenue`, each for the invoice amount. Journal currency must match the invoice, with at least two rows and equal debit/credit totals. Each row has exactly one positive side.
 - Reserved for Milestone 2: payments debit `stripe_clearing` and credit `accounts_receivable`; refunds debit `sales_returns` and credit `stripe_clearing`. Credit adjustments and payment/refund reconciliation are not implemented in Milestone 1.
-- Journal balance and aggregate invoice/allocation consistency are validated by the posting service transaction and tests. Row checks alone do not enforce sums across rows; administrative SQL bypassing the service is outside that application guarantee. Ledger rows and line snapshots are read-only through models and the API.
+- Journal balance and aggregate invoice/allocation consistency are validated by the posting service transaction and tests. Row checks alone do not enforce sums across rows; administrative SQL bypassing the service is outside that application guarantee. Ledger rows and line snapshots are read-only through models and the API. Entries must be built and validated with a new complete journal; appending rows to a persisted journal is rejected.
 - Customer balances come from `accounts_receivable` debits minus credits grouped by journal currency, using PostgreSQL rather than a cache or invoice status. Currencies are never added together.
 
 ## Database schema portability

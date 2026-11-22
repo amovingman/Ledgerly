@@ -16,7 +16,7 @@ class LedgerTransaction < ApplicationRecord
 
   def balanced_journal
     entries = ledger_entries.to_a
-    return if entries.size >= 2 && entries.sum(&:debit) == entries.sum(&:credit)
+    return if entries.size >= 2 && entries.sum { |entry| entry.debit.to_i } == entries.sum { |entry| entry.credit.to_i }
 
     errors.add(:ledger_entries, 'must contain at least two balanced entries')
   end

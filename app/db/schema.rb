@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_21_234000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_21_235500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gist"
   enable_extension "pg_catalog.plpgsql"
@@ -56,7 +56,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_21_234000) do
     t.index ["subscription_id"], name: "index_invoices_on_subscription_id"
     t.check_constraint "amount > 0", name: "invoices_positive_amount"
     t.check_constraint "period_start = date_trunc('month'::text, period_start) AND period_end = (period_start + 'P1M'::interval)", name: "invoices_calendar_month"
-    t.check_constraint "status::text = ANY (ARRAY['issued'::character varying, 'paid'::character varying, 'payment_failed'::character varying, 'refunded'::character varying]::text[])", name: "invoices_status"
+    t.check_constraint "status::text = ANY (ARRAY['issued'::character varying::text, 'paid'::character varying::text, 'payment_failed'::character varying::text, 'refunded'::character varying::text])", name: "invoices_status"
   end
 
   create_table "ledger_entries", force: :cascade do |t|
@@ -67,7 +67,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_21_234000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ledger_transaction_id"], name: "index_ledger_entries_on_ledger_transaction_id"
-    t.check_constraint "account::text = ANY (ARRAY['accounts_receivable'::character varying, 'usage_revenue'::character varying, 'stripe_clearing'::character varying, 'sales_returns'::character varying]::text[])", name: "ledger_known_account"
+    t.check_constraint "account::text = ANY (ARRAY['accounts_receivable'::character varying::text, 'usage_revenue'::character varying::text, 'stripe_clearing'::character varying::text, 'sales_returns'::character varying::text])", name: "ledger_known_account"
     t.check_constraint "debit > 0 AND credit = 0 OR credit > 0 AND debit = 0", name: "ledger_one_side"
   end
 
@@ -80,7 +80,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_21_234000) do
     t.datetime "updated_at", null: false
     t.index ["business_effect_key"], name: "index_ledger_transactions_on_business_effect_key", unique: true
     t.index ["invoice_id"], name: "index_ledger_transactions_on_invoice_id"
-    t.check_constraint "journal_type::text = ANY (ARRAY['issuance'::character varying, 'payment'::character varying, 'refund'::character varying]::text[])", name: "journal_type"
+    t.index ["invoice_id"], name: "one_issuance_journal_per_invoice", unique: true, where: "((journal_type)::text = 'issuance'::text)"
+    t.check_constraint "journal_type::text = ANY (ARRAY['issuance'::character varying::text, 'payment'::character varying::text, 'refund'::character varying::text])", name: "journal_type"
     t.check_constraint "length(TRIM(BOTH FROM business_effect_key)) > 0", name: "journal_effect_nonblank"
   end
 
@@ -93,7 +94,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_21_234000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.check_constraint "billing_interval::text = 'monthly'::text", name: "plans_interval"
-    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying, 'CAD'::character varying, 'EUR'::character varying, 'GBP'::character varying]::text[])", name: "plans_currency"
+    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying::text, 'CAD'::character varying::text, 'EUR'::character varying::text, 'GBP'::character varying::text])", name: "plans_currency"
     t.check_constraint "length(TRIM(BOTH FROM name)) > 0", name: "plans_nonblank_name"
     t.check_constraint "metric::text ~ '^[a-z][a-z0-9_]{0,63}$'::text", name: "plans_metric_format"
     t.check_constraint "unit_amount >= 1 AND unit_amount <= 1000000000", name: "plans_positive_price"
@@ -116,7 +117,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_21_234000) do
     t.index ["id", "customer_id", "metric"], name: "subscriptions_usage_identity", unique: true
     t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
     t.index ["stripe_subscription_id"], name: "index_subscriptions_on_stripe_subscription_id", unique: true
-    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying, 'CAD'::character varying, 'EUR'::character varying, 'GBP'::character varying]::text[])", name: "subscriptions_currency"
+    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying::text, 'CAD'::character varying::text, 'EUR'::character varying::text, 'GBP'::character varying::text])", name: "subscriptions_currency"
     t.check_constraint "metric::text ~ '^[a-z][a-z0-9_]{0,63}$'::text", name: "subscriptions_metric"
     t.check_constraint "status::text = 'active'::text AND ends_at IS NULL OR status::text = 'cancelled'::text AND ends_at IS NOT NULL AND ends_at >= starts_at", name: "subscriptions_lifecycle"
     t.check_constraint "unit_amount >= 1 AND unit_amount <= 1000000000", name: "subscriptions_price"

@@ -51,4 +51,18 @@ RSpec.describe 'Core billing models' do
     expect { journal.update!(business_effect_key: 'changed') }.to raise_error(ActiveRecord::ReadOnlyRecord)
     expect { journal.ledger_entries.first.update!(debit: 50) }.to raise_error(ActiveRecord::ReadOnlyRecord)
   end
+
+  it 'rejects missing ledger amounts without raising a type error' do
+    attributes = journal_attributes(invoice: create_invoice)
+    attributes[:ledger_entries].first.debit = nil
+    expect(LedgerTransaction.new(**attributes)).not_to be_valid
+  end
+
+  it 'prevents new rows from being appended to a posted journal' do
+    journal = LedgerTransaction.create!(**journal_attributes(invoice: create_invoice))
+    expect { journal.ledger_entries.create!(account: 'usage_revenue', credit: 1) }
+      .to raise_error(ActiveRecord::RecordInvalid)
+    expect(journal.ledger_entries.sum(:debit)).to eq(journal.ledger_entries.sum(:credit))
+    expect(journal.ledger_entries.count).to eq(2)
+  end
 end

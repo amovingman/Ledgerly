@@ -81,4 +81,12 @@ RSpec.describe 'Billing database constraints' do
     entry = journal.ledger_entries.first
     expect_database_rejection('ledger_one_side') { LedgerEntry.where(id: entry.id).update_all(credit: 1) }
   end
+
+  it 'allows only one issuance journal for an invoice even under a different effect key' do
+    invoice = create_invoice
+    LedgerTransaction.create!(**journal_attributes(invoice: invoice))
+    expect_database_rejection('one_issuance_journal_per_invoice') do
+      LedgerTransaction.create!(**journal_attributes(invoice: invoice), business_effect_key: 'second-issuance')
+    end
+  end
 end

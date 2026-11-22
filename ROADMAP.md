@@ -92,9 +92,11 @@ Acceptance: a clean checkout can boot the services, create/migrate the database,
 - [x] Implement customer and plan creation/read endpoints plus subscription creation, retrieval, and supported lifecycle transitions.
 - [x] Document usage idempotency scope, subscription overlap rules, rounding, billing boundaries, and late-usage handling. See [billing rules](docs/BILLING_RULES.md).
 - [x] Implement `POST /api/v1/usage_events` with request fingerprints and database-backed idempotency.
-- [ ] Implement invoice generation for one subscription-period in a database transaction, including line items, usage allocation, and a balanced issuance journal.
-- [ ] Implement paginated customer invoice lists, invoice detail, and ledger-derived balance endpoints.
-- [ ] Add request/service tests for validation, authentication, boundary timestamps, price snapshots, duplicate requests, payload conflicts, rollback, and concurrent invoice generation.
+- [x] Implement invoice generation for one subscription-period in a database transaction, including line items, usage allocation, and a balanced issuance journal.
+- [x] Implement paginated customer invoice lists, invoice detail, and ledger-derived balance endpoints.
+- [x] Add request/service tests for validation, authentication, boundary timestamps, price snapshots, duplicate requests, payload conflicts, rollback, and concurrent invoice generation.
+
+Acceptance status: application checks passed (138 specs, including real multi-connection races); final hosted CI, clean schema acceptance, and live API smoke verification are pending.
 
 Acceptance: repeated and concurrent usage requests have one stored result; repeated and concurrent invoice generation produces one invoice; no usage is billed in two invoices; failed generation leaves no partial invoice or ledger state; every journal balances.
 
@@ -207,6 +209,8 @@ Milestone 1 billing decisions are defined in [docs/BILLING_RULES.md](docs/BILLIN
 
 | 2026-11-21 | Implemented authenticated customer/plan/subscription endpoints, cancellation and idempotent usage API | Full container check: 113 passing specs, 63 linted files clean, scoped Sorbet passing. Tests cover normalized timestamps, cross-customer isolation, key conflicts/replays, late usage, payload types and boundaries. Model batch `9318d52` passed hosted CI. | Implement atomic invoice generation, invoice/balance reads, and real concurrency/rollback checks. |
 
+| 2026-11-21 | Added atomic invoice issuance, one-time allocation, balanced immutable journals, invoice reads and per-currency receivable balances | Full container check: 138 passing specs; 73 linted files clean; scoped Sorbet passing. Real four-thread duplicates produce one event/invoice/journal; ingestion/issuance race, rollback after allocation, month boundaries and integer overflow are verified. | Verify the committed schema from scratch, live API workflow, and hosted CI before marking Milestone 1 complete. |
+
 ## Next action
 
-Continue Milestone 1: implement transactional invoice generation, paginated invoice/detail/balance reads, and concurrency/rollback acceptance tests.
+Finish Milestone 1 acceptance: verify the updated schema in a fresh isolated test database, exercise the live API workflow, save evidence, and inspect hosted CI. Stripe integration has not started.
