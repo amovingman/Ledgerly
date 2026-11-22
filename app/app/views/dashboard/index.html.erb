@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Overview · Ledgerly</title>
+  <%= csrf_meta_tags %>
+  <link rel="icon" href="/dashboard-assets/mark.svg?v=1" type="image/svg+xml">
+  <link rel="preload" href="/dashboard-assets/geist-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/dashboard-assets/dashboard.css?v=1">
+  <script type="module" src="/dashboard-assets/dashboard.mjs?v=1"></script>
+</head>
+<body data-workspace-label="<%= ENV.fetch('DASHBOARD_DATA_LABEL', 'Local test workspace') %>">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="mobile-bar"><a class="brand" href="#overview"><img src="/dashboard-assets/mark.svg?v=1" alt="" width="24" height="24">Ledgerly</a><button id="menu-toggle" class="icon-button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar"></button></header>
+  <button id="nav-scrim" aria-label="Close navigation" tabindex="-1"></button>
+  <aside id="sidebar" class="sidebar">
+    <a class="brand" href="#overview"><img src="/dashboard-assets/mark.svg?v=1" alt="" width="28" height="28"><span>Ledgerly</span></a>
+    <div class="workspace"><span class="workspace-symbol" aria-hidden="true">L</span><div><strong><%= ENV.fetch('DASHBOARD_DATA_LABEL', 'Local test workspace') %></strong><span>Stripe test mode</span></div></div>
+    <nav id="navigation" aria-label="Primary navigation"></nav>
+    <div class="sidebar-bottom"><div class="access-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v7m0-10h.01"/></svg><div><strong>Read-only workspace</strong></div></div><%= form_with url: dashboard_logout_path, method: :post, local: true do %><button class="sign-out" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 4H4v16h10m-4-8h11m-4-4 4 4-4 4"/></svg>Sign out</button><% end %></div>
+  </aside>
+  <main id="main" class="main" tabindex="-1">
+    <header class="page-header"><div><div id="breadcrumbs" class="breadcrumbs"></div><h1 id="page-title">Overview</h1><p id="page-description">All recorded billing activity.</p></div><div class="header-actions"><button id="refresh" class="button" type="button"></button><span id="freshness" class="freshness"></span></div></header>
+    <div id="notice" aria-live="polite"></div>
+    <section id="content" aria-busy="true" aria-label="Dashboard content"><div class="loading-state" role="status">Loading workspace…</div></section>
+    <footer class="page-footer"><span>PostgreSQL-backed records</span><span>Amounts stay in their original currency. Times shown in UTC.</span></footer>
+  </main>
+</body>
+</html>

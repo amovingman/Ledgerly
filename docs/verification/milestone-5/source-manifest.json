@@ -1,0 +1,1716 @@
+{
+  "base_revision": "c9ed621c77b2384d056c69cf17dde86be739c81c",
+  "release_preparation": true,
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "b7a08a855892ba279e58b6005d1eb15bdd408ce85e869df4864ce4b6daa495d5",
+      "bytes": 3502
+    },
+    {
+      "path": ".impeccable/config.json",
+      "sha256": "47c9348681feca8bbb886588ee251f5e902b6a3222ba304dc99e6e59467bf562",
+      "bytes": 26
+    },
+    {
+      "path": ".impeccable/design.json",
+      "sha256": "d27223154d3d177fbf359b0a050222e60c57b217c7b774e8ce2d182dd5fbba57",
+      "bytes": 26422
+    },
+    {
+      "path": ".impeccable/surfaces/app-app-views-dashboard-index-html-erb.md",
+      "sha256": "671004f8f57648ce6b2ac3fa004b5c8a75170ae8898a6ef5caaacd147352cefc",
+      "bytes": 2865
+    },
+    {
+      "path": "DESIGN.md",
+      "sha256": "9526809ce72c1ed09bf7fe9144b5c30ac52d90770242d415a016020edbd85116",
+      "bytes": 12440
+    },
+    {
+      "path": "PRODUCT.md",
+      "sha256": "7e76f2e560fe292598ba4e8ed250ea93dbf7b08933aeaba240975f0d38bae5ff",
+      "bytes": 2280
+    },
+    {
+      "path": "app/.dockerignore",
+      "sha256": "2447ae6f92d25cc92e9a704178d0bef2bb1037c1ad7e6ee657ee9084ea351d05",
+      "bytes": 124
+    },
+    {
+      "path": "app/.gitattributes",
+      "sha256": "3cee063376a4eb86d776a2e73fc47cfb12cf91d2a928beb3762f9bf348e4e20e",
+      "bytes": 38
+    },
+    {
+      "path": "app/.rspec",
+      "sha256": "d501f43670bd0da28e597c32c827e80984042383f1ab1a82a6997f9bf56a613f",
+      "bytes": 60
+    },
+    {
+      "path": "app/.rubocop.yml",
+      "sha256": "bbb0b86f37189eaf342a46a153195e18078ae409268b72ec17cb70f2631bc478",
+      "bytes": 1451
+    },
+    {
+      "path": "app/.ruby-version",
+      "sha256": "2b4c1c4c2fc5181a6c89f4b351f80858a0514dc7f5ead55ed98b1d699e01a5fd",
+      "bytes": 12
+    },
+    {
+      "path": "app/Dockerfile",
+      "sha256": "bf9554b4972d233806ac1ea625d17356287f993173109586c9e75b8d7c56df4a",
+      "bytes": 714
+    },
+    {
+      "path": "app/Gemfile",
+      "sha256": "e3015beb8136cf07ef4b8c37296fffd9982b950222448d77863ba2f75f6b5a20",
+      "bytes": 620
+    },
+    {
+      "path": "app/Gemfile.lock",
+      "sha256": "97999a65fe71ea5710f794cfa0953dcf0d20a6d7cb859b34160f3dd160c87c56",
+      "bytes": 22271
+    },
+    {
+      "path": "app/README.md",
+      "sha256": "515e8973e3808f9a6228404f306c9aad1cf39ebc5e823a544356d36c45c8dacb",
+      "bytes": 180
+    },
+    {
+      "path": "app/Rakefile",
+      "sha256": "a30fbd85c291be7205153650b46a99081cfb0dcd278a69b8b66ef391957fd4ca",
+      "bytes": 227
+    },
+    {
+      "path": "app/app/controllers/api/v1/balances_controller.rb",
+      "sha256": "20e23401c14e34ee429e9dbc8b68fb1441deee54360767aca233b93c975f1688",
+      "bytes": 296
+    },
+    {
+      "path": "app/app/controllers/api/v1/base_controller.rb",
+      "sha256": "f884c5930eb21e56ab5809465aeb16bc09282336f5386f64b9c9e77834dc641a",
+      "bytes": 840
+    },
+    {
+      "path": "app/app/controllers/api/v1/customers_controller.rb",
+      "sha256": "9c286c7e623755ba7e7bef732aac8b4ab36cb9655876a20ab944fe2e7e571dbf",
+      "bytes": 653
+    },
+    {
+      "path": "app/app/controllers/api/v1/invoices_controller.rb",
+      "sha256": "f2452ab761e5b85df30ca5f2e331d81ce043e0b17181a25891c93f530b8924bd",
+      "bytes": 1360
+    },
+    {
+      "path": "app/app/controllers/api/v1/plans_controller.rb",
+      "sha256": "6eee17ee1c3c734a08587fab91e4417fbc6af4ac19c3b8083f1a8275fd643245",
+      "bytes": 1015
+    },
+    {
+      "path": "app/app/controllers/api/v1/status_controller.rb",
+      "sha256": "c01ac5630953242031b4ab804acc40eb74feb1b3878244ef66a2cdb9dec8ecaa",
+      "bytes": 186
+    },
+    {
+      "path": "app/app/controllers/api/v1/stripe_collections_controller.rb",
+      "sha256": "30d1febca014a4673c51eb4723d3241e554c28865d7918dbc9b788df68500927",
+      "bytes": 883
+    },
+    {
+      "path": "app/app/controllers/api/v1/stripe_events_controller.rb",
+      "sha256": "daa8d56bf6c5d4bf44b0a18b874c49ee91e7c2391b1583314b2e4053895e5f7b",
+      "bytes": 375
+    },
+    {
+      "path": "app/app/controllers/api/v1/subscriptions_controller.rb",
+      "sha256": "1138f26e40f0bd6732ad139a82d53280055dbc05f37a3a58ca3421cfbc14d2c3",
+      "bytes": 865
+    },
+    {
+      "path": "app/app/controllers/api/v1/usage_events_controller.rb",
+      "sha256": "22db9b4f03d97aaf95b2abf233eb6a8ca9dc391c8540affe3a70a6fc25b30184",
+      "bytes": 757
+    },
+    {
+      "path": "app/app/controllers/application_controller.rb",
+      "sha256": "066b05fc6e7e31007ee44ae7eb3bf8cc3ce2eda02c3cadcc0ef2d2c801828464",
+      "bytes": 837
+    },
+    {
+      "path": "app/app/controllers/concerns/.keep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "app/app/controllers/concerns/api_errors.rb",
+      "sha256": "0f44291b6244f91b41f9092d143ad99f1ccb95a60dd36d033a7d598ad3b8533f",
+      "bytes": 1606
+    },
+    {
+      "path": "app/app/controllers/concerns/pagination.rb",
+      "sha256": "1f1cbc285afb89616995a230f4092a2972aee995d705009e4f5eaf58b1b8cd19",
+      "bytes": 149
+    },
+    {
+      "path": "app/app/controllers/dashboard/base_controller.rb",
+      "sha256": "abfd42626781c822ec8f53185ee645399d43cdb83dcb1af9b1a3ae4724187326",
+      "bytes": 1648
+    },
+    {
+      "path": "app/app/controllers/dashboard/data_controller.rb",
+      "sha256": "c69e327265e2af5f41c48eda357fef91f2349e9accd26ddca9d2c72238d29f4c",
+      "bytes": 540
+    },
+    {
+      "path": "app/app/controllers/dashboard/pages_controller.rb",
+      "sha256": "2d033ae27e63af5ea2832d3f584c6a10237d57765efcb88cc326a9e4a95878e7",
+      "bytes": 156
+    },
+    {
+      "path": "app/app/controllers/dashboard/sessions_controller.rb",
+      "sha256": "8338d4a4598c83dfe9b037d4cf420d4b32e682794c4965cf6b105bee085622e5",
+      "bytes": 1372
+    },
+    {
+      "path": "app/app/controllers/errors_controller.rb",
+      "sha256": "ab59196359183002bde74bd460d57378ab48338ca0bdfb12bc87d3d5f1aca65c",
+      "bytes": 156
+    },
+    {
+      "path": "app/app/controllers/health_controller.rb",
+      "sha256": "dd06d709abb3251a8c5cbf2e77f27c226fbf7fbf4dcda4060d6d93896ac547aa",
+      "bytes": 917
+    },
+    {
+      "path": "app/app/controllers/webhooks/stripe_controller.rb",
+      "sha256": "8c7361868b5dab3b58bf1094cfad21286706bef0143e022b5579eabba49c3cde",
+      "bytes": 452
+    },
+    {
+      "path": "app/app/jobs/application_job.rb",
+      "sha256": "c839c6f54930cc031c9b72dc880557fc572184b777a9f9b9bf300003deaa34e6",
+      "bytes": 43
+    },
+    {
+      "path": "app/app/jobs/foundation_smoke_job.rb",
+      "sha256": "fb81f1f87d0b0218de4fa5b1a136736b0dcb1bc90723bc7a349942085f9ac57f",
+      "bytes": 349
+    },
+    {
+      "path": "app/app/jobs/stripe_integration/collect_invoice_job.rb",
+      "sha256": "02bf20e103515a25f0fa4649c8565959b35bfbcf65bf9fb57a58f4f2db8a63f9",
+      "bytes": 570
+    },
+    {
+      "path": "app/app/jobs/stripe_integration/process_event_job.rb",
+      "sha256": "83c144c1f0ce93cf553e7c87c36714aceadd3e0ec6c94a7268cbf0217f878bb8",
+      "bytes": 535
+    },
+    {
+      "path": "app/app/models/application_record.rb",
+      "sha256": "3cd91581f8dd8e26518cd6070e0dc9599d27aaf236695e4a540f8bcce1fda875",
+      "bytes": 106
+    },
+    {
+      "path": "app/app/models/concerns/.keep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "app/app/models/customer.rb",
+      "sha256": "230ba09222f70d188df0ca93d0c9d407409cf367c0315935eb6445a490b66d2f",
+      "bytes": 533
+    },
+    {
+      "path": "app/app/models/invoice.rb",
+      "sha256": "2a239317513c2cf575c8543462561a477f560f649ac70f114ad95dd2448bd8d6",
+      "bytes": 1150
+    },
+    {
+      "path": "app/app/models/invoice_collection.rb",
+      "sha256": "4bab68fe76bf50a84d8e7f8490b5df195e3eff88b2df909c6c4d8fb0e04f9d90",
+      "bytes": 264
+    },
+    {
+      "path": "app/app/models/invoice_line_item.rb",
+      "sha256": "3067242d2a5946949e55b13f5c50cb134a9aea225eb2783289b174c363f51edd",
+      "bytes": 367
+    },
+    {
+      "path": "app/app/models/ledger_entry.rb",
+      "sha256": "ea41778cf5598904db6bb6110b5ed2cc06417a8d7623dfdebd13ef489af74d8e",
+      "bytes": 925
+    },
+    {
+      "path": "app/app/models/ledger_transaction.rb",
+      "sha256": "5ea04971c3687dfe584fe05905d70426b1654f6fecc334d950f05453554e83da",
+      "bytes": 1166
+    },
+    {
+      "path": "app/app/models/outbox_record.rb",
+      "sha256": "3e119fe1e03dde67207d36f6076043abc9736fe2a8cbd8b4f839cbbced0d1ba8",
+      "bytes": 294
+    },
+    {
+      "path": "app/app/models/plan.rb",
+      "sha256": "604d8c1f82303920283459710fa94e51703f8a9d5554fd59889c81d9350b98ce",
+      "bytes": 499
+    },
+    {
+      "path": "app/app/models/stripe_event.rb",
+      "sha256": "b10d01d913be2aab2f163ea8907bcef92fb3eb97740001869727e690f6936191",
+      "bytes": 471
+    },
+    {
+      "path": "app/app/models/stripe_operation.rb",
+      "sha256": "83fc4de8515edff51f20924b96d061da6428fe832b20d152fb454174968ee060",
+      "bytes": 619
+    },
+    {
+      "path": "app/app/models/stripe_payment.rb",
+      "sha256": "dad40adc1cd292895bd5572a5a8ccfd8a14f2b54986470e109e1f96c48d99d97",
+      "bytes": 418
+    },
+    {
+      "path": "app/app/models/stripe_refund.rb",
+      "sha256": "0361d572f08027258d6bf2c11f6c132ef45b8355acf82e34c94c279782f10eb2",
+      "bytes": 319
+    },
+    {
+      "path": "app/app/models/subscription.rb",
+      "sha256": "fb32aaea7209f8b2f94b86ff40bd6ffb16da0156e30f25022cf3ccaac97c8496",
+      "bytes": 925
+    },
+    {
+      "path": "app/app/models/usage_event.rb",
+      "sha256": "3f2c3ee740ed6bbac00582b25518ea910888f8d5879dc0cbe1e68a7ed3364280",
+      "bytes": 814
+    },
+    {
+      "path": "app/app/services/api/v1/representation.rb",
+      "sha256": "40c299d8ebbffb41f23cec6d1401aa2ef7056b503d352b5124ad97a612e1d1ae",
+      "bytes": 1747
+    },
+    {
+      "path": "app/app/services/api_exceptions.rb",
+      "sha256": "faa86a9cfb6d9e182748c57c288458251d8e443115110d4b02745aa58998a527",
+      "bytes": 582
+    },
+    {
+      "path": "app/app/services/billing/audit.rb",
+      "sha256": "f8a23570cfc202a880dd2edfe5679a914799dbb9c51c05885aac02595afa9bbe",
+      "bytes": 3450
+    },
+    {
+      "path": "app/app/services/billing/customer_balance.rb",
+      "sha256": "45070196407a2cdb7929a7d7b6a654f3defefb10520f0e59b837ec4287a96b28",
+      "bytes": 819
+    },
+    {
+      "path": "app/app/services/billing/error.rb",
+      "sha256": "325f87ec4b8bff4402f4d2f273f1c1c836eebf80e74caf32d9db4bd9b9aee7c4",
+      "bytes": 384
+    },
+    {
+      "path": "app/app/services/billing/generate_invoice.rb",
+      "sha256": "c4ab7cd209b98709e2543a045dde3e24a9bd7f312be6f1794524f2ce3eaca754",
+      "bytes": 2602
+    },
+    {
+      "path": "app/app/services/billing/ingest_usage.rb",
+      "sha256": "aad9441d5b7409dcf30728b98c21982f86ab9f95e3690874afabf416450c714c",
+      "bytes": 3192
+    },
+    {
+      "path": "app/app/services/billing/input.rb",
+      "sha256": "fbfd3926cefb4cf5e26ef88bf874f99ddfdace2b6836422c94e3177a3b19cb29",
+      "bytes": 1616
+    },
+    {
+      "path": "app/app/services/billing/period.rb",
+      "sha256": "5c691f139e123425029845954920ca3c94bfd7e630ee5e033c0c7c54ebeae676",
+      "bytes": 966
+    },
+    {
+      "path": "app/app/services/billing/post_issuance.rb",
+      "sha256": "5c72f6088ed5de45be5a854af377f65e81921284970c56b29e5b5c5310858e2e",
+      "bytes": 614
+    },
+    {
+      "path": "app/app/services/billing/read_cache.rb",
+      "sha256": "adf327916747f079a58ba9e38c5a6d7585322398883509d573cb0b852de1f502",
+      "bytes": 2454
+    },
+    {
+      "path": "app/app/services/billing/read_version.rb",
+      "sha256": "f7e8cae6e098dff230d8ffcb8255f897839e82abeec2f8bac546b18e68018b9b",
+      "bytes": 578
+    },
+    {
+      "path": "app/app/services/billing/result.rb",
+      "sha256": "a8a0c3a128b848b730d680a5c0cf6ca885f65e160e797123e71bbbbce3ece57c",
+      "bytes": 441
+    },
+    {
+      "path": "app/app/services/billing/subscriptions.rb",
+      "sha256": "7d2504f2040836a99741e408a28d14e76e59ab28a37dbf28e7340838590cbff9",
+      "bytes": 1206
+    },
+    {
+      "path": "app/app/services/billing/types.rb",
+      "sha256": "e1cb10aea87a6f2084946a8467e91f5e0e276bcd4b08cdc1257da4cf2fd7cc97",
+      "bytes": 212
+    },
+    {
+      "path": "app/app/services/dashboard/collections.rb",
+      "sha256": "081f6af2d4a9213e0206a93fb5d2e60507ea76c3dcdf5163603a0dad16685331",
+      "bytes": 1424
+    },
+    {
+      "path": "app/app/services/dashboard/details.rb",
+      "sha256": "31c6e452662c65f4e8ba485c61a0d70dcfc0634fb34cbc7bc2e85c57e1e924d7",
+      "bytes": 1110
+    },
+    {
+      "path": "app/app/services/dashboard/presentation.rb",
+      "sha256": "a5a35098c48b36693f23129c8db92c96e668416c429554e4c762701fed9c5103",
+      "bytes": 2286
+    },
+    {
+      "path": "app/app/services/dashboard/query.rb",
+      "sha256": "f41034bb40e2a9bad821882263106beb1f059333028a0c9222937e570915b6d6",
+      "bytes": 2769
+    },
+    {
+      "path": "app/app/services/dashboard/summary.rb",
+      "sha256": "804997a010a531aca5ff612584f0eaf9a239650d41e1b435f423ab64c6bf17db",
+      "bytes": 1869
+    },
+    {
+      "path": "app/app/services/stripe_integration/advisory_lock.rb",
+      "sha256": "ad734c560f0a45156f6fab5d172954bc4eb1487788230772a901872c79848281",
+      "bytes": 753
+    },
+    {
+      "path": "app/app/services/stripe_integration/collect_invoice.rb",
+      "sha256": "8d400742ec1974817c0819baa2d3a9e6806996941749848f2bb59b0c173f268d",
+      "bytes": 4665
+    },
+    {
+      "path": "app/app/services/stripe_integration/contract.rb",
+      "sha256": "626d49f1af09fb747afaa6ee40d48c07dd5c489ba9fcd787b1bcfe0e4b2ba8e1",
+      "bytes": 408
+    },
+    {
+      "path": "app/app/services/stripe_integration/failure.rb",
+      "sha256": "c3f91a77e3661d04e7a649b9139a86445d8fdbb7a8353ec07590ef8479c85c04",
+      "bytes": 254
+    },
+    {
+      "path": "app/app/services/stripe_integration/gateway.rb",
+      "sha256": "2d8cd17d095d0f69d657837d465f5b4deda8340b9d0381c38681d8dc7a8e1a56",
+      "bytes": 2875
+    },
+    {
+      "path": "app/app/services/stripe_integration/operations.rb",
+      "sha256": "0286400f41299b0959db0d75dd11ca77bad9f97d95cb2d0b8e95cd91b4cd7484",
+      "bytes": 4472
+    },
+    {
+      "path": "app/app/services/stripe_integration/outbox_dispatcher.rb",
+      "sha256": "07ffa3dfb0e17e7bce5c80989e1b7f281d9bb505d2a942f22843082a4d821121",
+      "bytes": 1591
+    },
+    {
+      "path": "app/app/services/stripe_integration/payment_snapshot.rb",
+      "sha256": "3eee2957d44e596ab71b3f93c1845c2bb7fc25e6ca5fa938ca31d168de3994a2",
+      "bytes": 3753
+    },
+    {
+      "path": "app/app/services/stripe_integration/post_effects.rb",
+      "sha256": "5254d76ce69b4405b7592d50615da60d75e9e33a55b203c09cad34eda4407c47",
+      "bytes": 4947
+    },
+    {
+      "path": "app/app/services/stripe_integration/process_event.rb",
+      "sha256": "aaa4ba2100498310ec77d68e2eedacd0047984a6452729be8f004ba524cc19c8",
+      "bytes": 1419
+    },
+    {
+      "path": "app/app/services/stripe_integration/receive_event.rb",
+      "sha256": "43a77f88d3392b7f23867d52e9886815a43d8991fa421a55d9b886e97bc6f2b9",
+      "bytes": 3110
+    },
+    {
+      "path": "app/app/services/stripe_integration/recovery_sweep.rb",
+      "sha256": "72893f6c58ebd90c3f88941cce3342d9713d69e2344f32f611825a6b6811e51e",
+      "bytes": 1980
+    },
+    {
+      "path": "app/app/services/stripe_integration/request_collection.rb",
+      "sha256": "4dad5d162bb1cc60544c7409392480cfa6330fa17ce9f330d28c784bd0d2af29",
+      "bytes": 1563
+    },
+    {
+      "path": "app/app/services/stripe_integration/resolve_snapshot.rb",
+      "sha256": "02e6ac4344782d449a6b01152ff2d5402f7b2679683bfd720734a566024727b9",
+      "bytes": 3251
+    },
+    {
+      "path": "app/app/services/stripe_integration/retry_policy.rb",
+      "sha256": "758c141fd42b81343034dfb5fd581a1a31daa05504a6a6d1c99653a2a2d1c4d3",
+      "bytes": 585
+    },
+    {
+      "path": "app/app/services/stripe_integration/retryable.rb",
+      "sha256": "547cb29845118ccb33cd4a59c540649371a7281c72ad4cc521b5e10805aeab0f",
+      "bytes": 62
+    },
+    {
+      "path": "app/app/services/stripe_integration/review_required.rb",
+      "sha256": "92e3f2056123c6c015ec5e62e2326d44024dcfc2023e3cbb49c9daebede59527",
+      "bytes": 67
+    },
+    {
+      "path": "app/app/services/stripe_integration/settings.rb",
+      "sha256": "6c09f8d18f8701aa1328518ac430b372ffd9374a4acc93655094321375e1e422",
+      "bytes": 923
+    },
+    {
+      "path": "app/app/services/stripe_integration/types.rb",
+      "sha256": "a6810c13327407d3f6bf7f27f5af2a03cb898a334a969d4bb95438a3034b045f",
+      "bytes": 525
+    },
+    {
+      "path": "app/app/value_objects/pagination_params.rb",
+      "sha256": "5f25dbaf5d8f8a995b3693f0711c5d6ebefca4ab4254668b8aff62a59e0c174e",
+      "bytes": 1001
+    },
+    {
+      "path": "app/app/views/dashboard/index.html.erb",
+      "sha256": "66987a4fedd2f59c5c13c219d47ad5e8ef6a7834fdb6105737d2af5ae877bb09",
+      "bytes": 2832
+    },
+    {
+      "path": "app/app/views/dashboard/login.html.erb",
+      "sha256": "40b7f4f9444afbf246484cf077c7f33ab0bdb5ddf3260818ac9783464a25afcc",
+      "bytes": 1676
+    },
+    {
+      "path": "app/bin/ci",
+      "sha256": "403035f352909ed89baa9accb7a0bf4842c290c8538a7ad22909d9cf9980d2db",
+      "bytes": 626
+    },
+    {
+      "path": "app/bin/dev",
+      "sha256": "92567936f42fc48875ff1e4c5b9493fba9f16f1cd34ac787924d35250e3e5806",
+      "bytes": 56
+    },
+    {
+      "path": "app/bin/rails",
+      "sha256": "466686d6fc5aad5233475803ea62e5efde20fceb95496aaf747a1accdadc3fae",
+      "bytes": 141
+    },
+    {
+      "path": "app/bin/rake",
+      "sha256": "436f1fbb82e7b52d0bc032ac6ac9dce49a3f3ec47b909c863783021c116c264c",
+      "bytes": 90
+    },
+    {
+      "path": "app/bin/rbi",
+      "sha256": "f2318412adbf56454df2b41383217fdedca7b61e8aef9626528a27ac21f9d7ad",
+      "bytes": 1037
+    },
+    {
+      "path": "app/bin/setup",
+      "sha256": "0a0b130e489242a6723394a63bd60ea715c4de17206809718d71d2f0585f1767",
+      "bytes": 439
+    },
+    {
+      "path": "app/bin/smoke",
+      "sha256": "8160073e43983abda76966bb5a2d9a495aaae1cf96b1e5e78c73e794f0e4db7c",
+      "bytes": 88
+    },
+    {
+      "path": "app/bin/tapioca",
+      "sha256": "781e0aaf81a8c12e9c2c2cbb5e1c411a20cea53d641d6ef7e184155c1c49ea3e",
+      "bytes": 84
+    },
+    {
+      "path": "app/bin/typecheck",
+      "sha256": "055cb0010e52aefb4a2e8cb5c922699c15dd9da21a1f88104e8078496afa9a9c",
+      "bytes": 262
+    },
+    {
+      "path": "app/config.ru",
+      "sha256": "3ed6ff4a00179d35cbcbd72f192d5b38bcb88ea30f429a23f5945dd3229aeaba",
+      "bytes": 160
+    },
+    {
+      "path": "app/config/application.rb",
+      "sha256": "8b7b1aa9ea7a2f954450e5a45e9f32a6dbdf0413862f9599b793fa3702a99c1e",
+      "bytes": 1083
+    },
+    {
+      "path": "app/config/boot.rb",
+      "sha256": "b51f2b9ace943e3b2529c28e0eb1974725cb504e8347d284793c582f778b974e",
+      "bytes": 128
+    },
+    {
+      "path": "app/config/database.yml",
+      "sha256": "25678ec5b6390ca4502e24b2b89f2c7ed8552bca6cfe485bf39aea843ee64a27",
+      "bytes": 829
+    },
+    {
+      "path": "app/config/environment.rb",
+      "sha256": "8ec4d2e8b7cbf7ce55c0c7a7ac4238ad8f13728d7cc8e772b37802e3ebbdf47c",
+      "bytes": 128
+    },
+    {
+      "path": "app/config/environments/benchmark.rb",
+      "sha256": "758486b6f9658bc9c2cc5ecd6f8032cb2dae94354ca3cd259e06f7ec40578e5a",
+      "bytes": 523
+    },
+    {
+      "path": "app/config/environments/development.rb",
+      "sha256": "c5b8a28193895eaf16dbb4c696c6d244189e2956fddf79b669c58c0c1356f84f",
+      "bytes": 1953
+    },
+    {
+      "path": "app/config/environments/production.rb",
+      "sha256": "bcaaf1aacd210dd70bdffa88dd7a2332b81c1da99cabf79c2cd7c0039656e77f",
+      "bytes": 2700
+    },
+    {
+      "path": "app/config/environments/test.rb",
+      "sha256": "157f82d8c3c3b3a2b6b0c43cea6eae92cdb9f140d45f7fb2140cbdd2bc53d6d0",
+      "bytes": 1896
+    },
+    {
+      "path": "app/config/initializers/benchmark.rb",
+      "sha256": "5ecb73ff5f3d32ce0ad432a05192c74542205eb5ce4b7f6d2823fa342dce2ce0",
+      "bytes": 812
+    },
+    {
+      "path": "app/config/initializers/bullet.rb",
+      "sha256": "14994c967a1b332eaa0d3239575a6cb571c1ec439843d727b4eb97aa6c2af07d",
+      "bytes": 343
+    },
+    {
+      "path": "app/config/initializers/cors.rb",
+      "sha256": "3d2204f77bb83b40940ae789f0201a66d0f40a55a9144d51f28c433d8eb0d1bd",
+      "bytes": 504
+    },
+    {
+      "path": "app/config/initializers/filter_parameter_logging.rb",
+      "sha256": "44450a029d594cf635d77eebc21f89a8d5ef7ba7635464648b3f853514b19023",
+      "bytes": 114
+    },
+    {
+      "path": "app/config/initializers/inflections.rb",
+      "sha256": "e2c18b803625a073b25e4ee4460677da33a8bf19bbbcad629718a8e15c58acc2",
+      "bytes": 649
+    },
+    {
+      "path": "app/config/initializers/sidekiq.rb",
+      "sha256": "a2a0781de8f515ea5dff574f09ebd4fb603e70d4aaee952a1abe1e03d51bdf1e",
+      "bytes": 237
+    },
+    {
+      "path": "app/config/initializers/stripe.rb",
+      "sha256": "5f55511ed6c197cf1907967178fbaf5f8c1bd89aa3d2ee836b8267d2c399a65b",
+      "bytes": 185
+    },
+    {
+      "path": "app/config/initializers/test_database_safety.rb",
+      "sha256": "d4097ef2df7823fafe9d03867fe79d60fdae1d1cab94edfb83680719947b82b6",
+      "bytes": 314
+    },
+    {
+      "path": "app/config/locales/en.yml",
+      "sha256": "ad72af216ad0a67a1155c685535698fdd2a7138810c7e6dcb5eab7f0cc1c5922",
+      "bytes": 908
+    },
+    {
+      "path": "app/config/puma.rb",
+      "sha256": "891a32b45cf86ccb24ada6ef2bac7bb5902a7f72f00f3918d994c30d40f0fcce",
+      "bytes": 186
+    },
+    {
+      "path": "app/config/routes.rb",
+      "sha256": "45ebe4cc21e1dbedcfa400bd9b350d5217e4482953834d75f9e75d072adb5942",
+      "bytes": 946
+    },
+    {
+      "path": "app/config/routes/dashboard.rb",
+      "sha256": "b4857e6b236b82cd1da3d0eb98ecda50c873e8b4163e0eb26f3871e444cb4198",
+      "bytes": 648
+    },
+    {
+      "path": "app/config/sidekiq.yml",
+      "sha256": "795103e0a078f8152731fa1b9bb23e44fb936e0dce00a6cd5aeb1e92916aba03",
+      "bytes": 114
+    },
+    {
+      "path": "app/db/migrate/20261121234000_create_billing_core.rb",
+      "sha256": "264fe1203ee7d58e9b517e4d4abf360777cedbc84831a4543f57325dcdc854b3",
+      "bytes": 7125
+    },
+    {
+      "path": "app/db/migrate/20261121235500_limit_issuance_journals.rb",
+      "sha256": "18ed496f0d58faa1c063dbfbe254c1f3cfeaeb82153ae8e85fa6f3dcfb9c7be0",
+      "bytes": 271
+    },
+    {
+      "path": "app/db/migrate/20261122002000_add_stripe_reliability.rb",
+      "sha256": "1738fe81de01f4ca4525ed2798de6b1c6a5f0e356c112d35a86213ad8ed6d22c",
+      "bytes": 5315
+    },
+    {
+      "path": "app/db/migrate/20261122003000_optimize_billing_reads.rb",
+      "sha256": "b8f6bee90c26f00c288043be1268bf0552c4fb22024e059491824d251a52bd4e",
+      "bytes": 861
+    },
+    {
+      "path": "app/db/schema.rb",
+      "sha256": "89afe5000eaa983bb58150e114bf49c77f7e7cf8d8335fdef7377e2068fd0eae",
+      "bytes": 17790
+    },
+    {
+      "path": "app/db/seeds.rb",
+      "sha256": "4f24f361a5a875f32518a44f68f2d99a6495fcee5f9c54c30f8c3d7f8614512f",
+      "bytes": 494
+    },
+    {
+      "path": "app/lib/ledgerly_benchmark/fixture.rb",
+      "sha256": "fd35176ff5c2550ff52d09ce1535efa1208d6c5de5ba352187bea0f8b7e41213",
+      "bytes": 1459
+    },
+    {
+      "path": "app/lib/ledgerly_benchmark/full_replay.rb",
+      "sha256": "93cbf12bf9d96d86af02e965c10aa86d3988a464de1fb4e9c410ead48cee2a23",
+      "bytes": 5800
+    },
+    {
+      "path": "app/lib/ledgerly_benchmark/metrics.rb",
+      "sha256": "da17a23afaab20edf15f7269ac69a9a8235536a5e59f3654a83c334109193572",
+      "bytes": 3756
+    },
+    {
+      "path": "app/lib/ledgerly_benchmark/provider.rb",
+      "sha256": "f614d2c1c6fec3bc1229d60eb9891c5e09c9a186094b59f6ce18d2b3b7d97cd6",
+      "bytes": 3068
+    },
+    {
+      "path": "app/lib/ledgerly_benchmark/queue_profile.rb",
+      "sha256": "0ba16440e541f436ab02213aea515532137ce8169f22f5761437ccf1f8146526",
+      "bytes": 2464
+    },
+    {
+      "path": "app/lib/ledgerly_benchmark/safety.rb",
+      "sha256": "f8bf28d605940815ed21661b6a9f4e0abe36a6efa2c851bba713b7450ec29b35",
+      "bytes": 779
+    },
+    {
+      "path": "app/lib/ledgerly_benchmark/verify.rb",
+      "sha256": "1a80f87db019df42defe6c17a08ef11667422cd04d829ee0bf1128a9ef776ebb",
+      "bytes": 6247
+    },
+    {
+      "path": "app/lib/tasks/.keep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "app/lib/tasks/ledgerly.rake",
+      "sha256": "562debdbcecee808f3af5a56042ca2c8461200233f00266157de1e9e2c3b3f2c",
+      "bytes": 1357
+    },
+    {
+      "path": "app/lib/tasks/stripe.rake",
+      "sha256": "1f6dde7d780b35782918a1b95815e4316e3127f93715b79178b79a3b2b790b02",
+      "bytes": 892
+    },
+    {
+      "path": "app/log/.keep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "app/public/dashboard-assets/dashboard.css",
+      "sha256": "74f53f4a6e34e8dd4b349a35b5be5944bf85b7291e1c89750d6e65f041733bc4",
+      "bytes": 26553
+    },
+    {
+      "path": "app/public/dashboard-assets/dashboard.mjs",
+      "sha256": "c9878d90a20bb43d5287b776c0fbdf94c334162c77344b9863285037260a4b2f",
+      "bytes": 8196
+    },
+    {
+      "path": "app/public/dashboard-assets/fonts.json",
+      "sha256": "80af5f169c5c13043c7b10ded36fa6f38450945d7b6b2f2fd2cdb89cd55ea84c",
+      "bytes": 913
+    },
+    {
+      "path": "app/public/dashboard-assets/format.mjs",
+      "sha256": "c532e9aa48a43e63edcac9784bca8f25f6e0cbf0058582d91745209f21bc148e",
+      "bytes": 1840
+    },
+    {
+      "path": "app/public/dashboard-assets/geist-400.ttf",
+      "sha256": "ccce59465ae5c61930ada5453834f60500fbd95084d85db63e0e65fad0125455",
+      "bytes": 72916
+    },
+    {
+      "path": "app/public/dashboard-assets/geist-500.ttf",
+      "sha256": "a8eefb873ba9c9020665f8a98302697ce1f3b79ab2deef6ee508c0ca6a82e876",
+      "bytes": 72996
+    },
+    {
+      "path": "app/public/dashboard-assets/geist-700.ttf",
+      "sha256": "1a9874b3be0fc168692a3d2327bccb4d28835653d3b91537a755296a467a83e3",
+      "bytes": 72984
+    },
+    {
+      "path": "app/public/dashboard-assets/geist-OFL.txt",
+      "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f",
+      "bytes": 4387
+    },
+    {
+      "path": "app/public/dashboard-assets/geist-mono-400.ttf",
+      "sha256": "7022da390e9b401ea35b722f8ed2376948e70add10954bc798839b4bfe17ef3f",
+      "bytes": 71160
+    },
+    {
+      "path": "app/public/dashboard-assets/geist-mono-500.ttf",
+      "sha256": "5c1b7b77c2d6132460f03b60c175adc80da1ebd0b418c785135b1aed27a28b30",
+      "bytes": 71212
+    },
+    {
+      "path": "app/public/dashboard-assets/geistmono-OFL.txt",
+      "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f",
+      "bytes": 4387
+    },
+    {
+      "path": "app/public/dashboard-assets/mark.svg",
+      "sha256": "2d3504616d942a8024dd49aaaa53b353328f49004fbc475e6c67923eb469794a",
+      "bytes": 151
+    },
+    {
+      "path": "app/public/dashboard-assets/overview.mjs",
+      "sha256": "e6505b6eef697d2cc7c8edc293a13ae0d9247fb1ab05298b5c28428c21d2e857",
+      "bytes": 5041
+    },
+    {
+      "path": "app/public/dashboard-assets/views.mjs",
+      "sha256": "a3eef78beef030f06e67289f1652f756852e0b965d029a246645ff9b2f68c817",
+      "bytes": 11532
+    },
+    {
+      "path": "app/public/robots.txt",
+      "sha256": "2f15987e4606501202b9d337085439339e53a374e3d194847192c12f85ba78f8",
+      "bytes": 99
+    },
+    {
+      "path": "app/script/.keep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "app/script/benchmarks/full_replay.rb",
+      "sha256": "e8f9093b2270c194f4520aec9a84e385a9e0fed97cbbcb55951a82cfc48dbbc2",
+      "bytes": 260
+    },
+    {
+      "path": "app/script/benchmarks/inspect.rb",
+      "sha256": "3176ae0850e5b1f26cb6b41f6f9133c4427aaaf45099cd5ac0e614dfd29a05dd",
+      "bytes": 1518
+    },
+    {
+      "path": "app/script/benchmarks/prepare_sustained.rb",
+      "sha256": "93e9c058bac0fbd94d2f9a8802c04e26b9cdbe359c9cf616187963b9e9290925",
+      "bytes": 1215
+    },
+    {
+      "path": "app/script/benchmarks/profile.rb",
+      "sha256": "f0b89bc759274355ac05fda0a06c1e4ef9b637f26066d5599320954bc48d326d",
+      "bytes": 2543
+    },
+    {
+      "path": "app/script/benchmarks/profile_sustained.rb",
+      "sha256": "556715f46584a489f9dee9de30b7c86fad6dc65c5d87a2c56cb6bbe2f148af66",
+      "bytes": 3035
+    },
+    {
+      "path": "app/script/benchmarks/provider.ru",
+      "sha256": "d0231488d1e9f8b84be8d561a5d4f5238ce2ca650f53be4d35c9ca8f7b4110db",
+      "bytes": 93
+    },
+    {
+      "path": "app/script/benchmarks/seed.rb",
+      "sha256": "af6aa070fc1553ab0b900bb8eb7726ea1a242ea17c30d81720188f65f327e0bd",
+      "bytes": 1317
+    },
+    {
+      "path": "app/script/benchmarks/seed.sql",
+      "sha256": "6a95ca68ac0ded69d7bf7be6b2dad9d4a14c2b08868822fa8ee617397c7deefa",
+      "bytes": 6198
+    },
+    {
+      "path": "app/script/core_smoke.rb",
+      "sha256": "70dea0ac567cf3c8dc8753144a727dcf58cf304120d92213b7c3ad1608c68eb9",
+      "bytes": 3093
+    },
+    {
+      "path": "app/script/recovery_loop.rb",
+      "sha256": "f2a808223c875a54d1db4b70db9cee0adfa1dc284b2cf3a2574ee82c0685294d",
+      "bytes": 463
+    },
+    {
+      "path": "app/script/smoke.rb",
+      "sha256": "cd1cc4544776bb35f5fd03eb880d987cd2fc754254599cdc0f28b26d2775a498",
+      "bytes": 714
+    },
+    {
+      "path": "app/script/typecheck_contracts.rb",
+      "sha256": "6ecd7f56f06d0b091b0c28a24f3f6c941c097bc28a2029cd969ffb5e58e95e2d",
+      "bytes": 1093
+    },
+    {
+      "path": "app/sorbet/config",
+      "sha256": "05f276867a54cfff9c2bd98bb75d98e4fda26bf9bb57c38c64cff4b73dc537f9",
+      "bytes": 23
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/.gitattributes",
+      "sha256": "3278467115403a93d26fff7f7c39dfbfa946f1845aced3a6944299f389c8730d",
+      "bytes": 33
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/customer.rbi",
+      "sha256": "7f381d8703e369dc5b97cb882ef49fa5887d20b4a0f412ee2dc81eeeb0d613c2",
+      "bytes": 46365
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/invoice.rbi",
+      "sha256": "cd3337f1cd2457506ab90a90c44fb505d689cc42df5ac2cf75d18d7369704b12",
+      "bytes": 57111
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/invoice_collection.rbi",
+      "sha256": "b3a9aba912be5502c69d1c3188f2ce120e153dfaf2b052f76c0798b75f9b9288",
+      "bytes": 52146
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/invoice_line_item.rbi",
+      "sha256": "0d48c387121ade41c4a6f6de3e3f3761ffcd661d7c463acb43e0d8394c7fc13e",
+      "bytes": 48872
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/ledger_entry.rbi",
+      "sha256": "e2cd4c1acd0f8c3f4dc9dfda4b900770ec1a7589624bbe6eed43823cbb711205",
+      "bytes": 46152
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/ledger_transaction.rbi",
+      "sha256": "e325b164380021f92f5597b87d1278dffa660afbf9f043b82d2b0bb54ee18bd3",
+      "bytes": 50500
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/outbox_record.rbi",
+      "sha256": "09fd6c5e4f2694e1c24711df6b6144cac5cd95e79611acb0972e23633b4c6a8f",
+      "bytes": 52121
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/plan.rbi",
+      "sha256": "1c918a0c7783fdc2ca4ce0b6142fe28b7ab5649a47e0fe6daf9425cfcdcff36d",
+      "bytes": 46157
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/sidekiq/active_job/wrapper.rbi",
+      "sha256": "1778aa95c4a4dd61daecea1b8625b78cf9ebdc5eea288958de6527bbf4aad1d6",
+      "bytes": 686
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/stripe_event.rbi",
+      "sha256": "1d53b8f04d3d0fad1be6b3146a0a868b0d20330b7878850e9e113a88a5c9212d",
+      "bytes": 58031
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/stripe_integration/collect_invoice_job.rbi",
+      "sha256": "f7d8b8c9506b0eea8d60baf8b10f1b3465bdff68cceb98fd492304075f2120a0",
+      "bytes": 677
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/stripe_integration/process_event_job.rbi",
+      "sha256": "024e2d276c21d2d3934d609eef88622895a7436ec6c46f612a4b56f239ab0169",
+      "bytes": 671
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/stripe_operation.rbi",
+      "sha256": "b303de2258c397bdde36fe36d9a7f29f2bb654d1928939b33fc10e60b809eea3",
+      "bytes": 62004
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/stripe_payment.rbi",
+      "sha256": "846517c7ff2cdf6d39aced0517258e950d0b1c1421111a13ecf48b0ff997dc64",
+      "bytes": 53451
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/stripe_refund.rbi",
+      "sha256": "35813cba72d49c0705153e941acc3fd10cf40c5eddafaba6b329c6c34a70d37f",
+      "bytes": 49140
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/subscription.rbi",
+      "sha256": "1c69d2b3f898a8b44d4234980f62c1154a6e8250d8020a9e9e53c10b1e8432dc",
+      "bytes": 57638
+    },
+    {
+      "path": "app/sorbet/rbi/dsl/usage_event.rbi",
+      "sha256": "6e8ecc8c275ab0cd5f3387983cf87c9e04cad00b2a4a5cddeb14cab98ae22c28",
+      "bytes": 55484
+    },
+    {
+      "path": "app/sorbet/rbi/gems/.gitattributes",
+      "sha256": "3278467115403a93d26fff7f7c39dfbfa946f1845aced3a6944299f389c8730d",
+      "bytes": 33
+    },
+    {
+      "path": "app/sorbet/rbi/gems/action_text-trix@2.1.19.rbi",
+      "sha256": "89e9720b0bbd983ffa45b6ddb7fe9739d6a006e68974c7f468d6957cde91a7e4",
+      "bytes": 309
+    },
+    {
+      "path": "app/sorbet/rbi/gems/actioncable@8.1.4.1.rbi",
+      "sha256": "f1bb2ffa85465ef89aae85524ac3cfb83d0ba1a9660373f182d24c2a8cedc03d",
+      "bytes": 299
+    },
+    {
+      "path": "app/sorbet/rbi/gems/actionmailbox@8.1.4.1.rbi",
+      "sha256": "c8ce5177b75d40470fd9931935337729aab079f636f2a3a255c2e5ce316961e0",
+      "bytes": 303
+    },
+    {
+      "path": "app/sorbet/rbi/gems/actionmailer@8.1.4.1.rbi",
+      "sha256": "658bfe7056ee7a0b4766cdfb6b0ff5b37dec54e90707343a999422debdc51250",
+      "bytes": 301
+    },
+    {
+      "path": "app/sorbet/rbi/gems/actionpack@8.1.4.1.rbi",
+      "sha256": "c0fc229a650fd86c5ab2717906313b8980e31b24408add8e966cc545df269e5b",
+      "bytes": 184004
+    },
+    {
+      "path": "app/sorbet/rbi/gems/actiontext@8.1.4.1.rbi",
+      "sha256": "db07134c50e0c21ebf8465972c1ced8f7d8cb88fd534dca831a4948e1621634b",
+      "bytes": 297
+    },
+    {
+      "path": "app/sorbet/rbi/gems/actionview@8.1.4.1.rbi",
+      "sha256": "5a48e07a9ebf2e80db7f09dddeb3a899b85f70cd27c0a4c34ee0a26cf8584c14",
+      "bytes": 105766
+    },
+    {
+      "path": "app/sorbet/rbi/gems/activejob@8.1.4.1.rbi",
+      "sha256": "952dd1a6bae6f2614d20eea5fa2440cd1bf3be8cef8b63d860b2a6ffdf5e4f2c",
+      "bytes": 28616
+    },
+    {
+      "path": "app/sorbet/rbi/gems/activemodel@8.1.4.1.rbi",
+      "sha256": "8fd19601743dfb1e12d6470e38c7a18891edf0f090fc286b2bd7012d75152a64",
+      "bytes": 47019
+    },
+    {
+      "path": "app/sorbet/rbi/gems/activerecord@8.1.4.1.rbi",
+      "sha256": "92833f9839c7127ecdf52d250a55622a92dc354a7af2419834b28411e95706fd",
+      "bytes": 345086
+    },
+    {
+      "path": "app/sorbet/rbi/gems/activestorage@8.1.4.1.rbi",
+      "sha256": "8a0333cd74b220c4633a9f47281d9b02a6584e2eb1c6716bc5d8cc1ed895e2ec",
+      "bytes": 303
+    },
+    {
+      "path": "app/sorbet/rbi/gems/activesupport@8.1.4.1.rbi",
+      "sha256": "58656cbe75db26802664995b2cf325030f4faeb4c6e6db50fbd2436dc88c7eec",
+      "bytes": 139573
+    },
+    {
+      "path": "app/sorbet/rbi/gems/addressable@2.9.2.rbi",
+      "sha256": "29f63dd5cc8f65deccb9f54a0ad244423f99ece030382045cde4760ef5996b91",
+      "bytes": 12379
+    },
+    {
+      "path": "app/sorbet/rbi/gems/ast@2.4.3.rbi",
+      "sha256": "eb0adc573ab330c6c77da14e4f709164220d62ebd3ccf9eb0f3378ac1606840c",
+      "bytes": 1172
+    },
+    {
+      "path": "app/sorbet/rbi/gems/base64@0.3.0.rbi",
+      "sha256": "1acfb3f5eb5e9fc4c6131ee81a1977a9e98513d281568755d0e85b4914eb1186",
+      "bytes": 705
+    },
+    {
+      "path": "app/sorbet/rbi/gems/benchmark@0.5.0.rbi",
+      "sha256": "6916da6d7641a55aaebb81ee5ba9012fa45be40ce83252f639e26bc6170544ab",
+      "bytes": 1875
+    },
+    {
+      "path": "app/sorbet/rbi/gems/bigdecimal@4.1.3.rbi",
+      "sha256": "7c57af24d3236d1fc6641151fab7f9e8ae0f4abed9f5d57b86160d85eec8baf3",
+      "bytes": 2759
+    },
+    {
+      "path": "app/sorbet/rbi/gems/builder@3.3.0.rbi",
+      "sha256": "ea90835220c2b02fe36ef44bd672fc5503afbd5a226a9598296bed1d18e1b581",
+      "bytes": 291
+    },
+    {
+      "path": "app/sorbet/rbi/gems/bullet@8.3.1.rbi",
+      "sha256": "96be9e6adbd28b4f57c4369126a4f2afd905cdbd97a4fed768d1cfed69479f6e",
+      "bytes": 9074
+    },
+    {
+      "path": "app/sorbet/rbi/gems/concurrent-ruby@1.3.8.rbi",
+      "sha256": "cc8540ff22b256613fba2db272e222efc5e97aee8adbe3a5eab9e13810add64e",
+      "bytes": 65669
+    },
+    {
+      "path": "app/sorbet/rbi/gems/connection_pool@3.0.3.rbi",
+      "sha256": "533f03a9d778b76804815b7bd59f355f83e23882ab3628f5bb1f53e0feec5c9c",
+      "bytes": 2678
+    },
+    {
+      "path": "app/sorbet/rbi/gems/crack@1.0.1.rbi",
+      "sha256": "383578a3609d5f2c62bca82e550d994ad17b3592876b64371ffb621005104748",
+      "bytes": 1139
+    },
+    {
+      "path": "app/sorbet/rbi/gems/crass@1.0.8.rbi",
+      "sha256": "0814ff42632c1ad8e041542778b0847799f2d552d2a0980f78361dd358546539",
+      "bytes": 4207
+    },
+    {
+      "path": "app/sorbet/rbi/gems/date@3.6.0.rbi",
+      "sha256": "bf315d9cce8efc558a10d2705866f6475b9ec6f94e9d7062de8044127b23ccae",
+      "bytes": 3156
+    },
+    {
+      "path": "app/sorbet/rbi/gems/diff-lcs@1.6.2.rbi",
+      "sha256": "9fd154819ec0a712d00111933b3502988d7dcc7006e3f80c8e5aeea7a36ea4bb",
+      "bytes": 293
+    },
+    {
+      "path": "app/sorbet/rbi/gems/drb@2.2.3.rbi",
+      "sha256": "3231db5b985538c8b181b29e32568b5e367fd5a689f50721baafb16764a9249c",
+      "bytes": 6527
+    },
+    {
+      "path": "app/sorbet/rbi/gems/erb@6.0.7.rbi",
+      "sha256": "44fc65423cc09f3a3385afe54df4ceb0ec0be088e7d05ef037aa5a04b2a8726b",
+      "bytes": 3569
+    },
+    {
+      "path": "app/sorbet/rbi/gems/erubi@1.13.1.rbi",
+      "sha256": "ab91554c7828d52a16476d2d4a26ea7af1cdb43626c9a7f7201175e0864d0b35",
+      "bytes": 1198
+    },
+    {
+      "path": "app/sorbet/rbi/gems/globalid@1.4.0.rbi",
+      "sha256": "a6aa308e2c26ca3a67ed8f8e569cfbc2d96ea3f3940d92401e7275935af66e0c",
+      "bytes": 5282
+    },
+    {
+      "path": "app/sorbet/rbi/gems/hashdiff@1.2.2.rbi",
+      "sha256": "08036702cd0f3d47891d902e6bce515355a92d04bf6842d2302138e81f8e4fa3",
+      "bytes": 3028
+    },
+    {
+      "path": "app/sorbet/rbi/gems/i18n@1.15.2.rbi",
+      "sha256": "bd7bac3c049f3726a03d909835cf65da700a9f0749d963f7cca0f6c84f3d7712",
+      "bytes": 18837
+    },
+    {
+      "path": "app/sorbet/rbi/gems/io-console@0.9.5.rbi",
+      "sha256": "407b947c4352651676125c2d524d88f7edf71cc04d0006008cdaaee11cd5bb01",
+      "bytes": 297
+    },
+    {
+      "path": "app/sorbet/rbi/gems/json@3.1.0.rbi",
+      "sha256": "a8a700b07dc3c6cc069bd60657fb19601851e01d5bad4133e54c01ef365c0b28",
+      "bytes": 5665
+    },
+    {
+      "path": "app/sorbet/rbi/gems/language_server-protocol@3.17.0.6.rbi",
+      "sha256": "c606cc1878b6f4a14e63b786a9189ea168d870ef8a12878d8dd36df43f306f2e",
+      "bytes": 325
+    },
+    {
+      "path": "app/sorbet/rbi/gems/lint_roller@1.1.0.rbi",
+      "sha256": "0f37858085003ba614ca5086e72a34da8f469d7d6ddea89aaf59fd7142e3910e",
+      "bytes": 1793
+    },
+    {
+      "path": "app/sorbet/rbi/gems/logger@1.7.0.rbi",
+      "sha256": "835759497bf56aafdb855f96f14c629ba46b134e577e0dc73524b45bdebece50",
+      "bytes": 3818
+    },
+    {
+      "path": "app/sorbet/rbi/gems/loofah@2.25.3.rbi",
+      "sha256": "b45679f206f76da54ea0a7b6f4adc9eb5de00cc2593fd11e0de4fdbedf357842",
+      "bytes": 10709
+    },
+    {
+      "path": "app/sorbet/rbi/gems/mail@2.9.1.rbi",
+      "sha256": "8a4de4a66d90334a1de5f7016cc9afce3cbdc0bd6c832be92a7d8c7f12358e14",
+      "bytes": 285
+    },
+    {
+      "path": "app/sorbet/rbi/gems/marcel@1.2.1.rbi",
+      "sha256": "b862e204e9655e518e3d9ddfc736f9e8485a86261b323929df7b32e7621173ba",
+      "bytes": 289
+    },
+    {
+      "path": "app/sorbet/rbi/gems/mini_mime@1.1.5.rbi",
+      "sha256": "ae646bb38e9282abe523e94d0cdf2aa75be89396f9414e59221500827dae472b",
+      "bytes": 295
+    },
+    {
+      "path": "app/sorbet/rbi/gems/minitest@6.1.0.rbi",
+      "sha256": "11311d2b981dfb44baa2d99504e542e6669466c6f79b34eacf168439f13d8b1a",
+      "bytes": 9714
+    },
+    {
+      "path": "app/sorbet/rbi/gems/net-imap@0.6.8.rbi",
+      "sha256": "d34701be3dd0849e4a5ad871d3be90d51b3e5634fcda0881254abc43a0197998",
+      "bytes": 293
+    },
+    {
+      "path": "app/sorbet/rbi/gems/net-pop@0.1.2.rbi",
+      "sha256": "6131adfc73b10bd45dfcdedb510491a9872a437aa489ca2c619a391ce1a80921",
+      "bytes": 291
+    },
+    {
+      "path": "app/sorbet/rbi/gems/net-protocol@0.4.0.rbi",
+      "sha256": "404de9f54a26965433c8dea1029cd8dec5269ac54afd5a825f2e2ec4931d3678",
+      "bytes": 2627
+    },
+    {
+      "path": "app/sorbet/rbi/gems/net-smtp@0.5.2.rbi",
+      "sha256": "f74b4f2782d3ce82b22fdacde2b63d031d2eb6489a4fa1eaa2e44080b4a7e6db",
+      "bytes": 293
+    },
+    {
+      "path": "app/sorbet/rbi/gems/netrc@0.11.0.rbi",
+      "sha256": "41c4841a687629909cec3e4e82b2f929ecc16cc51e2d29953ae87756c61a639c",
+      "bytes": 1292
+    },
+    {
+      "path": "app/sorbet/rbi/gems/nio4r@2.7.5.rbi",
+      "sha256": "ff985329cef4b3bda52222f8b14e602f04970347e286127cf6222fb780b1f161",
+      "bytes": 287
+    },
+    {
+      "path": "app/sorbet/rbi/gems/nokogiri@1.19.7.rbi",
+      "sha256": "d3548a3238787e6a954de9952601fb8141df4bfa20ab4861489fd80e7f49d56a",
+      "bytes": 53820
+    },
+    {
+      "path": "app/sorbet/rbi/gems/parallel@2.3.0.rbi",
+      "sha256": "6777289dcc7bb7dbf55fe2cf18aff2b808835feab3ea4d71411ffe6db071d5ea",
+      "bytes": 3985
+    },
+    {
+      "path": "app/sorbet/rbi/gems/parser@3.3.14.0.rbi",
+      "sha256": "a4f96b5fa97b02eb62c468c2d880d58cce2c3b63bee84f0ec33bb73db454d009",
+      "bytes": 40357
+    },
+    {
+      "path": "app/sorbet/rbi/gems/pg@1.7.0.rbi",
+      "sha256": "e96abe67b03d61114225e0c641dfc8410cda97ee4140c1fba902ed7523d79322",
+      "bytes": 49382
+    },
+    {
+      "path": "app/sorbet/rbi/gems/pp@0.6.4.rbi",
+      "sha256": "c0a9343ad0cea8776e812c49e54c56432587ac850fd393fb492a0c4e844edc00",
+      "bytes": 2233
+    },
+    {
+      "path": "app/sorbet/rbi/gems/prettyprint@0.2.1.rbi",
+      "sha256": "86f61ac7cb48deaec4cef295916bc1f4cc363e4f642e311a29b0873f130e0eed",
+      "bytes": 2354
+    },
+    {
+      "path": "app/sorbet/rbi/gems/prism@1.9.0.rbi",
+      "sha256": "952aea10659c93b820e6007782e979818dde02e77262acfbb051e7d069d7512f",
+      "bytes": 547596
+    },
+    {
+      "path": "app/sorbet/rbi/gems/public_suffix@7.0.5.rbi",
+      "sha256": "705f05ccaeef64432dd1f426f6dab49452e22d978fe9a216177ffa57bc87e982",
+      "bytes": 3323
+    },
+    {
+      "path": "app/sorbet/rbi/gems/puma@8.1.2.rbi",
+      "sha256": "00b19b40df99adbba3da156e24b2f9a0e37c153d7e0d9cc5900a32dc7eba234e",
+      "bytes": 36663
+    },
+    {
+      "path": "app/sorbet/rbi/gems/racc@1.8.1.rbi",
+      "sha256": "b7c1f29028af3c8a9392130c3c2f4d8413d234f7fe3feeffa6c7d6239d976279",
+      "bytes": 1935
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rack-session@2.1.2.rbi",
+      "sha256": "af39bb1d5bdf4119b3caeff080fdc9d2cfe79c2596bd980f892a2c0de5e3c203",
+      "bytes": 6359
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rack-test@2.3.0.rbi",
+      "sha256": "7fb3ca88cfe797c65030f538e87e3512e9b7b2bd16899c5aa11b090ef09dacf0",
+      "bytes": 5647
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rack@3.2.9.rbi",
+      "sha256": "a3e03a6e9c6d03b9af3b972ccf7f273e2dd7977f5b382a7f40d9df45c6a0165f",
+      "bytes": 36751
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rackup@2.3.1.rbi",
+      "sha256": "98836467a74f8ad52387ccd6a4096069f00a69e41c6eaddb4f875f64078e1048",
+      "bytes": 289
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rails-dom-testing@2.3.0.rbi",
+      "sha256": "a3b782bdae7a23ff5334cbfdd5adf25cf3922f8e6e046a03c3ff2aba197e11df",
+      "bytes": 3739
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rails-html-sanitizer@1.7.2.rbi",
+      "sha256": "3b78c91276c751f8bf0d8f9298ab440354aacac4004b1b781651e65f7c4dfb4d",
+      "bytes": 6917
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rails@8.1.4.1.rbi",
+      "sha256": "2a37a8b3cd72a79cd9fb06deb46b49726185c5fb530780ac33d0595cc300839e",
+      "bytes": 287
+    },
+    {
+      "path": "app/sorbet/rbi/gems/railties@8.1.4.1.rbi",
+      "sha256": "9676b495b73542d54e0b0304b78da24b8572e907ed2dfe09bcccbbf7c1973fe9",
+      "bytes": 26247
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rainbow@3.1.1.rbi",
+      "sha256": "fa9db4096a1911dc4a1aed8c9c5a3a59958649b1e78eb8332e5f1663cbe92daf",
+      "bytes": 3142
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rake@13.4.2.rbi",
+      "sha256": "966fbd174a0c52e12c7f847bd2ddbc7fe7a8be3ae86cc52a7fc4e41dd8faa244",
+      "bytes": 23852
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rbi@0.5.0.rbi",
+      "sha256": "a729a1c4fb395ad9e9bb313241bd8662420d29c16b4d83df93d393991e2394b2",
+      "bytes": 101480
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rbs@4.2.0.rbi",
+      "sha256": "759a52e9f1ee3ba4603c390231cdf07cd4ab84c2d0a1bc494078c27b3c3906c0",
+      "bytes": 87588
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rdoc@8.1.0.rbi",
+      "sha256": "ec32bbb1050a2a38e72eeaa4553ceeb55c48a4ca220b2f1d4bf62e42dcb699b5",
+      "bytes": 285
+    },
+    {
+      "path": "app/sorbet/rbi/gems/redis-client@0.30.1.rbi",
+      "sha256": "31bb4c17f9ea8b2b728f139dea192ab1f4ad7200b5e1b80a0e8fd1c64f2a2a36",
+      "bytes": 16674
+    },
+    {
+      "path": "app/sorbet/rbi/gems/redis@6.0.0.rbi",
+      "sha256": "8670d3accaf424024b8c791d3e3e1538a20cd4b04d0940442ba80a09722ab626",
+      "bytes": 50503
+    },
+    {
+      "path": "app/sorbet/rbi/gems/regexp_parser@2.13.4.rbi",
+      "sha256": "9ec01edbb0ff1475b5b8473a8c88a2c7e6db8c314d8c1cc803dd5fb80521e86e",
+      "bytes": 54243
+    },
+    {
+      "path": "app/sorbet/rbi/gems/reline@0.7.0.rbi",
+      "sha256": "30451ab2404f225aafda405c80812932706368a5c8974ba03ba0fc98014fdf83",
+      "bytes": 289
+    },
+    {
+      "path": "app/sorbet/rbi/gems/require-hooks@0.5.1.rbi",
+      "sha256": "455c054550107bc20139dd5c40a4fcb1a0076cdd5d5fec6a452575737b130aa3",
+      "bytes": 1687
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rexml@3.4.4.rbi",
+      "sha256": "4afb6b886af224c5dda693f8c4ca3aa06566ffe07e88b501fd29fc861da50411",
+      "bytes": 24060
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rspec-core@3.13.7.rbi",
+      "sha256": "4f2bd4f06c191110f66441da897f408e2f8634629bc8406d92d2a5bc5467fffe",
+      "bytes": 297
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rspec-expectations@3.13.6.rbi",
+      "sha256": "9e766d3c32869316300087b85de52545d8af636c132de195e5083c9fa95319e5",
+      "bytes": 313
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rspec-mocks@3.13.9.rbi",
+      "sha256": "de99e98c5c81cd05792b52d6a284111d05c0c2f0a1de6ddc8d3447c0ad369e22",
+      "bytes": 299
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rspec-rails@8.1.0.rbi",
+      "sha256": "cd0288ce3d93ce26f9999fbcd361ddc7b0fcd4d9f479425f5c4440ea52dc9abc",
+      "bytes": 1380
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rspec-support@3.13.8.rbi",
+      "sha256": "39f2843e1c40cf4c087fd9ea56b28583a0ea6d7aa03b290891d20b2d7c369f3d",
+      "bytes": 303
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rubocop-ast@1.53.0.rbi",
+      "sha256": "075cd57f2ce7bb4b27bbbe553eb8c7bcc9b50a58c9aabbc094cf53be79d82b46",
+      "bytes": 87934
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rubocop-rails@2.38.0.rbi",
+      "sha256": "60868e984ecbe17788cad248469c7f73cf3b4b81c7e0af50d783df13abb5d230",
+      "bytes": 103623
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rubocop-rspec@3.10.2.rbi",
+      "sha256": "70500ee29dce196faa816337ad77e3b8fbeeef2bdd040487ba3ac241c3189ab7",
+      "bytes": 70905
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rubocop@1.92.3.rbi",
+      "sha256": "a852fcb904e34bf6daf131c8672937e4bc19ebf72ce976f4878b12cd6874b3fa",
+      "bytes": 635377
+    },
+    {
+      "path": "app/sorbet/rbi/gems/ruby-progressbar@1.13.0.rbi",
+      "sha256": "c21da69f9af32011b466cdb03afa85aef873be8f99550bcfb2f0c65560eb2e37",
+      "bytes": 11442
+    },
+    {
+      "path": "app/sorbet/rbi/gems/rubydex@0.4.4.rbi",
+      "sha256": "ac5996ef992f2880ded2e468f8fec68c49abd1b76b6f205e72831ccf3610f95b",
+      "bytes": 28013
+    },
+    {
+      "path": "app/sorbet/rbi/gems/securerandom@0.4.1.rbi",
+      "sha256": "acf54326cc003dec37e2cee0c0d824b1f81f9788a5e12f817c46fa5cd9f42b32",
+      "bytes": 460
+    },
+    {
+      "path": "app/sorbet/rbi/gems/sidekiq@8.1.7.rbi",
+      "sha256": "c1070bf490f7fc98026794ac4e1f5abf37f75055f96fff4a9787e57328106bf2",
+      "bytes": 15053
+    },
+    {
+      "path": "app/sorbet/rbi/gems/simplecov@1.3.2.rbi",
+      "sha256": "52a88ffd7e468cfe5c639b2846da567e54185a842aa78d26776c3de479584ef0",
+      "bytes": 53857
+    },
+    {
+      "path": "app/sorbet/rbi/gems/spoom@1.8.13.rbi",
+      "sha256": "0aeb4a7d1eaf62b5b47233f90a2efe84249996adedfa6606edab7308507019ab",
+      "bytes": 134928
+    },
+    {
+      "path": "app/sorbet/rbi/gems/stripe@21.1.0.rbi",
+      "sha256": "b57f981a07bccc93b12de2c73abd96d0a9aadbeb445bfdd0949a65ba0316b959",
+      "bytes": 2820529
+    },
+    {
+      "path": "app/sorbet/rbi/gems/tapioca@0.20.0.rbi",
+      "sha256": "d087167690b2242e32760cde04dedf3ee1f8c98d7a3785e3ef4c6a995c29f84a",
+      "bytes": 73034
+    },
+    {
+      "path": "app/sorbet/rbi/gems/thor@1.5.0.rbi",
+      "sha256": "5dec1047bec11c8645cbaa2ade1de720755aae8485f75f2faff45b6f48110628",
+      "bytes": 26847
+    },
+    {
+      "path": "app/sorbet/rbi/gems/timeout@0.6.1.rbi",
+      "sha256": "c6f1a4aeb3848aedc1a93751b6662203d6f52ad8a4d74f88ad645ff309e62e9c",
+      "bytes": 1183
+    },
+    {
+      "path": "app/sorbet/rbi/gems/tsort@0.2.0.rbi",
+      "sha256": "822d1e959424bd96307af3e4144e37040d75191c72f4f7746128d0b020735883",
+      "bytes": 925
+    },
+    {
+      "path": "app/sorbet/rbi/gems/tzinfo@2.0.6.rbi",
+      "sha256": "463423da5ec923cfa706bc1d4aa9949fd62db268a30a011e5ae930c1c20e82e1",
+      "bytes": 22098
+    },
+    {
+      "path": "app/sorbet/rbi/gems/unicode-display_width@3.3.0.rbi",
+      "sha256": "e4d7514e2e0d4f4389aaa03c44704ff91e4faa98311a32357830127d5f6ced7b",
+      "bytes": 2434
+    },
+    {
+      "path": "app/sorbet/rbi/gems/unicode-emoji@4.3.0.rbi",
+      "sha256": "e18f73910065d0ee6262030c52e2ba726d3aaf8b2d73bcd82a25799b3cada7ab",
+      "bytes": 3753
+    },
+    {
+      "path": "app/sorbet/rbi/gems/uniform_notifier@1.18.1.rbi",
+      "sha256": "8cdd1ef5af4cc8a39ef1764e5d3ece14b9da0c2f606cf8d835767f7b0c4325ac",
+      "bytes": 4704
+    },
+    {
+      "path": "app/sorbet/rbi/gems/uri@1.1.2.rbi",
+      "sha256": "3c3fb3338afa058ec11365023bb76fb65010fdaed55e4ab253d3bcada63517bf",
+      "bytes": 8315
+    },
+    {
+      "path": "app/sorbet/rbi/gems/useragent@0.16.11.rbi",
+      "sha256": "6a8096f45b3f93058df1302d75ffb2487937273cde13a05fd017a2fc53afd4d1",
+      "bytes": 295
+    },
+    {
+      "path": "app/sorbet/rbi/gems/webmock@3.38.0.rbi",
+      "sha256": "35adb419187151d4ab306bc9eafaa1dd3abbafb4e031e07b4af3e18a59d7a523",
+      "bytes": 20783
+    },
+    {
+      "path": "app/sorbet/rbi/gems/websocket-driver@0.9.0.rbi",
+      "sha256": "d313b7fec8435df94aa0da7b0c299ad7faf42c8452ff896c74d7560107166025",
+      "bytes": 309
+    },
+    {
+      "path": "app/sorbet/rbi/gems/websocket-extensions@0.2.0.rbi",
+      "sha256": "57bd1a756411cc2802ca7e62fc73f595fd0a397ba9d0bbb121a32e22b18af286",
+      "bytes": 317
+    },
+    {
+      "path": "app/sorbet/rbi/gems/zeitwerk@2.8.3.rbi",
+      "sha256": "09e6adb094ccd8453c3496aa613ef596f14052be01bf457a22794b4d04caad76",
+      "bytes": 8653
+    },
+    {
+      "path": "app/spec/controllers/application_controller_spec.rb",
+      "sha256": "0e24fa00629f1bbbb1ba1e9972c24e08b1dc53e708720e8cbbc8e9047ac2a685",
+      "bytes": 1863
+    },
+    {
+      "path": "app/spec/lib/ledgerly_benchmark/fixture_spec.rb",
+      "sha256": "952f1e81135661020fbf4d873459c4b20e90cabcd7a173242065996123c93ebe",
+      "bytes": 970
+    },
+    {
+      "path": "app/spec/lib/ledgerly_benchmark/metrics_spec.rb",
+      "sha256": "e4c2b60ff10df7acc901dd2bbd158f454f4335de959ae1bde4b7c48b7ac91174",
+      "bytes": 1017
+    },
+    {
+      "path": "app/spec/lib/ledgerly_benchmark/provider_spec.rb",
+      "sha256": "b656e8e932ee4b2a71f319fb7722cea32fef08d4a20d00daf72739ccfc42b72c",
+      "bytes": 1204
+    },
+    {
+      "path": "app/spec/lib/ledgerly_benchmark/safety_spec.rb",
+      "sha256": "72d5285f79da79d7235f90100392d2357b8dc8a59fccad9053e974f9603801e4",
+      "bytes": 982
+    },
+    {
+      "path": "app/spec/lib/ledgerly_benchmark/verify_spec.rb",
+      "sha256": "22b08f8c27485a0b0765f5f8b23e446685279801fb64d44405d39554ea325fa5",
+      "bytes": 1209
+    },
+    {
+      "path": "app/spec/models/billing_constraints_spec.rb",
+      "sha256": "16f07b3081b819bdc173e9790315faa070752f4601baa96fac067f8b80b8ddb2",
+      "bytes": 3799
+    },
+    {
+      "path": "app/spec/models/core_models_spec.rb",
+      "sha256": "93f8ba6ceac32835f80e742980306a1ad47dd2b7b0edb8d308d96fe89bbe53c9",
+      "bytes": 3126
+    },
+    {
+      "path": "app/spec/rails_helper.rb",
+      "sha256": "a19ecfc72093ce46b9b620a76c271bfa7e1a83f99e70508ab988dea0cee241ab",
+      "bytes": 634
+    },
+    {
+      "path": "app/spec/requests/authentication_spec.rb",
+      "sha256": "4f0128204c0b584732517e2921f7ed9fcf5956eab34323951619ce4e4c850e27",
+      "bytes": 2575
+    },
+    {
+      "path": "app/spec/requests/bullet_reads_spec.rb",
+      "sha256": "f75761b759dc08b89d5cd7fa51825b325f0e7f880216dbb9b9f4552212a1d8ab",
+      "bytes": 1135
+    },
+    {
+      "path": "app/spec/requests/cached_invoice_reads_spec.rb",
+      "sha256": "4640713225825f249be28966822b2818d10a083e171e6961212f46101c94d507",
+      "bytes": 1975
+    },
+    {
+      "path": "app/spec/requests/dashboard_spec.rb",
+      "sha256": "f4436b10a0017a117501564441154c72065e35f4047132d1ddd25ae1a6218e07",
+      "bytes": 9439
+    },
+    {
+      "path": "app/spec/requests/health_spec.rb",
+      "sha256": "619d9253e3b758d6b6d1c6faa6a03cde67ee362d243e0cfb4527716af16e5236",
+      "bytes": 1517
+    },
+    {
+      "path": "app/spec/requests/invoices_spec.rb",
+      "sha256": "9d2ed557c1385084b8cd40f54cf65ecacab4f37c48fa247d3d4c5fdc72039662",
+      "bytes": 5080
+    },
+    {
+      "path": "app/spec/requests/resources_spec.rb",
+      "sha256": "20367f414e78dffde6829801395db37fcb62592b2ba9d50c67df5b446ace7c7f",
+      "bytes": 5498
+    },
+    {
+      "path": "app/spec/requests/stripe_collections_spec.rb",
+      "sha256": "4970a413e6347daae1f27ae412f722591b579f4cf86d2006b31e93115f661388",
+      "bytes": 2252
+    },
+    {
+      "path": "app/spec/requests/stripe_webhooks_spec.rb",
+      "sha256": "89c203cc53f7e7ea2fdbf82c7f749657c0b49ec1fc07ac2a1273b10fa5c6bd50",
+      "bytes": 3209
+    },
+    {
+      "path": "app/spec/requests/usage_events_spec.rb",
+      "sha256": "0d880afbe3d765856197dfc516703477ca93ac63575f9d1ddb1a9fee91a86502",
+      "bytes": 2323
+    },
+    {
+      "path": "app/spec/services/api_exceptions_spec.rb",
+      "sha256": "4019e068344418f0e601ed7868d75a8f70007503fa30ad99ef2496b63ac98123",
+      "bytes": 883
+    },
+    {
+      "path": "app/spec/services/billing/audit_spec.rb",
+      "sha256": "36a45927b48cef36818e9ba6be81fcb8dc2df0067802561427d1beed114f4217",
+      "bytes": 1510
+    },
+    {
+      "path": "app/spec/services/billing/generate_invoice_concurrency_spec.rb",
+      "sha256": "ac660d74e6f974cad98d3206dc22ac7ac16277e02fcd81985308108cb28264fc",
+      "bytes": 3523
+    },
+    {
+      "path": "app/spec/services/billing/generate_invoice_spec.rb",
+      "sha256": "ac20a55e3042bf3bf8d1bcb2edbff51f9b1e7e5c89ff118994696f02a9e40afe",
+      "bytes": 5411
+    },
+    {
+      "path": "app/spec/services/billing/ingest_usage_spec.rb",
+      "sha256": "314a389959f265c919bb59da34fbff5de99fba6466bc4e756bfd207e7f4414be",
+      "bytes": 4470
+    },
+    {
+      "path": "app/spec/services/billing/read_cache_spec.rb",
+      "sha256": "7b3e1128b3563bb087e36121a15e646ed473d31bbe812762c2bdb9ffc2fed042",
+      "bytes": 5871
+    },
+    {
+      "path": "app/spec/services/billing/subscriptions_spec.rb",
+      "sha256": "75f2e3c141cf295c99d06a260c2546785cd9f790b2f1671c31df7638a46df832",
+      "bytes": 2119
+    },
+    {
+      "path": "app/spec/services/stripe_integration/collect_invoice_spec.rb",
+      "sha256": "4a2c37820c52548252e5cde18937fdb0747818e773088f7bd94b3b67d94228d0",
+      "bytes": 5125
+    },
+    {
+      "path": "app/spec/services/stripe_integration/gateway_spec.rb",
+      "sha256": "ec7bee51584306668502a173031e896a53d46f089dbae83baa5cafd9735cef0c",
+      "bytes": 5142
+    },
+    {
+      "path": "app/spec/services/stripe_integration/process_event_concurrency_spec.rb",
+      "sha256": "a00a639ae9cb37a8c52556b961edeba42ad7be24e5ad4887f32f5a460e4a3656",
+      "bytes": 3042
+    },
+    {
+      "path": "app/spec/services/stripe_integration/process_event_spec.rb",
+      "sha256": "bbca8263943d95b747329558f76195e9e4ab827e47a5dd8c89a02f7e7b59e43a",
+      "bytes": 7903
+    },
+    {
+      "path": "app/spec/services/stripe_integration/recovery_sweep_spec.rb",
+      "sha256": "1e15e969a929273148b0c818a9a69314e135e4f68c2cb029b4ca6643b52b4c5d",
+      "bytes": 5214
+    },
+    {
+      "path": "app/spec/services/stripe_integration/retry_policy_spec.rb",
+      "sha256": "fab3bd12542c12dbe5a5f5048303b9d9f8c018dd1ebf46b6576b990ff8c54bcd",
+      "bytes": 2048
+    },
+    {
+      "path": "app/spec/services/stripe_integration/settings_spec.rb",
+      "sha256": "09a4d35db90f7fd4fb71f8c71e816dbeb37251e541815a014debca5bceae226a",
+      "bytes": 801
+    },
+    {
+      "path": "app/spec/spec_helper.rb",
+      "sha256": "005f8c29f8c64bc6d15fc098fd3e6b6e371f71413d198ff5bad2ea35698a52b6",
+      "bytes": 462
+    },
+    {
+      "path": "app/spec/support/billing_helpers.rb",
+      "sha256": "439dd8340ebad5dc43634ccc3c805dabb8a0e37337e63df25285711be9ef4eb0",
+      "bytes": 2597
+    },
+    {
+      "path": "app/spec/support/fake_stripe_gateway.rb",
+      "sha256": "e6628ac98d3edc72ac371a1434b19107b2153daa4559c3500b754205c4ab0512",
+      "bytes": 3833
+    },
+    {
+      "path": "app/spec/support/stripe_helpers.rb",
+      "sha256": "54b6e546d513c1c1222a5e779f58750bc06dcfee08a19402d6fe45aee13c888d",
+      "bytes": 2226
+    },
+    {
+      "path": "app/spec/value_objects/pagination_params_spec.rb",
+      "sha256": "21d15aca9359d0c201b387daab8014d4d00e72847d3a3d94a27f135934b8c93b",
+      "bytes": 983
+    },
+    {
+      "path": "app/tmp/.keep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "app/vendor/.keep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "scripts/test_dashboard.mjs",
+      "sha256": "b3ea2d6ffd27599ff44d507d8804d90f7d8f566f5a9cdea99754e5914ef3d51e",
+      "bytes": 2585
+    }
+  ]
+}

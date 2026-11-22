@@ -1,0 +1,45 @@
+{
+  "running_api_image": "sha256:c82673335964f64ef1e44bddce99218913f7218821c0e1510e7b50b24845e39b",
+  "running_dashboard_files_match_source": true,
+  "dashboard_files_verified": 25,
+  "development_services": [
+    {
+      "Service": "api",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "ledgerly-app:development"
+    },
+    {
+      "Service": "postgres",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "postgres:17.12-bookworm"
+    },
+    {
+      "Service": "recovery",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "sha256:3047bbc019b9a6578ec45fa8c1a0d9b4e9a519a93574a469c4f7585e861e5b40"
+    },
+    {
+      "Service": "redis",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "redis:8.2.3-bookworm"
+    },
+    {
+      "Service": "sidekiq",
+      "State": "running",
+      "Health": "healthy",
+      "Image": "sha256:3047bbc019b9a6578ec45fa8c1a0d9b4e9a519a93574a469c4f7585e861e5b40"
+    }
+  ],
+  "ready": {
+    "status": "ok",
+    "checks": {
+      "postgres": "ok",
+      "redis": "ok"
+    }
+  },
+  "scope": "Ruby suite241, Node5, Python5; final frontend refinements additionally verified in actual browser. Hosted CI validates the exact published revision."
+}

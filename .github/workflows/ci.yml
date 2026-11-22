@@ -64,6 +64,8 @@ jobs:
           bundler-cache: true
       - name: Run specs, coverage gates, lint, types, RBI drift and autoload checks
         run: bin/ci
+      - name: Check dashboard formatting and escaped view rendering
+        run: node --test ../scripts/test_dashboard.mjs
       - name: Save coverage and source identity
         if: always()
         run: |

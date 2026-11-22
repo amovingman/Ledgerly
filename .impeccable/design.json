@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-22T23:45:07.110477+00:00",
+  "title": "Design System: Ledgerly",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Ground",
+        "tonalRamp": [
+          "oklch(15% 0.00454 258.32)",
+          "oklch(26% 0.00454 258.32)",
+          "oklch(38% 0.00454 258.32)",
+          "oklch(49% 0.00454 258.32)",
+          "oklch(61% 0.00454 258.32)",
+          "oklch(72% 0.00454 258.32)",
+          "oklch(84% 0.00454 258.32)",
+          "oklch(95% 0.00454 258.32)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "oklch(15% 0.00000 0.00)",
+          "oklch(26% 0.00000 0.00)",
+          "oklch(38% 0.00000 0.00)",
+          "oklch(49% 0.00000 0.00)",
+          "oklch(61% 0.00000 0.00)",
+          "oklch(72% 0.00000 0.00)",
+          "oklch(84% 0.00000 0.00)",
+          "oklch(95% 0.00000 0.00)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.00000 0.00)",
+          "oklch(26% 0.00000 0.00)",
+          "oklch(38% 0.00000 0.00)",
+          "oklch(49% 0.00000 0.00)",
+          "oklch(61% 0.00000 0.00)",
+          "oklch(72% 0.00000 0.00)",
+          "oklch(84% 0.00000 0.00)",
+          "oklch(95% 0.00000 0.00)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15% 0.01362 264.44)",
+          "oklch(26% 0.01362 264.44)",
+          "oklch(38% 0.01362 264.44)",
+          "oklch(49% 0.01362 264.44)",
+          "oklch(61% 0.01362 264.44)",
+          "oklch(72% 0.01362 264.44)",
+          "oklch(84% 0.01362 264.44)",
+          "oklch(95% 0.01362 264.44)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "tonalRamp": [
+          "oklch(15% 0.00631 255.48)",
+          "oklch(26% 0.00631 255.48)",
+          "oklch(38% 0.00631 255.48)",
+          "oklch(49% 0.00631 255.48)",
+          "oklch(61% 0.00631 255.48)",
+          "oklch(72% 0.00631 255.48)",
+          "oklch(84% 0.00631 255.48)",
+          "oklch(95% 0.00631 255.48)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": [
+          "oklch(15% 0.00456 258.32)",
+          "oklch(26% 0.00456 258.32)",
+          "oklch(38% 0.00456 258.32)",
+          "oklch(49% 0.00456 258.32)",
+          "oklch(61% 0.00456 258.32)",
+          "oklch(72% 0.00456 258.32)",
+          "oklch(84% 0.00456 258.32)",
+          "oklch(95% 0.00456 258.32)"
+        ]
+      },
+      "control": {
+        "role": "neutral",
+        "displayName": "Control",
+        "tonalRamp": [
+          "oklch(15% 0.01242 259.82)",
+          "oklch(26% 0.01242 259.82)",
+          "oklch(38% 0.01242 259.82)",
+          "oklch(49% 0.01242 259.82)",
+          "oklch(61% 0.01242 259.82)",
+          "oklch(72% 0.01242 259.82)",
+          "oklch(84% 0.01242 259.82)",
+          "oklch(95% 0.01242 259.82)"
+        ]
+      },
+      "active": {
+        "role": "neutral",
+        "displayName": "Active",
+        "tonalRamp": [
+          "oklch(15% 0.00749 260.73)",
+          "oklch(26% 0.00749 260.73)",
+          "oklch(38% 0.00749 260.73)",
+          "oklch(49% 0.00749 260.73)",
+          "oklch(61% 0.00749 260.73)",
+          "oklch(72% 0.00749 260.73)",
+          "oklch(84% 0.00749 260.73)",
+          "oklch(95% 0.00749 260.73)"
+        ]
+      },
+      "blue": {
+        "role": "primary",
+        "displayName": "Blue",
+        "tonalRamp": [
+          "oklch(15% 0.16457 258.66)",
+          "oklch(26% 0.16457 258.66)",
+          "oklch(38% 0.16457 258.66)",
+          "oklch(49% 0.16457 258.66)",
+          "oklch(61% 0.16457 258.66)",
+          "oklch(72% 0.16457 258.66)",
+          "oklch(84% 0.16457 258.66)",
+          "oklch(95% 0.16457 258.66)"
+        ]
+      },
+      "nav-selected-bg": {
+        "role": "primary",
+        "displayName": "Nav selected bg",
+        "tonalRamp": [
+          "oklch(15% 0.02592 259.05)",
+          "oklch(26% 0.02592 259.05)",
+          "oklch(38% 0.02592 259.05)",
+          "oklch(49% 0.02592 259.05)",
+          "oklch(61% 0.02592 259.05)",
+          "oklch(72% 0.02592 259.05)",
+          "oklch(84% 0.02592 259.05)",
+          "oklch(95% 0.02592 259.05)"
+        ]
+      },
+      "nav-selected-ink": {
+        "role": "primary",
+        "displayName": "Nav selected ink",
+        "tonalRamp": [
+          "oklch(15% 0.16007 260.33)",
+          "oklch(26% 0.16007 260.33)",
+          "oklch(38% 0.16007 260.33)",
+          "oklch(49% 0.16007 260.33)",
+          "oklch(61% 0.16007 260.33)",
+          "oklch(72% 0.16007 260.33)",
+          "oklch(84% 0.16007 260.33)",
+          "oklch(95% 0.16007 260.33)"
+        ]
+      },
+      "book-ground": {
+        "role": "neutral",
+        "displayName": "Book ground",
+        "tonalRamp": [
+          "oklch(15% 0.00622 255.47)",
+          "oklch(26% 0.00622 255.47)",
+          "oklch(38% 0.00622 255.47)",
+          "oklch(49% 0.00622 255.47)",
+          "oklch(61% 0.00622 255.47)",
+          "oklch(72% 0.00622 255.47)",
+          "oklch(84% 0.00622 255.47)",
+          "oklch(95% 0.00622 255.47)"
+        ]
+      },
+      "positive-ink": {
+        "role": "semantic",
+        "displayName": "Positive ink",
+        "tonalRamp": [
+          "oklch(15% 0.08148 153.75)",
+          "oklch(26% 0.08148 153.75)",
+          "oklch(38% 0.08148 153.75)",
+          "oklch(49% 0.08148 153.75)",
+          "oklch(61% 0.08148 153.75)",
+          "oklch(72% 0.08148 153.75)",
+          "oklch(84% 0.08148 153.75)",
+          "oklch(95% 0.08148 153.75)"
+        ]
+      },
+      "positive-bg": {
+        "role": "semantic",
+        "displayName": "Positive bg",
+        "tonalRamp": [
+          "oklch(15% 0.01160 153.67)",
+          "oklch(26% 0.01160 153.67)",
+          "oklch(38% 0.01160 153.67)",
+          "oklch(49% 0.01160 153.67)",
+          "oklch(61% 0.01160 153.67)",
+          "oklch(72% 0.01160 153.67)",
+          "oklch(84% 0.01160 153.67)",
+          "oklch(95% 0.01160 153.67)"
+        ]
+      },
+      "negative-ink": {
+        "role": "semantic",
+        "displayName": "Negative ink",
+        "tonalRamp": [
+          "oklch(15% 0.14126 23.56)",
+          "oklch(26% 0.14126 23.56)",
+          "oklch(38% 0.14126 23.56)",
+          "oklch(49% 0.14126 23.56)",
+          "oklch(61% 0.14126 23.56)",
+          "oklch(72% 0.14126 23.56)",
+          "oklch(84% 0.14126 23.56)",
+          "oklch(95% 0.14126 23.56)"
+        ]
+      },
+      "negative-bg": {
+        "role": "semantic",
+        "displayName": "Negative bg",
+        "tonalRamp": [
+          "oklch(15% 0.01415 22.76)",
+          "oklch(26% 0.01415 22.76)",
+          "oklch(38% 0.01415 22.76)",
+          "oklch(49% 0.01415 22.76)",
+          "oklch(61% 0.01415 22.76)",
+          "oklch(72% 0.01415 22.76)",
+          "oklch(84% 0.01415 22.76)",
+          "oklch(95% 0.01415 22.76)"
+        ]
+      },
+      "warning-ink": {
+        "role": "semantic",
+        "displayName": "Warning ink",
+        "tonalRamp": [
+          "oklch(15% 0.09724 64.21)",
+          "oklch(26% 0.09724 64.21)",
+          "oklch(38% 0.09724 64.21)",
+          "oklch(49% 0.09724 64.21)",
+          "oklch(61% 0.09724 64.21)",
+          "oklch(72% 0.09724 64.21)",
+          "oklch(84% 0.09724 64.21)",
+          "oklch(95% 0.09724 64.21)"
+        ]
+      },
+      "warning-bg": {
+        "role": "semantic",
+        "displayName": "Warning bg",
+        "tonalRamp": [
+          "oklch(15% 0.02092 79.10)",
+          "oklch(26% 0.02092 79.10)",
+          "oklch(38% 0.02092 79.10)",
+          "oklch(49% 0.02092 79.10)",
+          "oklch(61% 0.02092 79.10)",
+          "oklch(72% 0.02092 79.10)",
+          "oklch(84% 0.02092 79.10)",
+          "oklch(95% 0.02092 79.10)"
+        ]
+      },
+      "neutral-ink": {
+        "role": "neutral",
+        "displayName": "Neutral ink",
+        "tonalRamp": [
+          "oklch(15% 0.01903 254.02)",
+          "oklch(26% 0.01903 254.02)",
+          "oklch(38% 0.01903 254.02)",
+          "oklch(49% 0.01903 254.02)",
+          "oklch(61% 0.01903 254.02)",
+          "oklch(72% 0.01903 254.02)",
+          "oklch(84% 0.01903 254.02)",
+          "oklch(95% 0.01903 254.02)"
+        ]
+      },
+      "totals-ground": {
+        "role": "neutral",
+        "displayName": "Lifetime totals ground",
+        "tonalRamp": [
+          "oklch(15% 0.009 253)",
+          "oklch(26% 0.009 253)",
+          "oklch(38% 0.009 253)",
+          "oklch(49% 0.009 253)",
+          "oklch(61% 0.009 253)",
+          "oklch(72% 0.009 253)",
+          "oklch(84% 0.009 253)",
+          "oklch(95% 0.009 253)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Page heading",
+        "purpose": "Geist 700; 26px on phones."
+      },
+      "title": {
+        "displayName": "Panel heading",
+        "purpose": "Compact reading hierarchy."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "General application text."
+      },
+      "record": {
+        "displayName": "Record",
+        "purpose": "Table values and linked records."
+      },
+      "label": {
+        "displayName": "Metadata",
+        "purpose": "Small supporting labels."
+      },
+      "mono": {
+        "displayName": "Identifier",
+        "purpose": "Local record and remote Stripe identifiers."
+      },
+      "overview-title": {
+        "displayName": "Overview panel heading",
+        "purpose": "Compact statement and recent-table headings."
+      },
+      "navigation": {
+        "displayName": "Navigation",
+        "purpose": "16px sidebar labels paired with 18px icons; selected weight 500."
+      },
+      "count": {
+        "displayName": "Overview count",
+        "purpose": "26px, weight 700, tabular figures."
+      },
+      "count-label": {
+        "displayName": "Overview count label",
+        "purpose": "14px on desktop; 12px on phones."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "control-transition",
+        "value": "background-color .15s ease,border-color .15s ease",
+        "purpose": "Button feedback; removed for reduced motion."
+      },
+      {
+        "name": "drawer-transition",
+        "value": "transform .18s ease",
+        "purpose": "Small-screen navigation; removed for reduced motion."
+      },
+      {
+        "name": "search-debounce",
+        "value": "350ms",
+        "purpose": "Wait after typing before route/filter update."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-canvas",
+        "value": "1600px"
+      },
+      {
+        "name": "drawer-navigation",
+        "value": "1100px"
+      },
+      {
+        "name": "labelled-records",
+        "value": "700px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default outlined read or paging action; the header Refresh variant uses 14px text and 108px width.",
+      "html": "<button class=\"ds-button\">Previous</button>",
+      "css": ".ds-button{font-family:Geist,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:8px 12px;border:1px solid var(--control,#c5cad2);border-radius:6px;background:var(--surface,#fff);color:var(--ink,#141414);font-size:12px;line-height:18px;cursor:pointer;transition:background-color .15s ease,border-color .15s ease}.ds-button:hover{background:#f7f8fa;border-color:#9ea6b2}.ds-button:focus-visible{outline:2px solid var(--blue,#1d5fbf);outline-offset:3px}.ds-button:disabled{opacity:.6;cursor:default}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}"
+    },
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Server-rendered sign-in action.",
+      "html": "<button class=\"ds-primary\">Open dashboard <svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M5 12h14m-5-5 5 5-5 5\"/></svg></button>",
+      "css": ".ds-primary{font-family:Geist,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px;padding:8px 12px;border:1px solid var(--ink,#141414);border-radius:6px;background:var(--ink,#141414);color:white;font-size:13px;line-height:18px;cursor:pointer;transition:background-color .15s ease}.ds-primary:hover{background:#30343a}.ds-primary:focus-visible{outline:2px solid var(--blue,#1d5fbf);outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Labelled collection search.",
+      "html": "<label class=\"ds-search\"><span class=\"ds-sr\">Search invoices</span><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"6\"/><path d=\"m15 15 6 6\"/></svg><input type=\"search\" placeholder=\"Search invoices\u2026\" maxlength=\"100\"></label>",
+      "css": ".ds-search{position:relative;display:block;max-width:380px}.ds-search svg{position:absolute;left:12px;top:11px;color:var(--muted,#60646c)}.ds-search input{font-family:Geist,system-ui,sans-serif;box-sizing:border-box;width:100%;height:38px;min-width:0;border:1px solid var(--control,#c5cad2);border-radius:6px;padding:0 12px 0 36px;background:var(--surface,#fff);color:var(--ink,#141414);font-size:13px;caret-color:var(--blue,#1d5fbf)}.ds-search input::placeholder{color:#66707c}.ds-search input:focus-visible{outline:2px solid var(--blue,#1d5fbf);outline-offset:3px}.ds-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}"
+    },
+    {
+      "name": "Selected navigation",
+      "kind": "nav",
+      "refersTo": "nav-selected",
+      "description": "Current collection in primary navigation.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Preview navigation\"><a href=\"#ledger\" aria-current=\"page\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M4 4h16v16H4zM12 4v16M7 8h2m-2 4h2m6-4h2m-2 4h2\"/></svg>Ledger entries</a></nav>",
+      "css": ".ds-nav a{font-family:Geist,system-ui,sans-serif;display:flex;align-items:center;gap:11px;min-height:40px;box-sizing:border-box;padding:8px 12px;border-radius:6px;text-decoration:none;color:#51565e;font-size:16px}.ds-nav a:hover{color:var(--ink,#141414);background:#e9ecf1}.ds-nav a[aria-current=page]{background:#dfeafb;color:#164eab;font-weight:500}.ds-nav a:focus-visible{outline:2px solid var(--blue,#1d5fbf);outline-offset:3px}"
+    },
+    {
+      "name": "Positive status",
+      "kind": "chip",
+      "refersTo": "status-positive",
+      "description": "A named recorded state; never an action.",
+      "html": "<span class=\"ds-status\"><span class=\"ds-dot\" aria-hidden=\"true\"></span>Processed</span>",
+      "css": ".ds-status{font-family:Geist,system-ui,sans-serif;display:inline-flex;align-items:center;gap:5px;font-size:11px;line-height:18px;border-radius:4px;padding:2px 6px;white-space:nowrap;color:#235a38;background:#ecf4ee}.ds-dot{width:4px;height:4px;background:currentColor;border-radius:50%}"
+    },
+    {
+      "name": "Reading panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Flat, bordered record container.",
+      "html": "<section class=\"ds-panel\"><header class=\"ds-panel-header\"><h2>Journal entries</h2><a href=\"#ledger\">View all</a></header><p class=\"ds-panel-message\">No postings are linked to this invoice.</p></section>",
+      "css": ".ds-panel{font-family:Geist,system-ui,sans-serif;background:var(--surface,#fff);color:var(--ink,#141414);border:1px solid var(--line,#e4e7eb);border-radius:8px;overflow:hidden;min-width:0}.ds-panel-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px 10px}.ds-panel-header h2{margin:0;font-size:17px;font-weight:700;line-height:1.4}.ds-panel-header a{font-size:12px;color:inherit;white-space:nowrap;text-underline-offset:3px;text-decoration-color:#a1a7b0}.ds-panel-header a:hover{text-decoration-color:var(--ink,#141414)}.ds-panel-header a:focus-visible{outline:2px solid var(--blue,#1d5fbf);outline-offset:3px}.ds-panel-message{padding:12px 20px 20px;margin:0;color:var(--muted,#60646c);font-size:13px;line-height:1.6}"
+    },
+    {
+      "name": "Ledger amount",
+      "kind": "custom",
+      "description": "Exact amount typography with its original currency. This zero-value formatting example is not live data; nonzero overview ledger amounts use blue and weight 700.",
+      "html": "<span class=\"ds-money\"><span class=\"ds-currency\">USD</span> 0.00</span>",
+      "css": ".ds-money{font-family:Geist,system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--muted,#60646c);font-variant-numeric:tabular-nums;white-space:nowrap}.ds-currency{font-size:11px;letter-spacing:.02em;color:var(--muted,#60646c)}"
+    },
+    {
+      "name": "Compact recent table",
+      "kind": "custom",
+      "description": "Overview usage columns; illustrative zero state demonstrates table semantics, clipped desktop names and labelled phone records without supplying live data. Occurrence timestamps are available in scoped usage.",
+      "html": "<div class=\"ds-overview\"><table class=\"ds-recent\"><caption class=\"ds-sr\">Latest usage formatting example</caption><thead><tr><th>Event</th><th>Customer</th><th>Metric</th><th class=\"ds-num\">Quantity</th></tr></thead><tbody><tr><td data-label=\"Event\"><a class=\"ds-mono\" href=\"#usage\">USE-000000</a></td><td data-label=\"Customer\"><a class=\"ds-clipped\" title=\"Example customer formatting\" href=\"#customers\">Example customer formatting</a></td><td data-label=\"Metric\">Example metric</td><td data-label=\"Quantity\" class=\"ds-num\">0</td></tr></tbody></table></div>",
+      "css": ".ds-overview{padding:0 16px 12px;background:var(--surface,#fff);color:var(--ink,#141414)}.ds-recent{font-family:Geist,system-ui,sans-serif;width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}.ds-recent th{text-align:left;font-size:12px;font-weight:500;color:var(--muted,#60646c);padding:6px 0;line-height:18px;border-bottom:1px solid var(--line,#e4e7eb)}.ds-recent td{padding:5px 0;line-height:20px;border-bottom:1px solid var(--rule,#eef0f3)}.ds-recent .ds-num{text-align:right;font-variant-numeric:tabular-nums}.ds-recent a{color:inherit;text-decoration:none}.ds-recent a:hover{text-decoration:underline;text-underline-offset:3px}.ds-recent a:focus-visible{outline:2px solid var(--blue,#1d5fbf);outline-offset:3px}.ds-mono{font-family:Geist Mono,monospace;font-size:11px}.ds-clipped{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:10px}.ds-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}@media(max-width:700px){.ds-recent,.ds-recent tbody{display:block;width:100%}.ds-recent thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.ds-recent tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:14px 0;border-top:1px solid var(--line,#e4e7eb)}.ds-recent td{display:block;border:0;padding:0;text-align:left!important;min-width:0;overflow-wrap:anywhere}.ds-recent td:first-child{grid-column:1/-1}.ds-recent td:not(:first-child):before{content:attr(data-label);display:block;font-size:11px;color:var(--muted,#60646c);margin-bottom:4px}.ds-clipped{white-space:normal;overflow:visible}}"
+    },
+    {
+      "name": "Statement ledger",
+      "kind": "custom",
+      "description": "Six-entry preview with UTC timestamp and per-entry debit-minus-credit difference; lifetime currency totals live in tfoot. This zero-value example demonstrates formatting only.",
+      "html": "<div class=\"ds-ledger\"><table class=\"ds-statement\"><caption class=\"ds-sr\">Ledger formatting example; lifetime totals by currency</caption><thead><tr><th>Entry</th><th>Timestamp (UTC)</th><th>Description</th><th>Currency</th><th class=\"ds-num\">Debits</th><th class=\"ds-num\">Credits</th><th class=\"ds-num\">Difference</th></tr></thead><tbody><tr><td data-label=\"Entry\"><span class=\"ds-id\">LE-000000</span></td><td data-label=\"Timestamp (UTC)\" class=\"ds-timestamp\">YYYY-MM-DD HH:MM:SS</td><td data-label=\"Description\" class=\"ds-description\"><a href=\"#invoices\">Invoice reference</a> \u00b7 Account</td><td data-label=\"Currency\">USD</td><td data-label=\"Debits\" class=\"ds-num ds-zero\">0.00</td><td data-label=\"Credits\" class=\"ds-num ds-zero\">0.00</td><td data-label=\"Entry difference\" class=\"ds-num\">0.00</td></tr></tbody><tfoot><tr><th scope=\"row\" colspan=\"3\">Total (USD)</th><td data-label=\"Currency\">USD</td><td data-label=\"Total debits\" class=\"ds-num\">0.00</td><td data-label=\"Total credits\" class=\"ds-num\">0.00</td><td data-label=\"Difference\" class=\"ds-num\">0.00</td></tr></tfoot></table></div>",
+      "css": ".ds-ledger{padding:0 20px 12px;overflow:auto;background:var(--surface,#fff);color:var(--ink,#141414)}.ds-statement{width:100%;border-collapse:collapse;table-layout:fixed;font:13px Geist,system-ui,sans-serif}.ds-statement th{text-align:left;padding:8px 0;line-height:18px;border-bottom:1px solid var(--line,#e4e7eb);font-size:12px;font-weight:500;color:var(--muted,#60646c)}.ds-statement th:nth-child(1){width:11%}.ds-statement th:nth-child(2){width:17%}.ds-statement th:nth-child(3){width:38%}.ds-statement th:nth-child(4){width:8%}.ds-statement th:nth-child(n+5){width:9%}.ds-statement td{padding:5px 0;line-height:19px;border-bottom:1px solid var(--rule,#eef0f3)}.ds-statement .ds-num{text-align:right;font-variant-numeric:tabular-nums}.ds-id{font:12px Geist Mono,monospace}.ds-timestamp{font-size:12px}.ds-description{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:12px!important}.ds-zero{color:var(--muted,#60646c)}.ds-statement a{color:inherit;text-decoration:none}.ds-statement a:hover{text-decoration:underline;text-underline-offset:3px}.ds-statement a:focus-visible{outline:2px solid var(--blue,#1d5fbf);outline-offset:3px}.ds-statement tfoot{background:#e9eef4}.ds-statement tfoot th{font-size:13px;color:var(--ink,#141414);padding:7px 0}.ds-statement tfoot td{font-weight:700}.ds-statement tfoot .ds-num{color:var(--blue,#1d5fbf)}.ds-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}@media(max-width:700px){.ds-ledger{padding:0 16px;overflow:visible}.ds-statement,.ds-statement tbody,.ds-statement tfoot{display:block;width:100%}.ds-statement thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.ds-statement tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:14px 0;border-top:1px solid var(--line,#e4e7eb)}.ds-statement td{display:block;border:0;padding:0;text-align:left!important;min-width:0;font-size:12px;white-space:normal;overflow-wrap:anywhere}.ds-statement td:first-child,.ds-statement .ds-description{grid-column:1/-1}.ds-statement td:not(:first-child):before{content:attr(data-label);display:block;font-size:11px;font-weight:400;color:var(--muted,#60646c);margin-bottom:4px}.ds-statement tfoot th{grid-column:1/-1;border:0;padding:0}.ds-description{white-space:normal;padding:0!important}}"
+    },
+    {
+      "name": "Refresh button",
+      "kind": "button",
+      "refersTo": "button-refresh",
+      "description": "Manual read refresh, placed before the complete UTC timestamp; icon-only on phones with an accessible label.",
+      "html": "<button class=\"ds-refresh\" aria-label=\"Refresh dashboard data\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M20 7v5h-5M4 17v-5h5\"/><path d=\"M6 7a7 7 0 0 1 12-1l2 3M4 15l2 3a7 7 0 0 0 12-1\"/></svg><span>Refresh</span></button>",
+      "css": ".ds-refresh{font-family:Geist,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;width:108px;padding:8px 12px;border:1px solid var(--control,#c5cad2);border-radius:6px;background:var(--surface,#fff);color:var(--ink,#141414);font-size:14px;line-height:18px;cursor:pointer;transition:background-color .15s ease,border-color .15s ease}.ds-refresh:hover{background:#f7f8fa;border-color:#9ea6b2}.ds-refresh:focus-visible{outline:2px solid var(--blue,#1d5fbf);outline-offset:3px}.ds-refresh:disabled{opacity:.6;cursor:wait}@media(max-width:700px){.ds-refresh{width:40px;min-height:40px;font-size:0;padding:10px}.ds-refresh svg{width:18px;height:18px}}@media(prefers-reduced-motion:reduce){.ds-refresh{transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Statement book",
+    "overview": "Quiet, cool surfaces hold a dense but readable record of billing activity. Aligned figures, restrained rules and direct labels provide the hierarchy; the blue three-line mark gives the application a small, recognizable signature. This documents the implemented dashboard, not the illustrative records in the approved mockup.",
+    "keyCharacteristics": [
+      "Cool ground and white reading panels.",
+      "Strong Geist headings, compact records and monospaced identifiers.",
+      "Exact amounts, explicit currencies and traceable record links.",
+      "Small corners, fine rules and minimal motion."
+    ],
+    "rules": [],
+    "dos": [
+      "**Do** preserve exact integer amounts, original currencies and UTC labels.",
+      "**Do** retain compact desktop alignment and labelled mobile records.",
+      "**Do** keep the blue mark, Geist hierarchy and visible keyboard focus consistent.",
+      "**Do** describe actual records, zeros, failures and read freshness plainly."
+    ],
+    "donts": [
+      "**Don't** mix currencies or round financial values through JavaScript Number.",
+      "**Don't** copy mockup names, figures or accounting directions into live records.",
+      "**Don't** add billing mutation controls to this read-only surface.",
+      "**Don't** replace reading panels with decorative charts, raster backgrounds or shadow effects."
+    ]
+  }
+}

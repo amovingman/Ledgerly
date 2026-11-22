@@ -1,0 +1,12 @@
+241 examples, 0 failures
+Line coverage: 1433 / 1473 (97.28%)
+Branch coverage: 284 / 337 (84.27%)
+163 files inspected, no offenses detected
+No errors! Great job.
+PASS: valid types accepted; wrong result records, webhook records and scalar use rejected
+Nothing to do, all RBIs are up-to-date.
+Nothing to do, all RBIs are up-to-date.
+All is good!
+Node: 5 passed; Python benchmark-script regressions: 5 passed.
+Hero gate81.58%; final comparison82.04%; desktop gate82.15%; required72%.
+Independent verdict: ship (prior alignment/persistence fixes resolved); no forced phases.

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/ready', to: 'health#ready'
   post '/webhooks/stripe', to: 'webhooks/stripe#create'
 
+  draw :dashboard
+
   namespace :api do
     namespace :v1 do
       get '/status', to: 'status#show'

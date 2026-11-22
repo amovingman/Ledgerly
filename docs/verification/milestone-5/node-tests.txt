@@ -1,0 +1,13 @@
+✔ formats cents exactly above JavaScript integer precision and preserves negative credits (35.410792ms)
+✔ escapes untrusted content and uses explicit currencies and UTC dates (6.702ms)
+✔ renders honest empty overview and never combines currencies (0.643041ms)
+✔ escapes server errors, names, search and webhook identifiers in rendered views (0.529167ms)
+✔ preserves real signed entry differences and escapes compact overview records (1.554292ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 119.035916

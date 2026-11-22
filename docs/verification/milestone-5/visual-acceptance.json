@@ -1,0 +1,135 @@
+{
+  "comp_frame": "1487x1058",
+  "comp_sha256": "12d3007e39e006c1de426c2d3ac2aea48cdcf41a2ec43f3b4258bbaa55d81780",
+  "hero": {
+    "ok": true,
+    "reasons": [],
+    "summary": "hero 82% (match)",
+    "score": 0.8158,
+    "verdict": "match",
+    "report": ".impeccable/review/diff/hero/report.json",
+    "sideBySide": "/Users/user/Downloads/Work Projects/Ledgerdy/.impeccable/review/diff/hero/side-by-side.png",
+    "worst": [
+      "workspace drift 55%",
+      "usage-rows contradicted 56%",
+      "brand drift 57%"
+    ],
+    "worstIds": [
+      "workspace",
+      "usage-rows",
+      "brand"
+    ],
+    "worstCrops": [
+      {
+        "id": "workspace",
+        "verdict": "drift",
+        "score": {
+          "overall": 0.5498,
+          "structure": 0.5272,
+          "color": 0.8538,
+          "colorIntersection": 0.7788,
+          "paletteMatch": 0.8941,
+          "detail": 0.1703,
+          "detailRaw": 0.2641,
+          "detailAdded": 0.1875,
+          "bands": 0.4727
+        },
+        "file": ".impeccable/review/diff/hero/regions/workspace.png"
+      },
+      {
+        "id": "usage-rows",
+        "verdict": "contradicted",
+        "score": {
+          "overall": 0.5557,
+          "structure": 0.4874,
+          "color": 0.9501,
+          "colorIntersection": 0.917,
+          "paletteMatch": 0.9678,
+          "detail": 0.1769,
+          "detailRaw": 0.3071,
+          "detailAdded": 0.2604,
+          "bands": 0.6892
+        },
+        "file": ".impeccable/review/diff/hero/regions/usage-rows.png"
+      },
+      {
+        "id": "brand",
+        "verdict": "drift",
+        "score": {
+          "overall": 0.5727,
+          "structure": 0.5043,
+          "color": 0.9181,
+          "colorIntersection": 0.8508,
+          "paletteMatch": 0.9543,
+          "detail": 0.2005,
+          "detailRaw": 0.3411,
+          "detailAdded": 0.2813,
+          "bands": 0.6095
+        },
+        "file": ".impeccable/review/diff/hero/regions/brand.png"
+      }
+    ],
+    "advisories": [
+      "(advisory, above the 72% bar; fix in the polish pass before responsive) 4 readings:",
+      "  text invoices-title: letter-spacing is wider than the comp's (gap 0.105 vs 0.055 of the cap height); set letter-spacing to close it by about 1px",
+      "  text customers-title: cap height 10.7px in the build, 14.7px in the comp (-27%); set font-size so the cap height renders at 14.7px",
+      "  text workspace: 1 line in the build, 2 in the comp; the measure (max-width, font-size, letter-spacing) wraps it differently, so the block is a different shape",
+      "  control refresh: its ink is 36px tall in the build and 17px in the comp (+19px); match the height, not only the position"
+    ],
+    "regionVerdicts": {
+      "brand": "drift",
+      "brand-icon": "drift",
+      "workspace": "drift",
+      "nav-overview": "drift",
+      "nav-customers": "match",
+      "nav-usage": "match",
+      "nav-invoices": "match",
+      "nav-ledger-entries": "match",
+      "nav-webhooks": "match",
+      "sidebar-footer": "drift",
+      "title": "drift",
+      "description": "drift",
+      "refresh": "drift",
+      "freshness": "drift",
+      "count-0": "match",
+      "count-1": "match",
+      "count-2": "match",
+      "count-3": "match",
+      "count-4": "match",
+      "count-strip": "match",
+      "ledger-title": "drift",
+      "ledger-rows": "drift",
+      "ledger-total": "drift",
+      "invoices-title": "drift",
+      "invoices-rows": "drift",
+      "invoices-panel": "drift",
+      "webhooks-title": "drift",
+      "webhooks-rows": "drift",
+      "webhooks-panel": "drift",
+      "customers-title": "drift",
+      "customers-rows": "drift",
+      "customers-panel": "drift",
+      "usage-title": "drift",
+      "usage-rows": "contradicted",
+      "usage-panel": "drift",
+      "ledger-panel": "drift"
+    },
+    "at": "2026-11-22T23:37:17.455Z"
+  },
+  "desktop": {
+    "ok": true,
+    "reasons": [],
+    "summary": "desktop 82% (match)",
+    "score": 0.8215,
+    "sideBySide": "/Users/user/Downloads/Work Projects/Ledgerdy/.impeccable/review/diff/desktop/side-by-side.png",
+    "at": "2026-11-22T23:43:04.502Z"
+  },
+  "final_comparison": 0.8204,
+  "finish": {
+    "disposition": "ship",
+    "at": "2026-11-22T23:45:01.740Z",
+    "phaseAtFinish": "review"
+  },
+  "forced_phases": false,
+  "responsive_evidence": "1487px machine spatial comparison; separate1440/1280 manual layout/overflow checks and390px phone. Failed1440 normalized-region report retained."
+}

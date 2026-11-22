@@ -1,0 +1,4 @@
+# Preserve upstream legal notices and recorded measurement output verbatim.
+app/public/dashboard-assets/*-OFL.txt -whitespace
+docs/benchmarks/**/*.log -whitespace
+docs/benchmarks/**/*.patch -whitespace

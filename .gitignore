@@ -24,3 +24,8 @@
 # Local Python benchmark bytecode
 __pycache__/
 *.py[cod]
+
+# Local design experiments and pixel-comparison work; accepted captures live in docs/verification.
+/.impeccable/build/
+/.impeccable/review/
+/.impeccable/mocks/
