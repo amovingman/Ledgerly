@@ -1,6 +1,12 @@
 # Milestone 5 — Dashboard acceptance
 
-[ROADMAP.md](../../../ROADMAP.md) is authoritative. Milestones 0–5 are locally complete for the Stripe test-mode portfolio project. The user authorized publishing all outstanding performance and dashboard work. Commit identities and hosted CI are recorded in the roadmap/release history; earlier measurements retain their own source manifests.
+[ROADMAP.md](../../../ROADMAP.md) is authoritative. Milestones 0–5 are complete and published for the Stripe test-mode portfolio project. The user authorized publishing all outstanding performance and dashboard work. Commit identities and hosted CI are recorded in the roadmap/release history; earlier measurements retain their own source manifests.
+
+## Hosted release verification
+
+Implementation commits `f93bda6` and `9057540` are published on main. Both [GitHub Actions jobs passed](https://github.com/amovingman/Ledgerly/actions/runs/45085650592) for dashboard source `9057540c704b9fb4dfd3b9f7759e2a7ce8fa2c05`: tests/quality and clean Compose startup/HTTP billing/real worker execution. Hosted results: 241 specs, five Node tests, 163 linted files, typing/probes/RBI/autoload; coverage 1,437/1,473 lines (97.55%), 284/337 branches (84.27%). The local 97.28% report below is retained with its own environment; the two coverage results are not conflated. [Machine receipt](hosted-ci.json), [selected job log lines](hosted-checks.txt).
+
+A documentation-only follow-up records these observed results without changing application source.
 
 ## Accepted result
 

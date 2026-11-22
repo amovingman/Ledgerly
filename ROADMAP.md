@@ -1,7 +1,7 @@
 # Ledgerly Project Roadmap
 
 Created: 2026-11-21
-Status: Milestones 0–5 are implemented and locally accepted for the Stripe test-mode portfolio project. The user has authorized publishing all outstanding performance and dashboard work; release commits and hosted CI verification are in progress. Historical measurements retain their original source identities.
+Status: Milestones 0–5 are complete and published for the Stripe test-mode portfolio project. Performance commit `f93bda6` and dashboard commit `9057540` are on GitHub; both [hosted CI jobs passed](https://github.com/amovingman/Ledgerly/actions/runs/45085650592). Historical measurements retain their original source identities. A documentation-only verification commit records these observed results.
 Project name: Ledgerly. The current workspace directory is named `Ledgerdy`.
 
 ## How to use this file
@@ -300,6 +300,8 @@ Milestone 1 billing decisions are defined in [docs/BILLING_RULES.md](docs/BILLIN
 
 | 2026-11-22 | Finished Milestone 5 visual acceptance; user re-enabled publishing all changes | Hero 81.58%, final 82.04%, desktop 82.15% through normal gates; independent reviewer ship for the listed fixes. Compact overview tables, aligned controls, full UTC timestamps and labelled mobile records verified. 241 specs, 163 clean linted files, five Node and five Python regressions passed; coverage 97.28% line/84.27% branch. All 8 accounting checks clean and financial counts unchanged. Failed evidence retained; DESIGN.md/sidecar updated. | Commit performance evidence and dashboard source, push to amovingman/Ledgerly and verify hosted CI. |
 
+| 2026-11-22 | Published all outstanding implementation and verified hosted release CI | Performance `f93bda6` and dashboard `9057540` pushed to main. [CI run 45085650592](https://github.com/amovingman/Ledgerly/actions/runs/45085650592): both quality and clean Compose jobs passed; 241 specs, five Node tests, 163 clean linted files, types/probes/RBI/autoload. Hosted coverage 1,437/1,473 lines (97.55%) and 284/337 branches (84.27%); local 97.28% retained separately. [Hosted receipt](docs/verification/milestone-5/hosted-ci.json). No private credentials, runtime tooling or reference repositories published. | Milestones 0–5 complete; record the verified result in the documentation-only follow-up and keep the release evidence current. |
+
 ## Next action
 
-Milestones 0–5 are locally complete. Publish the authorized performance/dashboard changes, verify hosted CI on the published source, and record the actual release results. [Milestone 5 acceptance](docs/verification/milestone-5/README.md).
+All planned milestones 0–5 are complete. Maintain the accepted test-mode release and its evidence; there is no remaining implementation or visual acceptance task in this roadmap. [Dashboard acceptance and hosted CI](docs/verification/milestone-5/README.md). Production deployment remains outside the original scope.

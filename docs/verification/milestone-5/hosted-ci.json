@@ -1,0 +1,33 @@
+{
+  "commit": "9057540c704b9fb4dfd3b9f7759e2a7ce8fa2c05",
+  "run_id": 45085650592,
+  "url": "https://github.com/amovingman/Ledgerly/actions/runs/45085650592",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 137403528618,
+      "name": "test-and-quality",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 137403838994,
+      "name": "compose-smoke",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "specs": 241,
+  "node_tests": 5,
+  "line_coverage": {
+    "covered": 1437,
+    "total": 1473,
+    "percent": 97.55
+  },
+  "branch_coverage": {
+    "covered": 284,
+    "total": 337,
+    "percent": 84.27
+  },
+  "ruby_files_lint_clean": 163
+}

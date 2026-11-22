@@ -11,3 +11,5 @@
 - The earlier no-commit/no-push restriction for Milestone5 was superseded by the latest user request to finish visual acceptance and publish everything. Milestone5 local functional and visual acceptance is complete; keep ROADMAP.md current with actual hosted release evidence.
 
 - The latest user request re-authorizes publishing all outstanding project changes after finishing Milestone 5 visual acceptance. Earlier no-commit instructions are superseded for this release; exclude secrets, runtime tooling and unrelated reference repositories. Verify hosted CI after pushing.
+
+- Publishing is complete for implementation commits `f93bda6` and `9057540`; hosted quality and Compose CI passed. The final documentation-only verification commit records those results. Milestones 0–5 have no remaining implementation/visual acceptance work.

@@ -1,6 +1,5 @@
 {
   "base_revision": "c9ed621c77b2384d056c69cf17dde86be739c81c",
-  "release_preparation": true,
   "files": [
     {
       "path": ".github/workflows/ci.yml",
@@ -1712,5 +1711,7 @@
       "sha256": "b3ea2d6ffd27599ff44d507d8804d90f7d8f566f5a9cdea99754e5914ef3d51e",
       "bytes": 2585
     }
-  ]
+  ],
+  "accepted_code_commit": "9057540c704b9fb4dfd3b9f7759e2a7ce8fa2c05",
+  "hosted_run_id": 45085650592
 }

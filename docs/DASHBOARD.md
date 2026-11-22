@@ -51,6 +51,6 @@ Run the existing `app/bin/ci` against isolated PostgreSQL/Redis test services. T
 node --test scripts/test_dashboard.mjs
 ```
 
-GitHub Actions includes those Node tests; release publication and hosted results are tracked in the roadmap. No package dependencies were added. Fonts are self-hosted with their OFL licenses. [DESIGN.md](../DESIGN.md) describes the implemented system.
+GitHub Actions includes those Node tests; [the published source passed both hosted jobs](https://github.com/amovingman/Ledgerly/actions/runs/45085650592). No package dependencies were added. Fonts are self-hosted with their OFL licenses. [DESIGN.md](../DESIGN.md) describes the implemented system.
 
 [Milestone 5 evidence](verification/milestone-5/README.md) records passed functional and visual acceptance, with the original failed evidence retained. Dashboard endpoints have not been included in the historical throughput/latency measurements. Overview aggregates and substring searches can scan substantial data even though returned lists are bounded; this milestone adds no new performance claim.

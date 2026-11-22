@@ -2,13 +2,15 @@
 
 Ledgerly is a Rails API project for metered usage, invoicing, and reliable Stripe reconciliation. The application lives in `app/`; the existing reference repositories are separate from application code.
 
-Work follows [ROADMAP.md](ROADMAP.md), the source of truth for scope, acceptance and measured evidence. Milestones 0–4 are implemented and locally accepted; hosted quality/Compose checks gate the published API revision. Milestone 5 adds a read-only dashboard with completed local functional and visual acceptance; publication and hosted checks are tracked in the roadmap. The core API records idempotent usage, issues invoices and balanced journals atomically, and reconciles signed Stripe events through a durable outbox. PostgreSQL protects both delivery identity and logical payment/refund identity. This release supports Stripe **test mode**.
+Work follows [ROADMAP.md](ROADMAP.md), the source of truth for scope, acceptance and measured evidence. Milestones 0–5 are implemented, accepted and published. The read-only dashboard has completed functional and visual acceptance, and [hosted quality/Compose checks passed](https://github.com/amovingman/Ledgerly/actions/runs/45085650592). The core API records idempotent usage, issues invoices and balanced journals atomically, and reconciles signed Stripe events through a durable outbox. PostgreSQL protects both delivery identity and logical payment/refund identity. This release supports Stripe **test mode**.
 
 Read the [API reference](docs/API.md), [billing rules](docs/BILLING_RULES.md), [schema and architecture](docs/ARCHITECTURE.md), [Stripe setup/replay](docs/STRIPE_RELIABILITY.md), [operations](docs/OPERATIONS.md), [typing](docs/TYPING.md) and [release checks](docs/RELEASE.md). Benchmark raw evidence is published with its limitations; resume claims must follow [the evidence guide](docs/RESUME.md).
 
 ```mermaid
 flowchart LR
   Client[API client] --> API[Rails API]
+  Viewer[Read-only browser] --> Dashboard[Rails dashboard]
+  Dashboard -->|Authenticated read projections| DB
   Stripe[Signed Stripe event] --> API
   API --> DB[(PostgreSQL)]
   DB --> Outbox[Durable dispatch and recovery]
