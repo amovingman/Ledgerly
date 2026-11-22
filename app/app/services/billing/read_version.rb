@@ -1,5 +1,10 @@
+# typed: true
+
 module Billing
   module ReadVersion
+    extend T::Sig
+
+    sig { params(customer_id: Integer).void }
     def self.advance!(customer_id)
       # The caller's invoice/journal save transaction commits this invalidation
       # atomically. Old fills may finish later, but their versioned keys stay obsolete.

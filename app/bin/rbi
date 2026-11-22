@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+Dir.chdir(File.expand_path('..', __dir__)) do
+  check = ARGV.delete('--check')
+  abort 'Usage: bin/rbi [--check]' unless ARGV.empty?
+  compilers = %w[ActiveRecordColumns ActiveRecordAssociations ActiveRecordRelations ActiveRecordScope SidekiqWorker]
+  if check
+    system('bin/tapioca', 'gem', '--verify', exception: true)
+  else
+    system('bin/tapioca', 'gem', '--all', '--exclude', 'stripe', '--no-doc', '--no-loc', '--workers=1', exception: true)
+    # SDK 21.1.0 exports unresolved V2 Amount references. Reflect its actual API;
+    # keep other gems' exported signatures, and type our gateway boundary itself.
+    FileUtils.rm_f(Dir['sorbet/rbi/gems/stripe@*.rbi'])
+    system('bin/tapioca', 'gem', 'stripe', '--no-exported-gem-rbis', '--no-doc', '--no-loc', '--workers=1', exception: true)
+  end
+  args = ['bin/tapioca', 'dsl', '--workers=1', "--environment=#{ENV.fetch('RAILS_ENV', 'development')}"]
+  args << '--verify' if check
+  system(*args, '--only', *compilers, exception: true)
+end

@@ -1,11 +1,17 @@
+# typed: true
+
 module StripeIntegration
   class ResolveSnapshot
+    extend T::Sig
+
     SUPPORTED = %w[invoice.paid invoice.payment_failed charge.refunded].freeze
 
+    sig { params(gateway: T.untyped).void }
     def initialize(gateway:)
       @gateway = gateway
     end
 
+    sig { params(event: StripeEvent).returns(StripeIntegration::Types::Snapshot) }
     def call(event)
       object = event.payload.fetch('data').fetch('object')
       remote_id = event.event_type == 'charge.refunded' ? invoice_for_charge(object.fetch('id')) : object.fetch('id')
@@ -22,6 +28,7 @@ module StripeIntegration
 
     private
 
+    sig { params(id: String).returns(String) }
     def invoice_for_charge(id)
       charge = @gateway.retrieve('charge', id)
       intent = charge.fetch('payment_intent')
@@ -33,6 +40,7 @@ module StripeIntegration
       matches.first.fetch('invoice')
     end
 
+    sig { params(remote: StripeIntegration::Types::JsonObject).returns(Invoice) }
     def local_invoice(remote)
       invoice = Invoice.find_by(stripe_invoice_id: remote.fetch('id'))
       return invoice if invoice
@@ -41,11 +49,12 @@ module StripeIntegration
                                           idempotency_key: remote.dig('metadata', 'ledgerly_operation'))
       raise Retryable, 'unmapped_invoice' unless operation
 
-      operation.invoice
+      T.must(operation.invoice)
     end
 
+    sig { params(invoice: Invoice, remote: StripeIntegration::Types::JsonObject).void }
     def validate_invoice!(invoice, remote)
-      Contract.check!(remote, { livemode: false, customer: invoice.customer.stripe_customer_id,
+      Contract.check!(remote, { livemode: false, customer: T.must(invoice.customer).stripe_customer_id,
                                 currency: invoice.currency.downcase, total: invoice.amount },
                       code: 'remote_invoice_mismatch')
       return unless invoice.stripe_invoice_id && invoice.stripe_invoice_id != remote.fetch('id')
@@ -53,6 +62,7 @@ module StripeIntegration
       raise ReviewRequired, 'invoice_mapping_conflict'
     end
 
+    sig { params(invoice: Invoice, remote: StripeIntegration::Types::JsonObject).returns(T.nilable(StripeIntegration::Types::Payment)) }
     def payment_snapshot(invoice, remote)
       payments = @gateway.list('invoice_payment', invoice: remote.fetch('id')).select do |item|
         item['status'] == 'paid'

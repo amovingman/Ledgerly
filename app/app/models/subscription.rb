@@ -1,4 +1,8 @@
+# typed: true
+
 class Subscription < ApplicationRecord
+  extend T::Sig
+
   belongs_to :customer
   belongs_to :plan
   has_many :usage_events, dependent: :restrict_with_exception
@@ -14,8 +18,10 @@ class Subscription < ApplicationRecord
 
   private
 
+  sig { void }
   def valid_lifecycle
-    valid = status == 'active' ? ends_at.nil? : ends_at.present? && starts_at.present? && ends_at >= starts_at
+    finish = ends_at
+    valid = status == 'active' ? finish.nil? : !finish.nil? && starts_at.present? && finish >= starts_at
     errors.add(:ends_at, 'does not match the subscription lifecycle') unless valid
   end
 end

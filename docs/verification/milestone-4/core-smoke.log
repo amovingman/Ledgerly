@@ -1,0 +1,1 @@
+{"passed":true,"scenario":"HTTP usage/invoice replay, conflict and cached balance","amount":70,"currency":"USD","customer_id":1,"invoice_id":1,"outgoing_stripe_operations":0}

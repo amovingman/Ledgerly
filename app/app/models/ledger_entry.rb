@@ -1,4 +1,8 @@
+# typed: true
+
 class LedgerEntry < ApplicationRecord
+  extend T::Sig
+
   ACCOUNTS = %w[accounts_receivable usage_revenue stripe_clearing sales_returns].freeze
   belongs_to :ledger_transaction, inverse_of: :ledger_entries
 
@@ -7,18 +11,21 @@ class LedgerEntry < ApplicationRecord
   validate :exactly_one_side
   validate :journal_is_new, on: :create
 
+  sig { returns(T::Boolean) }
   def readonly?
     persisted?
   end
 
   private
 
+  sig { void }
   def journal_is_new
     return unless ledger_transaction&.persisted?
 
     errors.add(:ledger_transaction, 'must be created together with its complete journal')
   end
 
+  sig { void }
   def exactly_one_side
     valid = (debit.to_i.positive? && credit.zero?) || (credit.to_i.positive? && debit.zero?)
     errors.add(:base, 'exactly one of debit or credit must be positive') unless valid

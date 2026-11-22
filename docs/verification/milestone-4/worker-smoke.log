@@ -1,0 +1,2 @@
+[1;34mINFO [0m 2026-11-22T18:24:56.970Z pid=56 tid=3p4: Sidekiq 8.1.7 connecting to Redis with options {size: 10, pool_name: "internal", url: "redis://redis:6379/0"}
+PASS: Rails -> Redis -> Sidekiq -> PostgreSQL -> Redis

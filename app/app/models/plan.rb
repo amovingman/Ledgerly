@@ -1,4 +1,8 @@
+# typed: true
+
 class Plan < ApplicationRecord
+  extend T::Sig
+
   CURRENCIES = %w[USD CAD EUR GBP].freeze
   has_many :subscriptions, dependent: :restrict_with_exception
 

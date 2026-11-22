@@ -1,5 +1,10 @@
+# typed: true
+
 module Billing
   module PostIssuance
+    extend T::Sig
+
+    sig { params(invoice: Invoice).returns(LedgerTransaction) }
     def self.call(invoice:)
       entries = [LedgerEntry.new(account: 'accounts_receivable', debit: invoice.amount),
                  LedgerEntry.new(account: 'usage_revenue', credit: invoice.amount)]

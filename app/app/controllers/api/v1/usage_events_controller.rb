@@ -11,7 +11,8 @@ module Api
         attributes = params.expect(usage_event: %i[customer_id subscription_id metric quantity occurred_at])
         customer = find_record(Customer, attributes[:customer_id])
         subscription = customer.subscriptions.find(Billing::Input.identifier(attributes[:subscription_id]))
-        Billing::IngestUsage.new(customer: customer, subscription: subscription, attributes: attributes,
+        Billing::IngestUsage.new(customer: customer, subscription: subscription,
+                                 attributes: attributes.to_h.symbolize_keys,
                                  idempotency_key: request.headers['Idempotency-Key']).call
       end
     end

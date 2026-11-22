@@ -1,8 +1,13 @@
+# typed: true
+
 require 'digest'
 require 'json'
 
 module Billing
   class IngestUsage
+    extend T::Sig
+
+    sig { params(customer: Customer, subscription: Subscription, attributes: T::Hash[Symbol, T.untyped], idempotency_key: T.untyped).void }
     def initialize(customer:, subscription:, attributes:, idempotency_key:)
       @customer = customer
       @subscription = subscription
@@ -14,6 +19,7 @@ module Billing
       raise Error.new('invalid_idempotency_key', 'A valid Idempotency-Key header is required.')
     end
 
+    sig { returns(Result[UsageEvent]) }
     def call
       @customer.with_lock do
         existing = @customer.usage_events.find_by(idempotency_key: @key)
@@ -23,26 +29,30 @@ module Billing
 
     private
 
+    sig { returns(String) }
     def fingerprint
       values = [@subscription.id, @payload[:metric], @payload[:quantity], @payload[:occurred_at].iso8601(6)]
       Digest::SHA256.hexdigest(JSON.generate(values))
     end
 
+    sig { params(attributes: T::Hash[Symbol, T.untyped]).returns(Billing::Types::Usage) }
     def canonical_payload(attributes)
       { metric: Input.text(attributes[:metric], field: 'metric', maximum: 64),
         quantity: Input.positive_integer(attributes[:quantity], field: 'quantity', maximum: 1_000_000_000),
         occurred_at: Input.timestamp(attributes[:occurred_at], field: 'occurred_at') }
     end
 
+    sig { params(event: UsageEvent).returns(Result[UsageEvent]) }
     def replay(event)
       unless event.request_fingerprint == @fingerprint
         raise Error.new('idempotency_conflict', 'This key has already been used for a different usage payload.',
                         status: 409)
       end
 
-      Result.new(record: event, replayed: true)
+      Result[UsageEvent].new(record: event, replayed: true)
     end
 
+    sig { returns(Result[UsageEvent]) }
     def create_event
       @subscription.reload
       raise ActiveRecord::RecordNotFound unless @subscription.customer_id == @customer.id
@@ -54,9 +64,10 @@ module Billing
 
       event = @customer.usage_events.create!(**@payload, subscription: @subscription,
                                                          idempotency_key: @key, request_fingerprint: @fingerprint)
-      Result.new(record: event, replayed: false)
+      Result[UsageEvent].new(record: event, replayed: false)
     end
 
+    sig { void }
     def validate_contract!
       if @payload[:metric] != @subscription.metric
         raise Error.new('metric_mismatch', 'The metric must match the subscription.')

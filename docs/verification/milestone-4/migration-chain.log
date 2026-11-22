@@ -1,0 +1,14 @@
+time="2026-11-22T13:26:28-05:00" level=warning msg="Found orphan containers (ledgerly-m4-release-checks) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+ Container ledgerly-release-acceptance-api-run-c02f703849f4 Creating
+ Container ledgerly-release-acceptance-api-run-c02f703849f4 Created
+Database 'ledgerly_test' already exists
+Created database 'ledgerly_m4_migrations'
+
+database: ledgerly_m4_migrations
+
+ Status   Migration ID    Migration Name
+--------------------------------------------------
+   up     20261121234000  Create billing core
+   up     20261121235500  Limit issuance journals
+   up     20261122002000  Add stripe reliability
+   up     20261122003000  Optimize billing reads

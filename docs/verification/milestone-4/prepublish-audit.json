@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "public_files_scanned": 541,
+  "private_values_checked": 4,
+  "private_matches": 0,
+  "baseline_archive_decompressed_scan": "passed",
+  "historical_benchmark_manifests": "unchanged",
+  "documentation_links": "valid",
+  "frozen_executable_source": "unchanged; wrapper comment-only Ruby AST equality recorded",
+  "largest_file_bytes": 2820529,
+  "git_base": "5976771de93b4dc938bb5f610a7999f259fb2ff8"
+}

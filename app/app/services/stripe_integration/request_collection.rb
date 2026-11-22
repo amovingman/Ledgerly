@@ -1,8 +1,13 @@
+# typed: true
+
 module StripeIntegration
   module RequestCollection
+    extend T::Sig
+
+    sig { params(invoice: Invoice).returns(InvoiceCollection) }
     def self.call(invoice:)
       Settings.secret_key!
-      invoice.customer.with_lock do
+      T.must(invoice.customer).with_lock do
         invoice.reload
         existing = invoice.invoice_collection
         return existing if existing
@@ -14,6 +19,7 @@ module StripeIntegration
       end
     end
 
+    sig { params(invoice: Invoice).void }
     def self.validate!(invoice)
       validate_amount!(invoice)
       if invoice.stripe_invoice_id.present? || invoice.stripe_payment || invoice.status != 'issued'
@@ -25,6 +31,7 @@ module StripeIntegration
       raise Billing::Error.new('missing_issuance', 'Issue the local invoice before requesting collection.')
     end
 
+    sig { params(invoice: Invoice).void }
     def self.validate_amount!(invoice)
       return if (Settings::MINIMUMS.fetch(invoice.currency)..Settings::COLLECTION_LIMIT).cover?(invoice.amount)
 

@@ -2,6 +2,8 @@
 
 Follow [Milestone 3 in ROADMAP.md](../ROADMAP.md#milestone-3--baseline-load-and-optimization-week-3). The baseline was recorded before optional indexes, query changes, or Redis read caching. The [optimized comparison](benchmarks/2026-11-21-optimized-v1/README.md) preserves matched after-runs, profiling, failures and full-dataset correctness replay. [The first baseline report](benchmarks/2026-11-21-baseline-v1/README.md) contains both read passes, a successful conservative-rate probe, and the overloaded higher-rate trial. Results are local measurements, not production capacity guarantees.
 
+[Measured source snapshots](benchmarks/source-snapshots/README.md) include a hash-verified baseline application archive and the published Milestone 3 optimized revision, so reproduction does not depend on an unpublished intermediate commit.
+
 ## Isolated environment
 
 `compose.benchmark.yaml` uses its own image, PostgreSQL database/volume, Redis volume, and fixture credentials. It never reads the Stripe sandbox credentials in `.env`. Worker, provider, database, Redis, and recovery stay on an internal Docker network; only the API also joins an ingress network and publishes `127.0.0.1:3002`. The worker cannot reach external Stripe. The main development stack at port 3000 and its claimed sandbox data remain separate. CPU and memory still share the same 2-vCPU Docker VM with that idle stack; this is data/queue isolation, not dedicated benchmark hardware.

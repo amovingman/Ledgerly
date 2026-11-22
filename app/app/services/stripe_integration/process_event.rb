@@ -1,10 +1,16 @@
+# typed: true
+
 module StripeIntegration
   class ProcessEvent
+    extend T::Sig
+
+    sig { params(event: StripeEvent, gateway: T.untyped).void }
     def initialize(event:, gateway: nil)
       @event = event
       @gateway = gateway
     end
 
+    sig { void }
     def call
       AdvisoryLock.with("event:#{@event.id}") { process_claim }
     rescue Failure => e
@@ -18,6 +24,7 @@ module StripeIntegration
 
     private
 
+    sig { void }
     def process_claim
       @event.reload
       return if @event.terminal?
@@ -31,6 +38,7 @@ module StripeIntegration
       end
     end
 
+    sig { params(error: Failure).void }
     def fail_event(error)
       return if error.code == 'operation_busy'
 

@@ -1,0 +1,9 @@
+{
+  "path": "app/bin/typecheck",
+  "change": "Comment correction after local acceptance; Stripe exported RBIs are intentionally not merged.",
+  "ruby_ast_unchanged": true,
+  "acceptance_sha256": "0f3ea0ecb8fc1beb29393f2fe50afab18135a40d740d0b357f9d9de6ffbf0afe",
+  "published_sha256": "055cb0010e52aefb4a2e8cb5c922699c15dd9da21a1f88104e8078496afa9a9c",
+  "runtime_financial_code_changed": false,
+  "note": "The frozen local acceptance image/source remain identified by their original manifest; hosted CI checks the exact published revision."
+}

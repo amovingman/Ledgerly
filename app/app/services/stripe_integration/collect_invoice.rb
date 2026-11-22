@@ -1,11 +1,17 @@
+# typed: true
+
 module StripeIntegration
   class CollectInvoice
+    extend T::Sig
+
+    sig { params(collection: InvoiceCollection, gateway: T.untyped).void }
     def initialize(collection:, gateway: nil)
       @collection = collection
       @invoice = collection.invoice
       @gateway = gateway
     end
 
+    sig { void }
     def call
       AdvisoryLock.with("customer:#{@invoice.customer_id}") { collect_claim }
     rescue Failure => e
@@ -19,6 +25,7 @@ module StripeIntegration
 
     private
 
+    sig { void }
     def collect_claim
       @collection.reload
       return if @collection.terminal?
@@ -28,6 +35,7 @@ module StripeIntegration
       @collection.update!(status: 'succeeded', completed_at: Time.current, last_error: nil)
     end
 
+    sig { void }
     def collect
       @gateway ||= Gateway.new
       @operations = Operations.new(gateway: @gateway)
@@ -40,6 +48,7 @@ module StripeIntegration
       validate_invoice!(@operations.execute(operation))
     end
 
+    sig { void }
     def ensure_customer
       customer = @invoice.customer
       return if customer.stripe_customer_id.present?
@@ -51,6 +60,7 @@ module StripeIntegration
       customer.update!(stripe_customer_id: remote.fetch('id'))
     end
 
+    sig { void }
     def ensure_invoice
       operation = @operations.prepare(key: "invoice:#{@invoice.id}", kind: 'invoice', customer: @invoice.customer,
                                       invoice: @invoice, payload: invoice_payload)
@@ -62,6 +72,7 @@ module StripeIntegration
       @invoice.customer.with_lock { @invoice.update!(stripe_invoice_id: remote.fetch('id')) }
     end
 
+    sig { returns(StripeIntegration::Types::Parameters) }
     def invoice_payload
       { customer: @invoice.customer.stripe_customer_id, currency: @invoice.currency.downcase, auto_advance: false,
         collection_method: 'charge_automatically', pending_invoice_items_behavior: 'exclude',
@@ -69,6 +80,7 @@ module StripeIntegration
         metadata: { ledgerly_invoice_id: @invoice.id.to_s } }
     end
 
+    sig { params(line: InvoiceLineItem).void }
     def ensure_item(line)
       operation = @operations.prepare(key: "invoice:#{@invoice.id}:item:#{line.id}", kind: 'item',
                                       customer: @invoice.customer, invoice: @invoice, line: line,
@@ -80,11 +92,13 @@ module StripeIntegration
       @operations.execute(operation)
     end
 
+    sig { params(remote: StripeIntegration::Types::JsonObject).void }
     def validate_invoice!(remote)
       Contract.check!(remote, { livemode: false, total: @invoice.amount, currency: @invoice.currency.downcase,
                                 customer: @invoice.customer.stripe_customer_id }, code: 'remote_invoice_mismatch')
     end
 
+    sig { params(error: Failure).void }
     def fail_collection(error)
       return if error.code == 'operation_busy'
 

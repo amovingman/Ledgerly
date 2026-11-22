@@ -2,9 +2,36 @@
 
 Ledgerly is a Rails API project for metered usage, invoicing, and reliable Stripe reconciliation. The application lives in `app/`; the existing reference repositories are separate from application code.
 
-Work follows [ROADMAP.md](ROADMAP.md), the source of truth for milestones, acceptance checks, decisions, and measured evidence. Milestones 0–1 provide the development foundation and core billing API. Milestone 2 adds Stripe test-mode invoice collection, signed webhooks, durable dispatch/recovery, and payment/refund accounting. See [the API reference](docs/API.md), [billing rules](docs/BILLING_RULES.md), and [Stripe setup and recovery](docs/STRIPE_RELIABILITY.md). All new work remains local and uncommitted at the user's request. Milestone 3 is complete locally; Milestone 4 quality and portfolio release is next. Milestone 3 records the [immutable baseline](docs/benchmarks/2026-11-21-baseline-v1/README.md) and [optimized comparison](docs/benchmarks/2026-11-21-optimized-v1/README.md), with reproducible workloads, raw results and correctness boundaries. The 5,000-processed-events/minute target has not been demonstrated.
+Work follows [ROADMAP.md](ROADMAP.md), the source of truth for scope, acceptance and measured evidence. All four milestones are implemented and locally accepted; hosted quality/Compose checks gate the published revision. The core API records idempotent usage, issues invoices and balanced journals atomically, and reconciles signed Stripe events through a durable outbox. PostgreSQL protects both delivery identity and logical payment/refund identity. This release supports Stripe **test mode**.
 
-The [benchmark guide](docs/BENCHMARKS.md) documents the isolated 50,000-invoice dataset and matched workloads. [Cache contracts](docs/CACHING.md) explain committed version invalidation, outage fallback and stale-fill behavior.
+Read the [API reference](docs/API.md), [billing rules](docs/BILLING_RULES.md), [schema and architecture](docs/ARCHITECTURE.md), [Stripe setup/replay](docs/STRIPE_RELIABILITY.md), [operations](docs/OPERATIONS.md), [typing](docs/TYPING.md) and [release checks](docs/RELEASE.md). Benchmark raw evidence is published with its limitations; resume claims must follow [the evidence guide](docs/RESUME.md).
+
+```mermaid
+flowchart LR
+  Client[API client] --> API[Rails API]
+  Stripe[Signed Stripe event] --> API
+  API --> DB[(PostgreSQL)]
+  DB --> Outbox[Durable dispatch and recovery]
+  Outbox --> Redis[(Redis / Sidekiq)]
+  Redis --> Worker[Reconcile and post]
+  Worker --> DB
+  Worker --> Provider[Stripe test API]
+  API --> Cache[(Versioned read cache)]
+```
+
+## Measured evidence
+
+The Milestone 3 fixture has **50,000 invoices and 150,000 usage events**. Two baseline passes and two warm optimized passes used the same business-data fingerprints, shared 2-vCPU VM, resource caps and 40 read arrivals/s. Values below are client-observed **p95 milliseconds**:
+
+| Endpoint | Baseline, two passes | Warm optimized, two passes |
+| --- | ---: | ---: |
+| Invoice list page 1 | 30.81 / 30.36 | 15.89 / 15.93 |
+| Invoice list page 10 | 756.52 / 53.32 | 11.12 / 10.46 |
+| Customer balance | 40.26 / 95.32 | 10.98 / 12.07 |
+
+[The comparison](docs/benchmarks/2026-11-21-optimized-v1/README.md) preserves both repeats, uncached results, single cold application-cache misses, SQL profiles, failed candidates and raw requests. PG/OS caches were not flushed and baseline tails varied substantially. These numbers identify the **Milestone 3 measured source**, before Milestone 4 signatures; they are not a new performance measurement of every later revision.
+
+The signed correctness replay delivered **180,000 shuffled/repeated events across all 50,000 invoices**, yielding exactly 50,000 payments and 5,000 refunds with balanced journals. It is service-level correctness with an in-process provider. Separate HTTP/Sidekiq testing completed 5,387 unique events in 64.86 seconds including offering/drain, with 15 client capacity drops. **5,000 processed events/minute was not demonstrated.** No actual Stripe load was generated. [Benchmark reproduction](docs/BENCHMARKS.md).
 
 ## Foundation stack
 
@@ -18,7 +45,7 @@ The [benchmark guide](docs/BENCHMARKS.md) documents the isolated 50,000-invoice 
 | Background jobs | Sidekiq, concurrency 5 |
 | Stripe | Ruby SDK 21.1.0; API 2026-11-18.endive; test mode only |
 | Recovery | Independent database outbox sweep every 15 seconds |
-| Quality checks | RSpec, SimpleCov, RuboCop, Sorbet |
+| Quality checks | RSpec, SimpleCov (90% line / 80% branch floors), RuboCop, Sorbet + Tapioca 0.20.0 |
 
 The roadmap records the change from the original Rails 7 proposal. The Docker image is for development and testing; production deployment is outside this milestone.
 
@@ -40,11 +67,13 @@ docker compose ps -a
 curl --fail http://127.0.0.1:3000/up
 curl --fail http://127.0.0.1:3000/ready
 docker compose exec api bin/smoke
+docker compose exec -T api ruby script/core_smoke.rb
+docker compose exec -T api bin/rails ledgerly:audit
 ```
 
 Compose loads the root `.env` automatically. The `setup` service prepares the development database and exits successfully; this is expected. The API, worker, and recovery loop start after setup completes. PostgreSQL and Redis have no published host ports; the API binds to `127.0.0.1:3000` by default. Set `PORT` in `.env` to change the host port.
 
-The smoke script verifies database connectivity, enqueues `FoundationSmokeJob`, and waits for the worker's result in a unique Redis key that expires after 60 seconds. It checks actual background-job execution in addition to API readiness.
+The smoke script verifies database connectivity, enqueues `FoundationSmokeJob`, and waits for the worker's result in a unique Redis key that expires after 60 seconds. It checks actual background-job execution in addition to API readiness. `script/core_smoke.rb` creates a unique synthetic customer/plan/subscription, posts usage twice, verifies conflicts and invoice replay, and checks the cached receivable balance. It creates local test records and never requests Stripe collection.
 
 ```sh
 docker compose logs --tail=100 api sidekiq recovery setup
@@ -123,10 +152,26 @@ RAILS_ENV=test TEST_DB_DATABASE=ledgerly_test REDIS_URL=redis://127.0.0.1:6379/1
 
 Test database configuration ignores inherited `DB_DATABASE` and `DATABASE_URL` values. It defaults to `ledgerly_test`; use `TEST_DB_DATABASE` or an explicit `TEST_DATABASE_URL` to override it. The resolved test database name must end in `_test` or `_test_<digits>`, so an accidental development database selection aborts before tests run. Database host and credentials still come from the shared `DB_*` settings unless the test URL overrides them. Use a dedicated test database and Redis namespace.
 
-The check prepares the test database and runs RSpec, RuboCop, and Sorbet. The initial Sorbet check uses `bin/typecheck` and covers `app/value_objects`; model and billing-service typing expands in Milestone 4. The wrapper retains other gem RBIs while excluding the Stripe SDK's incomplete bundled RBI graph from this initial scope. RSpec starts SimpleCov before loading Rails and writes its report to `app/coverage/index.html`. Coverage figures are meaningful only for the files and scenarios present in that run; the roadmap's later coverage target is not a completed project result.
+The check prepares the test database and runs RSpec with **90% line / 80% branch coverage floors**, RuboCop, Sorbet, positive/negative type-contract probes, gem/schema RBI drift checks and Rails autoload checks. SimpleCov starts before Rails and writes `app/coverage/index.html`. Core model and billing/Stripe service bodies are checked; controllers/serializers and external JSON remain gradual boundaries. [Typing scope and regeneration](docs/TYPING.md).
 
-GitHub Actions runs on pushes and pull requests using the pinned Ruby version, locked dependencies, PostgreSQL and Redis services, and the same quality checks. See [.github/workflows/ci.yml](.github/workflows/ci.yml). Actual verification results and any remaining limitations are recorded in the [roadmap work log](ROADMAP.md#work-log).
+GitHub Actions uses PostgreSQL/Redis services for the same quality command and saves coverage with the exact commit/run identity. A second job builds the image from clean source, boots Compose, runs health checks, real-worker smoke and the HTTP billing replay flow, then removes only its disposable volumes. Actions are pinned to immutable commits. [Workflow](.github/workflows/ci.yml) · [Hosted results](https://github.com/amovingman/Ledgerly/actions/workflows/ci.yml).
 
-Verification is saved for [Milestone 1](docs/verification/milestone-1/README.md) and [Milestone 2](docs/verification/milestone-2/README.md), including concurrent replay, real Redis interruption, and the Stripe sandbox payment/refund demo. [Stripe setup and recovery](docs/STRIPE_RELIABILITY.md) documents configuration, supported payment contracts, processing states, and manual replay. Milestone 3 has recorded the unoptimized baseline; its 5,000-events/minute target and an optimized latency comparison remain unachieved.
+## API example
 
-Milestone 3 dataset and baseline tooling is documented in [docs/BENCHMARKS.md](docs/BENCHMARKS.md), with [measured results and limitations](docs/benchmarks/2026-11-21-baseline-v1/README.md). Use its dedicated Compose stack for the 50,000-invoice fixture and load tests; the main development database and Stripe sandbox stay separate.
+With the app running and `API_KEY` exported from your ignored environment:
+
+```sh
+curl --fail-with-body http://127.0.0.1:3000/api/v1/customers \
+  -H "Authorization: Bearer $API_KEY" -H 'Content-Type: application/json' \
+  --data '{"customer":{"name":"Acme","email":"billing@example.test"}}'
+```
+
+Use the returned identity in the [plan → subscription → usage → invoice examples](docs/API.md). Amounts are integer minor units, currencies stay separate, and client-supplied totals/ledger attributes are ignored. A first usage key creates one result; an identical retry returns its immutable body, while a changed payload conflicts. Invoice issuance closes that subscription/month to new late usage. Reads require the same API key; Stripe webhooks verify their signature separately.
+
+Run `docker compose exec -T api ruby script/core_smoke.rb` for an executable version of that flow. Stripe collection, failed-payment reconciliation and partial/full refunds use the separate [test-sandbox procedure](docs/STRIPE_RELIABILITY.md); a 202 collection response is durable intent, not proof of payment.
+
+## Verification and release boundaries
+
+Saved evidence covers [Milestone 1](docs/verification/milestone-1/README.md), [Milestone 2](docs/verification/milestone-2/README.md), [Milestone 3](docs/benchmarks/2026-11-21-optimized-v1/README.md) and [final release acceptance](docs/verification/milestone-4/README.md). [RELEASE.md](docs/RELEASE.md) documents clean checks, the repeatable test-mode demo and publishing. [OPERATIONS.md](docs/OPERATIONS.md) documents financial audits, durable/queued work, dead jobs and safe replay.
+
+This is a portfolio/test-mode API release. Production deployment, tax/discount/proration, FX, disputes, payouts/fees, additional payment-method contracts and a second recurring Stripe subscription path are outside scope. The ledger records gross invoice/payment/refund effects; Stripe's dashboard cash balance can differ. Read [the accounting contract](docs/BILLING_RULES.md) before extending it.

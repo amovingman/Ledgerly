@@ -12,9 +12,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test-and-lint:
+  test-and-quality:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: app
@@ -28,6 +28,8 @@ jobs:
       DB_PASSWORD: ci-postgres-password
       REDIS_URL: redis://127.0.0.1:6379/1
       RAILS_MAX_THREADS: "5"
+      STRIPE_SECRET_KEY: sk_test_fixture
+      STRIPE_WEBHOOK_SECRET: whsec_fixture
     services:
       postgres:
         image: postgres:17.12-bookworm
@@ -60,11 +62,43 @@ jobs:
           # Reads app/.ruby-version and app/Gemfile.lock.
           working-directory: app
           bundler-cache: true
-      - name: Prepare test database
-        run: bin/rails db:prepare
-      - name: Run request and application specs
-        run: bundle exec rspec
-      - name: Run RuboCop
-        run: bundle exec rubocop
-      - name: Typecheck foundation value objects
-        run: bin/typecheck
+      - name: Run specs, coverage gates, lint, types, RBI drift and autoload checks
+        run: bin/ci
+      - name: Save coverage and source identity
+        if: always()
+        run: |
+          mkdir -p coverage
+          ruby -rjson -e 'File.write("coverage/ci-source.json", JSON.pretty_generate({commit: ENV.fetch("GITHUB_SHA"), run_id: ENV.fetch("GITHUB_RUN_ID"), line_floor: 90, branch_floor: 80}))'
+      - name: Upload coverage evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2, Node 24
+        with:
+          name: coverage-${{ github.sha }}
+          path: app/coverage/
+          include-hidden-files: true
+          retention-days: 14
+
+  compose-smoke:
+    needs: test-and-quality
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      API_KEY: ci-compose-local-key
+      READ_CACHE_ENABLED: "1"
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1, Node 24
+      - name: Boot from clean Compose services
+        run: docker compose up --build -d --wait
+      - name: Check HTTP billing and real background execution
+        run: |
+          curl --fail http://127.0.0.1:3000/up
+          curl --fail http://127.0.0.1:3000/ready
+          docker compose exec -T api bin/smoke
+          docker compose exec -T api ruby script/core_smoke.rb
+      - name: Inspect services on failure
+        if: failure()
+        run: docker compose logs --tail=100 api sidekiq recovery setup
+      - name: Remove disposable CI services
+        if: always()
+        run: docker compose down --volumes

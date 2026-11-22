@@ -8,4 +8,7 @@ FileUtils.chdir File.expand_path('..', __dir__) do
   system('bundle', 'exec', 'rspec', exception: true)
   system('bundle', 'exec', 'rubocop', exception: true)
   system('bin/typecheck', exception: true)
+  system('ruby', 'script/typecheck_contracts.rb', exception: true)
+  system('bin/rbi', '--check', exception: true)
+  system('bin/rails', 'zeitwerk:check', exception: true)
 end

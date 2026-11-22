@@ -1,1 +1,2 @@
---dir=app/value_objects
+--dir=app
+--dir=sorbet

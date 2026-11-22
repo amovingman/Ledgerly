@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "http": {
+    "up": 200,
+    "ready": 200
+  },
+  "worker_smoke": "passed",
+  "ledger_audit": "passed",
+  "stripe_listener": "stopped after successful sandbox demo",
+  "code_image": "ledgerly-release:m4"
+}

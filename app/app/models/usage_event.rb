@@ -1,4 +1,8 @@
+# typed: true
+
 class UsageEvent < ApplicationRecord
+  extend T::Sig
+
   belongs_to :customer
   belongs_to :subscription
   belongs_to :invoice_line_item, optional: true
@@ -12,6 +16,7 @@ class UsageEvent < ApplicationRecord
 
   private
 
+  sig { void }
   def allocation_is_final
     return unless persisted? && invoice_line_item_id_changed? && invoice_line_item_id_was.present?
 

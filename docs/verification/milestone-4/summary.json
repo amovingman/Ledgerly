@@ -1,0 +1,47 @@
+{
+  "recorded_at_utc": "2026-11-22T18:40:35.200444+00:00",
+  "base_commit": "5976771de93b4dc938bb5f610a7999f259fb2ff8",
+  "source_state": "Pre-second-commit local acceptance; final CI artifact records actual pushed SHA",
+  "specs": 224,
+  "failures": 0,
+  "lint_files": 149,
+  "line_coverage": {
+    "covered": 1256,
+    "total": 1288,
+    "percent": 97.51,
+    "floor": 90
+  },
+  "branch_coverage": {
+    "covered": 229,
+    "total": 269,
+    "percent": 85.13,
+    "floor": 80
+  },
+  "typecheck": "passed",
+  "type_contract_probes": "one valid accepted; three invalid clients rejected",
+  "rbi_drift": "gem and schema checks passed",
+  "autoload": "passed",
+  "coverage_scope": "app/**/*.rb only; excludes spec, lib/tasks, benchmark helpers and scripts",
+  "clean_source": "Publishable files only; no .env/.bundle/.tooling or private Stripe CLI state",
+  "clean_compose": "Fresh separate project volumes; HTTP billing, real worker, general ledger audit and queue status passed; volumes removed afterward",
+  "full_replay": {
+    "deliveries": 180000,
+    "invoices": 50000,
+    "unique_events": 60000,
+    "failures": 0,
+    "scope": "Service-level, in-process canonical provider; no HTTP throughput claim"
+  },
+  "sandbox": {
+    "passed": true,
+    "capture": 70,
+    "refunds": [
+      20,
+      50
+    ],
+    "currency": "USD",
+    "successful_captures": 1,
+    "duplicate_replays": 12
+  },
+  "source_archive": "../../benchmarks/source-snapshots/README.md",
+  "hosted_ci": "https://github.com/amovingman/Ledgerly/actions/workflows/ci.yml"
+}

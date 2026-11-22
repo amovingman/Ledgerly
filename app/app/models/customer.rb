@@ -1,4 +1,8 @@
+# typed: true
+
 class Customer < ApplicationRecord
+  extend T::Sig
+
   has_many :subscriptions, dependent: :restrict_with_exception
   has_many :usage_events, dependent: :restrict_with_exception
   has_many :invoices, dependent: :restrict_with_exception

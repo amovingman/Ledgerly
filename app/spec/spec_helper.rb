@@ -3,6 +3,7 @@ SimpleCov.start do
   skip '/spec/'
   cover 'app/**/*.rb'
   enable_coverage :branch
+  minimum_coverage line: 90, branch: 80
 end
 
 RSpec.configure do |config|

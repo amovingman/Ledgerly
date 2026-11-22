@@ -1,0 +1,82 @@
+{
+  "api_version": "2026-11-18.endive",
+  "mode": "sandbox",
+  "phases": [
+    {
+      "name": "collection",
+      "status": "succeeded",
+      "attempts": 1,
+      "operation_count": 3
+    },
+    {
+      "name": "failed_payment",
+      "local_status": "payment_failed"
+    },
+    {
+      "name": "successful_payment",
+      "local_status": "paid",
+      "charge_id": "ch_3UefUtCbPgJp5f4v1w6ojp1v",
+      "payment_intent_id": "pi_3UefUtCbPgJp5f4v1V8bDXJq"
+    },
+    {
+      "name": "refund",
+      "stripe_id": "re_3UefUtCbPgJp5f4v1WByPI9a",
+      "amount": 20,
+      "local_status": "paid"
+    },
+    {
+      "name": "refund",
+      "stripe_id": "re_3UefUtCbPgJp5f4v1X3HFyxy",
+      "amount": 50,
+      "local_status": "refunded"
+    }
+  ],
+  "run_id": "m4-20261122",
+  "local_invoice_id": 3,
+  "stripe_invoice_id": "in_1UefUrCbPgJp5f4v7TNFuxka",
+  "stripe_customer_id": "cus_Vg1XbKAmPcaET8",
+  "amount": 70,
+  "currency": "USD",
+  "passed": true,
+  "completed_at": "2026-11-22T18:28:38Z",
+  "real_stripe_events": [
+    {
+      "id": "evt_1UefUxCbPgJp5f4vSdAeNT4q",
+      "type": "invoice.payment_failed",
+      "status": "processed"
+    },
+    {
+      "id": "evt_1UefV1CbPgJp5f4veeeZDdEH",
+      "type": "invoice.paid",
+      "status": "processed"
+    },
+    {
+      "id": "evt_3UefUtCbPgJp5f4v1AXjRTcH",
+      "type": "charge.refunded",
+      "status": "processed"
+    },
+    {
+      "id": "evt_3UefUtCbPgJp5f4v1pPWgkHY",
+      "type": "charge.refunded",
+      "status": "processed"
+    }
+  ],
+  "reverse_order_duplicate_replays": 12,
+  "local_payment_count": 1,
+  "local_refund_count": 2,
+  "journal_count": 4,
+  "ledger_row_count": 8,
+  "total_debits": 210,
+  "total_credits": 210,
+  "successful_captured_charge_count": 1,
+  "declined_charge_count": 1,
+  "captured_amount": 70,
+  "refunded_amount": 70,
+  "receivable_balances": [
+    {
+      "currency": "USD",
+      "amount": 0
+    }
+  ],
+  "final_invoice_status": "refunded"
+}

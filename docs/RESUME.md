@@ -1,0 +1,16 @@
+# Resume claims backed by evidence
+
+Use [ROADMAP.md](../ROADMAP.md) as the evidence register. A numerical claim needs the measured source, fixture, workload, environment and result. Local experiments and sandbox tests are not production billing traffic.
+
+The following bullets can be adapted while retaining their scope:
+
+- Built a Rails/PostgreSQL metered-billing API with customer-scoped usage idempotency, atomic invoice issuance, double-entry journals and durable Stripe webhook recovery; verified duplicate/out-of-order financial effects using **180,000 signed service-level deliveries across 50,000 synthetic invoices**. [Replay proof](benchmarks/2026-11-21-optimized-v1/full-replay.json) and [release verification](verification/milestone-4/README.md).
+- Reduced invoice-list first-page p95 from **30.81/30.36 ms to 15.89/15.93 ms** across repeated local runs at 40 arrivals/s on the same 50k fixture and resource caps, using targeted recovery/query changes and bounded versioned caching. [Matched report](benchmarks/2026-11-21-optimized-v1/README.md). These are Milestone 3 measurements, not a fresh benchmark of later code.
+- Diagnosed a historical recovery sweep issuing **200,042 SQL statements** and reduced it to **three** by selecting unfinished work before locking; retained transport-exhaustion and overloaded-load evidence rather than claiming successful capacity. [Profile and failure](benchmarks/2026-11-21-optimized-v1/README.md).
+- Added Sorbet contracts for core models/billing/webhook services and GitHub Actions gates for RSpec coverage, RuboCop, type probes, generated-RBI drift, autoloading and clean Compose HTTP/worker execution. Measured **97.51% application line coverage across 224 specs** at release acceptance; see the [final check report](verification/milestone-4/README.md) for scope and raw output.
+
+The first bullet supports **no duplicate logical payment/refund effects in the tested scenarios**. The in-process replay does not prove 180,000 external card charges were attempted. The separate real Stripe test-mode demo checks one successful capture per tested invoice and reverse-order duplicates. It does not establish that every possible failure mode is covered.
+
+Do not claim 5k+ processed unique events/minute, a fixed 480→90 ms improvement, 94% coverage merely because it was a target, production-scale traffic, or a complete static type proof. The saved high-rate experiment completed 5,387 unique events over 64.86 seconds including drain and had 15 client capacity drops. Baseline deep-page tails varied from roughly 53 to 757 ms; retain both passes rather than selecting an outlier as a universal speedup.
+
+All balances and ledger totals keep currencies separate. The application records invoice/payment/refund gross amounts, not every Stripe fee, payout, dispute or foreign-exchange effect. Use measured, appropriately scoped results in interviews and be ready to run the documented commands.

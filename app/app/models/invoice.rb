@@ -1,4 +1,8 @@
+# typed: true
+
 class Invoice < ApplicationRecord
+  extend T::Sig
+
   belongs_to :customer
   belongs_to :subscription
   has_one :invoice_collection, dependent: :restrict_with_exception
@@ -18,10 +22,12 @@ class Invoice < ApplicationRecord
 
   private
 
+  sig { returns(T::Boolean) }
   def summary_changed?
     saved_change_to_status? || saved_change_to_stripe_invoice_id?
   end
 
+  sig { void }
   def advance_read_version
     Billing::ReadVersion.advance!(customer_id)
   end

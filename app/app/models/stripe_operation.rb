@@ -1,4 +1,8 @@
+# typed: true
+
 class StripeOperation < ApplicationRecord
+  extend T::Sig
+
   belongs_to :customer
   belongs_to :invoice, optional: true
   belongs_to :invoice_line_item, optional: true
@@ -8,6 +12,7 @@ class StripeOperation < ApplicationRecord
 
   private
 
+  sig { void }
   def preserve_first_attempt
     return unless persisted? && first_attempted_at_changed? && first_attempted_at_was.present?
 

@@ -1,0 +1,32 @@
+{
+  "algorithm": "SHA-256",
+  "files": {
+    "README.md": "c77f23ff0035e599f9fba46cdc23c4f305ba621884e75bff9e924b49a3465ebf",
+    "benchmark-shutdown.log": "c5ed02f811624e3bdadc136afeda115fa1ba5e840c88daad0a934fa9e0e48bae",
+    "checks-release.log": "f4a9a21be9c387b9ec838878d658bb80acc53130cc18bf72bd18a18d54b1f45e",
+    "clean-services.ndjson": "18a3665b2b9b0a34e9ec3cc14266a88d94bb91799902c0ad0070e92ff724078e",
+    "clean-shutdown.log": "19faf917e47b7d1ccd3cff2ebd823d7b46857745250aa72013b73322771beaef",
+    "comment-only-delta.json": "55b92d96a135b09ef6a954ae2f51254770b9b4f933cdc4a1d141ccff356a1b5d",
+    "core-smoke.log": "5f7a000502d267ef54b288202fba8a00d3e0ca51aa2cd69393da9c9448d4cf36",
+    "fixture-restored.json": "b1ceb81a349ce063e8f5bbdf85ef3127bb67b5fdb1fdf509b9b084572ae1c518",
+    "full-replay.json": "14e494b2ca3e60d5782082c60861e560a5e555d6f5e70b5c52d426f3844fd04b",
+    "full-replay.log": "0f2fbf593935770465a45af946932849d908c66c42dcb799fbfeab7d1c3e915a",
+    "image-source-verification.json": "4aa29cf23fabeb9becc4a803dd0e114fb499c44fbcd94b09a7793d0f19120db6",
+    "ledger-audit.log": "b05e011711cefdb9fc39ed6562a0ff1f87341d3a408ec1fecaaf737eee7f92c7",
+    "main-health.json": "b5989e96c5c5b305af043d3deced42ac0a697d0b03e3ee85a12b3bdbf7de2bb5",
+    "main-ledger-audit.log": "b05e011711cefdb9fc39ed6562a0ff1f87341d3a408ec1fecaaf737eee7f92c7",
+    "main-operations-status.log": "36b751349aed15557f3b6db21807d96dc16dc3db2def9750b17df6c81bef7dae",
+    "main-services.ndjson": "144b6d2b89041af7645a723f9327be2d619cad987659b2d5b84c95b85a6fb7da",
+    "main-worker-smoke.log": "6b0a49da7178df9725e47f73d94b396285dfb67c021cd0de30768223d7cb00b2",
+    "migration-chain.log": "389f14e8dcf7e92e8525ac0bdf1872673f22664fbb63781ae58f4ce9cc4d8265",
+    "migrations.log": "c37ccac74cedd586cc2d8a868c703de99201b4423070b40785124c7b0876822b",
+    "operations-status.log": "0195e97ff2879124f344b348aba6cc900bc058264fad1f720619d88e55838e94",
+    "prepublish-audit.json": "71adc3a29a695f00989a2ba19a441f1aa0861b0b46447fd496164dffcc15ccea",
+    "release-image-id.json": "c23554f48a56a336eec97ebb6c7bab3b598e63c74d679cfaa4948c1d582609aa",
+    "release-source-manifest.json": "6568c1cbfda9edba178501454852e4e4a025b294852396774366a981c9f2fdf0",
+    "sandbox-results.json": "9d7410b6dbe331daed21a7fb11fa013dbac72f8f436cc0d749975e09890efd4d",
+    "summary.json": "8cb9a84ec6792e6146f93a2077a1e206216a5a13d8aab71223ffa181fd369342",
+    "typing-scope.json": "8b07c6ad462465ba64883ad8b1f791b4aaacc05a14c73627536a91f74d0bd788",
+    "worker-smoke.log": "46a7c839f8a0dd28da55edaf7b0364e6006733d210be224f8f7ecb03d03fd4c4"
+  }
+}

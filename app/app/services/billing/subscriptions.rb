@@ -1,5 +1,10 @@
+# typed: true
+
 module Billing
   module Subscriptions
+    extend T::Sig
+
+    sig { params(customer: Customer, plan: Plan, starts_at: T.untyped).returns(Subscription) }
     def self.create(customer:, plan:, starts_at: nil)
       start = starts_at.nil? ? Time.current : Input.timestamp(starts_at, field: 'starts_at')
       customer.with_lock do
@@ -13,8 +18,9 @@ module Billing
                       status: 409)
     end
 
+    sig { params(subscription: Subscription).returns(Subscription) }
     def self.cancel(subscription:)
-      subscription.customer.with_lock do
+      T.must(subscription.customer).with_lock do
         subscription.reload
         return subscription if subscription.status == 'cancelled'
 
