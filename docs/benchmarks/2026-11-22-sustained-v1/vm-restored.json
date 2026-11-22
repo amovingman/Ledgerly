@@ -1,0 +1,1 @@
+{"display_name":"colima [profile=ledgerly]","driver":"macOS Virtualization.Framework","arch":"aarch64","runtime":"docker","mount_type":"virtiofs","docker_socket":"unix:///Users/user/.colima/ledgerly/docker.sock","containerd_socket":"unix:///Users/user/.colima/ledgerly/containerd.sock","kubernetes":false,"cpu":2,"memory":4294967296,"disk":21474836480}

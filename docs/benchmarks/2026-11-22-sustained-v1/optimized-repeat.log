@@ -1,0 +1,1 @@
+{"passed": false, "minimum_complete_minute": 5216, "completed_per_minute": {"0": 5398, "1": 5401, "2": 5399, "3": 5216, "4": 5576}, "peak_received": 145, "queue_trend_events_per_second": 0.012740259466987957, "actual_new_payments": 24000, "integrity_passed": true}

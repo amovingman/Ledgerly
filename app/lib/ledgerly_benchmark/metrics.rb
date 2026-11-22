@@ -60,7 +60,8 @@ module LedgerlyBenchmark
 
       connection = ActiveRecord::Base.connection
       processing = JSON.parse(connection.select_value(<<~SQL.squish))
-        SELECT json_build_object('total',count(*),'processed',count(*) FILTER (WHERE status='processed'),
+        SELECT json_build_object('database_time',clock_timestamp(),'total',count(*),
+          'processed',count(*) FILTER (WHERE status='processed'),
           'ignored',count(*) FILTER (WHERE status='ignored'),'received',count(*) FILTER (WHERE status='received'),
           'dead',count(*) FILTER (WHERE status='dead'),'review',count(*) FILTER (WHERE status='review'),
           'retried_events',count(*) FILTER (WHERE attempts>1),'max_attempts',COALESCE(max(attempts),0),

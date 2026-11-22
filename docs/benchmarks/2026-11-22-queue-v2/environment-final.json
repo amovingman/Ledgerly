@@ -1,0 +1,185 @@
+{
+  "captured_at": "2026-11-22T20:56:46.487158+00:00",
+  "vm": {
+    "cpus": "4",
+    "usable_memory_bytes": "4094005248",
+    "architecture": "aarch64"
+  },
+  "containers": [
+    {
+      "name": "/ledgerly-benchmark-api-1",
+      "image": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "threads": "8",
+      "ruby_spike_profile": "0",
+      "limits": {
+        "NanoCpus": 1000000000,
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "Memory": 536870912,
+        "MemorySwap": 1073741824,
+        "Ulimits": null
+      },
+      "command": [
+        "bin/rails",
+        "server",
+        "-b",
+        "0.0.0.0"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-sidekiq-1",
+      "image": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "threads": "4",
+      "ruby_spike_profile": "0",
+      "limits": {
+        "NanoCpus": 1000000000,
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "Memory": 536870912,
+        "MemorySwap": 1073741824,
+        "Ulimits": null
+      },
+      "command": [
+        "bundle",
+        "exec",
+        "sidekiq",
+        "-C",
+        "config/sidekiq.yml"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-sidekiq-2",
+      "image": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "threads": "4",
+      "ruby_spike_profile": "0",
+      "limits": {
+        "NanoCpus": 1000000000,
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "Memory": 536870912,
+        "MemorySwap": 1073741824,
+        "Ulimits": null
+      },
+      "command": [
+        "bundle",
+        "exec",
+        "sidekiq",
+        "-C",
+        "config/sidekiq.yml"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-sidekiq-3",
+      "image": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "threads": "4",
+      "ruby_spike_profile": "0",
+      "limits": {
+        "NanoCpus": 1000000000,
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "Memory": 536870912,
+        "MemorySwap": 1073741824,
+        "Ulimits": null
+      },
+      "command": [
+        "bundle",
+        "exec",
+        "sidekiq",
+        "-C",
+        "config/sidekiq.yml"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-benchmark-postgres-1",
+      "image": "postgres:17.12-bookworm",
+      "image_id": "sha256:837bed18782820fe967067cb5328b02b0d9992c1be9a37ee0c9c492cfc03af3b",
+      "threads": null,
+      "ruby_spike_profile": null,
+      "limits": {
+        "NanoCpus": 0,
+        "CpuPeriod": 10000,
+        "CpuQuota": 10000,
+        "Memory": 805306368,
+        "MemorySwap": 1610612736,
+        "Ulimits": null
+      },
+      "command": [
+        "postgres"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-benchmark-provider-1",
+      "image": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "threads": "8",
+      "ruby_spike_profile": "1",
+      "limits": {
+        "NanoCpus": 500000000,
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "Memory": 134217728,
+        "MemorySwap": 268435456,
+        "Ulimits": null
+      },
+      "command": [
+        "bundle",
+        "exec",
+        "puma",
+        "-t",
+        "8:8",
+        "-b",
+        "tcp://0.0.0.0:4242",
+        "script/benchmarks/provider.ru"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-benchmark-redis-1",
+      "image": "redis:8.2.3-bookworm",
+      "image_id": "sha256:0908d9af26bf9b985e984a40a5eb82eed229b07a3317eee6843832c3cc3a9619",
+      "threads": null,
+      "ruby_spike_profile": null,
+      "limits": {
+        "NanoCpus": 500000000,
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "Memory": 134217728,
+        "MemorySwap": 268435456,
+        "Ulimits": null
+      },
+      "command": [
+        "redis-server",
+        "--appendonly",
+        "yes"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-recovery-1",
+      "image": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "threads": "8",
+      "ruby_spike_profile": "0",
+      "limits": {
+        "NanoCpus": 500000000,
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "Memory": 268435456,
+        "MemorySwap": 536870912,
+        "Ulimits": null
+      },
+      "command": [
+        "bin/rails",
+        "runner",
+        "script/recovery_loop.rb"
+      ]
+    }
+  ],
+  "postgres_kernel_cpu_max": "10000 10000",
+  "worker_count": 3,
+  "total_worker_threads": 12,
+  "aggregate_worker_cpu_cap": 3,
+  "aggregate_worker_memory_bytes": 1610612736
+}

@@ -18,22 +18,23 @@ module StripeIntegration
         return if @event.terminal?
 
         @invoice.reload
-        @invoice.update!(stripe_invoice_id: @snapshot[:remote].fetch('id'))
-        apply_payment_snapshot
-        update_status
+        remote_id = @snapshot[:remote].fetch('id')
+        @invoice.update!(stripe_invoice_id: remote_id) unless @invoice.stripe_invoice_id == remote_id
+        update_status(apply_payment_snapshot)
         @event.update!(status: 'processed', processed_at: Time.current, last_error: nil)
       end
     end
 
     private
 
-    sig { void }
+    sig { returns(T.nilable(StripePayment)) }
     def apply_payment_snapshot
       snapshot = @snapshot[:payment]
       return unless snapshot
 
       payment = post_payment(snapshot)
       snapshot[:refunds].each { |refund| post_refund(payment, refund) }
+      payment
     end
 
     sig { params(snapshot: StripeIntegration::Types::Payment).returns(T::Hash[Symbol, T.untyped]) }
@@ -98,14 +99,16 @@ module StripeIntegration
                                                             LedgerEntry.new(account: credit_account, credit: amount)])
     end
 
-    sig { void }
-    def update_status
-      payment = @invoice.reload.stripe_payment
+    sig { params(payment: T.nilable(StripePayment)).void }
+    def update_status(payment)
+      # Reuse the verified payment posted under this customer lock. Without a
+      # payment snapshot, consult the local effect before changing its state.
+      payment ||= @invoice.stripe_payment
       if payment
         status = payment.stripe_refunds.sum(:amount) == payment.amount ? 'refunded' : 'paid'
-        @invoice.update!(status: status)
+        @invoice.update!(status: status) unless @invoice.status == status
       elsif @event.event_type == 'invoice.payment_failed'
-        @invoice.update!(status: 'payment_failed')
+        @invoice.update!(status: 'payment_failed') unless @invoice.status == 'payment_failed'
       end
     end
   end

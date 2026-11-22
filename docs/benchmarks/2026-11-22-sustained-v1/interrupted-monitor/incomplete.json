@@ -1,0 +1,8 @@
+{
+  "valid_completed_experiment": false,
+  "reason": "Final monitoring GET RemoteDisconnected after idle connection; repeat saved separately.",
+  "offered": 30000,
+  "saved_requests": 29963,
+  "client_drops": 37,
+  "http_failures": 0
+}

@@ -1,0 +1,86 @@
+{
+  "peak_pending": 127,
+  "highest_points": [
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 127
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 127
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 127
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 126
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 126
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 126
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 126
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 126
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 125
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 125
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 125
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 125
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 125
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 125
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 125
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 125
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 124
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 124
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 124
+    },
+    {
+      "at": "2026-11-22 20:22:43 UTC",
+      "pending": 124
+    }
+  ],
+  "scope": "All accepted timed event lifetimes, including drain; timestamp estimate, not commit order. Receipt timestamps precede receipt commit; processed timestamps precede processing commit."
+}

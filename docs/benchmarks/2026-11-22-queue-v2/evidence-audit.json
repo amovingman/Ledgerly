@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "source_files_verified": 316,
+  "compressed_logs_verified": 13,
+  "prior_sustained_files_unchanged": 112,
+  "missing_document_links": [],
+  "private_values_found": 0,
+  "known_published_defaults_exempted": [
+    "DB_PASSWORD"
+  ],
+  "public_files_scanned": 481,
+  "accepted_strict_gate_passed": true,
+  "restoration_passed": true,
+  "git_head_unchanged": true,
+  "largest_artifact_bytes": 1997644
+}

@@ -1,0 +1,5 @@
+ num_timed | num_requested | restartpoints_timed | restartpoints_req | restartpoints_done | write_time | sync_time | buffers_written |         stats_reset          
+-----------+---------------+---------------------+-------------------+--------------------+------------+-----------+-----------------+------------------------------
+        12 |            15 |                   0 |                 0 |                  0 |    4514465 |      3539 |          141939 | 2026-11-22 02:59:17.76237+00
+(1 row)
+

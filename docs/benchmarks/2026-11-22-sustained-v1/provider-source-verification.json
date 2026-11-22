@@ -1,0 +1,14 @@
+{
+  "app/lib/ledgerly_benchmark/provider.rb": {
+    "sha256": "f614d2c1c6fec3bc1229d60eb9891c5e09c9a186094b59f6ce18d2b3b7d97cd6",
+    "identical": true
+  },
+  "app/lib/ledgerly_benchmark/fixture.rb": {
+    "sha256": "fd35176ff5c2550ff52d09ce1535efa1208d6c5de5ba352187bea0f8b7e41213",
+    "identical": true
+  },
+  "app/script/benchmarks/provider.ru": {
+    "sha256": "d0231488d1e9f8b84be8d561a5d4f5238ce2ca650f53be4d35c9ca8f7b4110db",
+    "identical": true
+  }
+}

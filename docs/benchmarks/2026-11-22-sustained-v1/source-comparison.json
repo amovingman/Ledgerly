@@ -1,0 +1,37 @@
+{
+  "base_commit": "c9ed621c77b2384d056c69cf17dde86be739c81c",
+  "note": "Compare image contents with published source; benchmark-only helpers/clock instrumentation are expected release-image additions.",
+  "release": {
+    "files": 306,
+    "changed_from_release": [
+      "app/lib/ledgerly_benchmark/metrics.rb"
+    ],
+    "added": [
+      "app/config/credentials.yml.enc",
+      "app/script/benchmarks/prepare_sustained.rb",
+      "app/script/benchmarks/profile_sustained.rb"
+    ],
+    "omitted_by_dockerignore": [
+      "app/log/.keep",
+      "app/tmp/.keep"
+    ]
+  },
+  "optimized": {
+    "files": 306,
+    "changed_from_release": [
+      "app/app/services/stripe_integration/post_effects.rb",
+      "app/bin/ci",
+      "app/lib/ledgerly_benchmark/metrics.rb",
+      "app/spec/services/stripe_integration/process_event_spec.rb"
+    ],
+    "added": [
+      "app/config/credentials.yml.enc",
+      "app/script/benchmarks/prepare_sustained.rb",
+      "app/script/benchmarks/profile_sustained.rb"
+    ],
+    "omitted_by_dockerignore": [
+      "app/log/.keep",
+      "app/tmp/.keep"
+    ]
+  }
+}

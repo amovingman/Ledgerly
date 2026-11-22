@@ -69,16 +69,19 @@ def event(identity, invoice, kind='invoice.paid'):
                       separators=(',', ':')).encode()
 
 
-def run_arrivals(rate, duration, work, raw_path):
+def run_arrivals(rate, duration, work, raw_path, workers=32, max_inflight=64, on_start=None):
     results = []
     lock = threading.Lock()
-    capacity = threading.BoundedSemaphore(64)
+    capacity = threading.BoundedSemaphore(max_inflight)
     start = time.monotonic() + .1
+    started_at_unix = time.time() + .1
+    if on_start:
+        on_start({'offering_started_at_unix': started_at_unix})
     dropped = 0
 
     def execute(index, scheduled):
         actual = time.monotonic()
-        row = {'index': index, 'start_delay_ms': (actual - scheduled) * 1000}
+        row = {'index': index, 'start_delay_ms': (actual - scheduled) * 1000, 'started_seconds': actual - start}
         try:
             method, path, payload, signed = work(index)
             code, body, headers, size = request(method, path, payload, signed)
@@ -100,7 +103,7 @@ def run_arrivals(rate, duration, work, raw_path):
                 results.append(row)
             capacity.release()
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=32) as pool:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
         for index in range(int(rate * duration)):
             scheduled = start + index / rate
             delay = scheduled - time.monotonic()
@@ -113,6 +116,7 @@ def run_arrivals(rate, duration, work, raw_path):
     elapsed = time.monotonic() - start
     raw_path.write_text(''.join(json.dumps(row, sort_keys=True) + '\n' for row in sorted(results, key=lambda r: r['index'])))
     return {'offered_requests': int(rate * duration), 'completed_requests': len(results), 'dropped_arrivals': dropped,
+            'offering_started_at_unix': started_at_unix, 'workers': workers, 'max_inflight': max_inflight,
             'failures': sum(not row['valid'] for row in results), 'arrival_rate_per_second': rate,
             'offering_duration_seconds': duration, 'including_tail_seconds': elapsed,
             'http_latency_ms': distribution([row['http_ms'] for row in results]),

@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "baseline": "sustained-v1 optimized image; prior local PostEffects optimization already included",
+  "core_application_files_checked": 72,
+  "changed_files": []
+}

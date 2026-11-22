@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "source_files_and_archive_verified": 312,
+  "compressed_logs_verified": 5,
+  "missing_document_links": 0,
+  "private_values_found": 0,
+  "published_nonsecret_defaults_exempted": [
+    "DB_PASSWORD"
+  ],
+  "files_scanned": 423,
+  "historical_evidence_unchanged": true,
+  "git_head_unchanged": true,
+  "largest_file_bytes": 2011816
+}

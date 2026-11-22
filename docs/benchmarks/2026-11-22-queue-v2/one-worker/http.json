@@ -1,0 +1,49 @@
+{
+  "offered_requests": 42000,
+  "completed_requests": 42000,
+  "dropped_arrivals": 0,
+  "offering_started_at_unix": 1795378320.8372989,
+  "workers": 64,
+  "max_inflight": 256,
+  "failures": 0,
+  "arrival_rate_per_second": 100.0,
+  "offering_duration_seconds": 420,
+  "including_tail_seconds": 420.00431845900005,
+  "http_latency_ms": {
+    "p50": 4.601958000002071,
+    "p95": 159.61344404998198,
+    "p99": 580.0186549100239,
+    "max": 1147.0777079999834
+  },
+  "scheduled_to_completion_ms": {
+    "p50": 6.151938000012791,
+    "p95": 164.45277499998306,
+    "p99": 695.1156987499813,
+    "max": 1149.498250000022
+  },
+  "generator_start_delay_ms": {
+    "p50": 1.41535450001129,
+    "p95": 3.097961050042353,
+    "p99": 82.17919167005819,
+    "max": 509.54204200002096
+  },
+  "sql_queries_per_request": {
+    "p50": 7.0,
+    "p95": 7.0,
+    "p99": 7.0,
+    "max": 8
+  },
+  "sql_time_ms": {
+    "p50": 0.752,
+    "p95": 28.47524999999998,
+    "p99": 79.9885100000001,
+    "max": 655.297
+  },
+  "cache_status_counts": {
+    "hit": 0,
+    "miss": 0,
+    "off": 42000
+  },
+  "duplicate_acknowledgments": 4200,
+  "response_hashes": []
+}

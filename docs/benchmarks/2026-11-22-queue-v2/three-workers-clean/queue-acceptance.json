@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "requirements": {
+    "original_sustained_gate": true,
+    "sampled_pending_under_100": true,
+    "timestamp_pending_under_100": true
+  },
+  "sampled_pending_peak": 42,
+  "timestamp_pending_peak": 76,
+  "strict_peak_limit": 100
+}

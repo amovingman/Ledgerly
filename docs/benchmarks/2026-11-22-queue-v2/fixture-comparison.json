@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "matching_noninvoice_tables": 10,
+  "invoice_timestamp_hashes_vary_as_documented": true,
+  "snapshots": {
+    "before": {
+      "customers": "09b43919b6b00d17617e22299ff35598ffabbf63906af57614470667a455f988",
+      "plans": "19366e4a9a1b6ba2b7b0099035dd91c1aa0df553943bb4bc4127afda77f793ca",
+      "subscriptions": "7b75b9cc3994f6255828964754a8dbff63e6f77de2c46a8bf8c57cabaae1dd29",
+      "invoices": "72c692d3786ab22e445fe71c00200ee1174c4a8190a4b3a455a85e998f8bb545",
+      "invoice_line_items": "bb14195589dd8a731903d80a73b44276e986d24d2c80edde0904000d47196b56",
+      "usage_events": "a6df4454fb6ed0aa4d1b631272ad88775bc53772ec6ff7612451a3e71c57f481",
+      "stripe_events": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ledger_transactions": "543f30af41c3efb5c43962c16b9a623f01fe82f8ea5d1298cfeb982bc1a598c4",
+      "ledger_entries": "0f22fd54458cea35242ee8ecc2bfd5f37bc570239002327a076ef62ce2d28bef",
+      "stripe_payments": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stripe_refunds": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "after": {
+      "customers": "09b43919b6b00d17617e22299ff35598ffabbf63906af57614470667a455f988",
+      "plans": "19366e4a9a1b6ba2b7b0099035dd91c1aa0df553943bb4bc4127afda77f793ca",
+      "subscriptions": "7b75b9cc3994f6255828964754a8dbff63e6f77de2c46a8bf8c57cabaae1dd29",
+      "invoices": "b7bb5730173a1b681fe67b075b2e0ebbde4f0985784a1b0c5ebed748e9a7c749",
+      "invoice_line_items": "bb14195589dd8a731903d80a73b44276e986d24d2c80edde0904000d47196b56",
+      "usage_events": "a6df4454fb6ed0aa4d1b631272ad88775bc53772ec6ff7612451a3e71c57f481",
+      "stripe_events": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ledger_transactions": "543f30af41c3efb5c43962c16b9a623f01fe82f8ea5d1298cfeb982bc1a598c4",
+      "ledger_entries": "0f22fd54458cea35242ee8ecc2bfd5f37bc570239002327a076ef62ce2d28bef",
+      "stripe_payments": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stripe_refunds": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "six": {
+      "customers": "09b43919b6b00d17617e22299ff35598ffabbf63906af57614470667a455f988",
+      "plans": "19366e4a9a1b6ba2b7b0099035dd91c1aa0df553943bb4bc4127afda77f793ca",
+      "subscriptions": "7b75b9cc3994f6255828964754a8dbff63e6f77de2c46a8bf8c57cabaae1dd29",
+      "invoices": "0bd1f5e70e7f07b2b1c72c396905755928916a4b874013398bbd80997bdb57e9",
+      "invoice_line_items": "bb14195589dd8a731903d80a73b44276e986d24d2c80edde0904000d47196b56",
+      "usage_events": "a6df4454fb6ed0aa4d1b631272ad88775bc53772ec6ff7612451a3e71c57f481",
+      "stripe_events": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ledger_transactions": "543f30af41c3efb5c43962c16b9a623f01fe82f8ea5d1298cfeb982bc1a598c4",
+      "ledger_entries": "0f22fd54458cea35242ee8ecc2bfd5f37bc570239002327a076ef62ce2d28bef",
+      "stripe_payments": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stripe_refunds": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "short-period": {
+      "customers": "09b43919b6b00d17617e22299ff35598ffabbf63906af57614470667a455f988",
+      "plans": "19366e4a9a1b6ba2b7b0099035dd91c1aa0df553943bb4bc4127afda77f793ca",
+      "subscriptions": "7b75b9cc3994f6255828964754a8dbff63e6f77de2c46a8bf8c57cabaae1dd29",
+      "invoices": "9d95a61f299746e6bd1ba777e7b0ab92e6dff73b5e78236a9bf3a33de2831bc2",
+      "invoice_line_items": "bb14195589dd8a731903d80a73b44276e986d24d2c80edde0904000d47196b56",
+      "usage_events": "a6df4454fb6ed0aa4d1b631272ad88775bc53772ec6ff7612451a3e71c57f481",
+      "stripe_events": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ledger_transactions": "543f30af41c3efb5c43962c16b9a623f01fe82f8ea5d1298cfeb982bc1a598c4",
+      "ledger_entries": "0f22fd54458cea35242ee8ecc2bfd5f37bc570239002327a076ef62ce2d28bef",
+      "stripe_payments": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stripe_refunds": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "final": {
+      "customers": "09b43919b6b00d17617e22299ff35598ffabbf63906af57614470667a455f988",
+      "plans": "19366e4a9a1b6ba2b7b0099035dd91c1aa0df553943bb4bc4127afda77f793ca",
+      "subscriptions": "7b75b9cc3994f6255828964754a8dbff63e6f77de2c46a8bf8c57cabaae1dd29",
+      "invoices": "356579b6ef552140e2a0e86a1c352ea76adae9b53daff08384b45da889a86976",
+      "invoice_line_items": "bb14195589dd8a731903d80a73b44276e986d24d2c80edde0904000d47196b56",
+      "usage_events": "a6df4454fb6ed0aa4d1b631272ad88775bc53772ec6ff7612451a3e71c57f481",
+      "stripe_events": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ledger_transactions": "543f30af41c3efb5c43962c16b9a623f01fe82f8ea5d1298cfeb982bc1a598c4",
+      "ledger_entries": "0f22fd54458cea35242ee8ecc2bfd5f37bc570239002327a076ef62ce2d28bef",
+      "stripe_payments": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stripe_refunds": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "three": {
+      "customers": "09b43919b6b00d17617e22299ff35598ffabbf63906af57614470667a455f988",
+      "plans": "19366e4a9a1b6ba2b7b0099035dd91c1aa0df553943bb4bc4127afda77f793ca",
+      "subscriptions": "7b75b9cc3994f6255828964754a8dbff63e6f77de2c46a8bf8c57cabaae1dd29",
+      "invoices": "01ad74b511073b1479dbccd742cd95716dfd8b3a8c13ef89f2e9653e4a603be7",
+      "invoice_line_items": "bb14195589dd8a731903d80a73b44276e986d24d2c80edde0904000d47196b56",
+      "usage_events": "a6df4454fb6ed0aa4d1b631272ad88775bc53772ec6ff7612451a3e71c57f481",
+      "stripe_events": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "ledger_transactions": "543f30af41c3efb5c43962c16b9a623f01fe82f8ea5d1298cfeb982bc1a598c4",
+      "ledger_entries": "0f22fd54458cea35242ee8ecc2bfd5f37bc570239002327a076ef62ce2d28bef",
+      "stripe_payments": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stripe_refunds": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

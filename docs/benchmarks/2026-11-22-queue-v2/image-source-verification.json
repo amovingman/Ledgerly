@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "matching_public_files": 306,
+  "note": "Locally generated encrypted Rails credentials are omitted from public source archives and unused by this fixture; no decryption key is included."
+}

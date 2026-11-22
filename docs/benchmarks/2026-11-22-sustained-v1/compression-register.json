@@ -1,0 +1,32 @@
+{
+  "confirmation-2cpu-95rps/webhooks.ndjson.gz": {
+    "uncompressed_sha256": "e5c82dacdee1097ea3fd53c90fcc568cc810eb0f565379c2cc4a86b0d3f0f209",
+    "uncompressed_bytes": 12423640,
+    "rows": 38733,
+    "compressed_sha256": "efcf0026fd358d7cbeff9c627096e7d8c94e1486e7258c394ad8f0e0f84fad46"
+  },
+  "interrupted-monitor/webhooks.ndjson.gz": {
+    "uncompressed_sha256": "bfdfd9fdbbe636c1ccf552506e872566232f90dab7c8328df35e9eb06de5c024",
+    "uncompressed_bytes": 9515505,
+    "rows": 29963,
+    "compressed_sha256": "59f17cefd70eebc28c6116bf4a8ab82c6d61cb7fe06640e987111f17ac6c1859"
+  },
+  "optimized-100rps/webhooks.ndjson.gz": {
+    "uncompressed_sha256": "ad1f8343fa13f62c5ff0b36f43372bccf48375b97158fd0cf095ccb9776de852",
+    "uncompressed_bytes": 9608014,
+    "rows": 30000,
+    "compressed_sha256": "50c6af8b995bd333761812a2608ddb3b3dc5e0479fffabac297c2f2af0a69b19"
+  },
+  "release-before/webhooks.ndjson.gz": {
+    "uncompressed_sha256": "0e901158bb91f1407c5375d0ac96dfaa2f9914c2c0a8b34a2c316380e3a1df04",
+    "uncompressed_bytes": 9536937,
+    "rows": 29887,
+    "compressed_sha256": "ffb7d6628588c998185bc34867fbfb5563b91e6f632b79b2133262f6b5e7a24a"
+  },
+  "scaled-4cpu-100rps/webhooks.ndjson.gz": {
+    "uncompressed_sha256": "0efd65f5402bf4e37a71a5e07e9ffb3718f636bcd3ef8b040fbe36152b8644ed",
+    "uncompressed_bytes": 13450432,
+    "rows": 42000,
+    "compressed_sha256": "f18b451453b876762d580df85e0c1546dafc315e1ab69435aabeb9a13504773c"
+  }
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/sustained.py", line 161, in <module>
+    main()
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/sustained.py", line 94, in main
+    calibration = calibrate_clock()
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/sustained.py", line 34, in calibrate_clock
+    database = datetime.fromisoformat(stats['database_time'].replace('Z', '+00:00')).timestamp()
+ValueError: Invalid isoformat string: '2026-11-22T19:31:00.18376+00:00'

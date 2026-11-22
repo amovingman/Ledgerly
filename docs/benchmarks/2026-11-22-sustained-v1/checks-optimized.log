@@ -1,0 +1,332 @@
+ Container ledgerly-benchmark-seed-run-9566811e986c Creating 
+ Container ledgerly-benchmark-seed-run-9566811e986c Created 
+
+Randomized with seed 33336
+
+Core billing models
+  rejects a journal in a different currency from its invoice
+  requires cancellation to have an effective end timestamp
+  rejects unbalanced journals before persisting any rows
+  creates a balanced complete journal
+  rejects two-sided ledger entries at the model layer
+  normalizes customer identity and rejects invalid email addresses
+  keeps posted journal entries read-only through the models
+  prevents new rows from being appended to a posted journal
+  rejects missing ledger amounts without raising a type error
+  requires a supported currency and positive integral plan price
+
+Billing query loading
+  detects a deliberately lazy customer association as a positive control
+  reports no N+1 queries for invoice list/detail and balance reads
+
+Billing::GenerateInvoice
+  stores one usage event under simultaneous duplicate requests
+  accepts exactly one overlapping subscription under simultaneous creation
+  creates one invoice, allocation and balanced journal under simultaneous generation
+  either includes racing usage in the invoice or explicitly rejects it as closed
+
+LedgerlyBenchmark::Safety
+  rejects the ordinary test environment even if a benchmark database name is supplied
+  refuses inherited database URLs even with the dedicated environment and fixture keys
+
+StripeIntegration::Settings
+  .secret_key!
+    rejects unsupported credentials "rkcs_live_example"
+    rejects unsupported credentials ""
+    rejects unsupported credentials "sk_test_example\\n"
+    rejects unsupported credentials "sk_live_example"
+    accepts the sk test-key format
+    accepts the rk test-key format
+    rejects unsupported credentials "rk_live_example"
+    accepts the rkcs test-key format
+
+Stripe webhook endpoint
+  rejects changed bytes and expired signatures before storing anything
+  rejects live, connected-account and wrong-version receipts
+  fails closed when no webhook signing secret is configured
+  rolls back receipt storage when its dispatch intent cannot be persisted
+[1;34mINFO [0m 2026-11-22T19:30:05.085Z pid=12 tid=404: Sidekiq 8.1.7 connecting to Redis with options {size: 10, pool_name: "internal", url: "redis://benchmark-redis:6379/1"}
+  accepts equivalent JSON formatting but rejects conflicting content under one event ID
+  verifies exact bytes, persists the raw receipt and queues one job without API-key auth
+  keeps a durable pending receipt and still acknowledges when Redis is unavailable
+
+StripeIntegration::RecoverySweep
+  manually replays a dead receipt without changing its raw event or effect identities
+  rejects manual replays that would reset an in-progress retry budget
+  safely processes duplicate queued jobs after enqueue succeeded but dispatch marking failed
+  redelivers unfinished work after a queued job disappears
+  recovers stale collection dispatches as well as event dispatches
+  filters completed and recently attempted dispatched work before instantiating recovery records
+  does not requeue terminal receipts and closes pending terminal dispatch records
+  uses bounded jittered exponential delays and kills permanent review failures
+  dispatches committed work even when receipt-to-enqueue delivery was interrupted
+  records exhausted failures in PostgreSQL without regressing a completed receipt
+
+Billing::Audit
+  accepts real billing data without benchmark fixture counts or a fixed usage-event count
+  detects journal corruption introduced by administrative SQL beyond row-level checks
+  detects a missing usage allocation even when every financial journal still balances
+
+Usage ingestion API
+  requires an idempotency header
+  rejects malformed JSON on the real ingestion route
+  replays an immutable response and creates only one event
+  does not attach usage to another customer subscription
+  returns a conflict for changed payloads
+
+Billing::IngestUsage
+  allows the same key for distinct customers
+  rejects invalid occurrence timestamp "2026-02-31T00:00:00Z"
+  rejects invalid quantity 1000000001
+  rejects new late usage after an invoice closes the period
+  rejects an invalid key nil
+  returns an original result after cancellation and invoice issuance
+  rejects an invalid key "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  rejects invalid quantity true
+  rejects a mismatched metric
+  rejects an invalid key "spaces are invalid"
+  scopes keys to the customer across different subscriptions
+  returns the original event for a repeated key and normalized payload
+  rejects an invalid key ""
+  rejects invalid occurrence timestamp 123
+  rejects invalid quantity 0
+  rejects invalid occurrence timestamp "2026-01-15T00:00:00"
+  rejects a changed quantity without altering the original event
+  rejects invalid quantity 1.5
+  rejects invalid quantity -1
+  rejects invalid quantity "10"
+  rejects future usage
+  rejects invalid occurrence timestamp "2026-01-15T00:00:00.1234567Z"
+  includes the start and excludes the subscription end
+
+StripeIntegration::RetryPolicy
+[1;34mINFO [0m 2026-11-22T19:30:05.715Z pid=12 tid=404: Adding dead StripeIntegration::ProcessEventJob job 6ea9a072db54194d03a9b113
+  kills work after the persisted attempt budget is exhausted
+[1;34mINFO [0m 2026-11-22T19:30:05.756Z pid=12 tid=404: Adding dead StripeIntegration::ProcessEventJob job ac86dfb9ee40f1c9b9045dbf
+  places permanent review failures in the real Redis dead-job set
+
+ApplicationController
+  renders missing required input as a JSON client error
+  renders model validation errors as JSON
+  renders invalid pagination as a JSON client error
+  exposes validated pagination to API controllers
+  renders missing database resources as JSON
+
+API authentication
+  fails closed for an unconfigured key nil
+  fails closed for an unconfigured key "   "
+  fails closed for an unconfigured key ""
+  returns service status for an authenticated request
+  rejects invalid credentials ("Basic foundation-test-key")
+  rejects invalid credentials ("Bearer foundation-test-key extra")
+  rejects invalid credentials ("Bearer wrong")
+  returns JSON for an unknown route
+  rejects malformed JSON with the documented envelope
+  rejects missing credentials (nil)
+  returns JSON for the unmapped root route
+  filters sensitive parameters
+
+Billing database constraints
+  enforces usage idempotency uniqueness in the customer scope
+  prevents multiple invoices for one subscription month
+  allows adjacent subscription intervals
+  prevents a ledger row from having two positive sides
+  requires a full calendar month in PostgreSQL
+  prevents duplicate customer emails even when model validation is bypassed
+  rejects zero quantities without model validation
+  allows only one issuance journal for an invoice even under a different effect key
+  enforces exact invoice line multiplication
+  allows overlapping subscriptions for different metrics
+  rejects overlapping customer and metric subscriptions in PostgreSQL
+  prevents invoices from referencing another customer subscription
+  prevents usage from referencing another customer subscription
+
+Asynchronous Stripe collection API
+  exposes event processing metadata without disclosing the raw payment payload
+  keeps collection intent durable when the queue is unavailable
+  fails closed for missing or live-mode keys before persisting a collection
+  persists and queues one request while exposing its status without making a Stripe call
+
+LedgerlyBenchmark::Verify
+  checks fresh committed effects even when its observer has an older SQL cache
+
+LedgerlyBenchmark::Fixture
+  spreads 50,000 unique subscription periods over the documented customer cohorts
+  rejects identities outside the generated dataset
+
+Core resource API
+  returns a conflict for duplicate customer identity
+  creates, reads and lists metered plans
+  rejects invalid plan price 0
+  rejects a page size above the API limit
+  rejects invalid plan price "7"
+  creates a subscription using server-side price and lifecycle snapshots
+  creates and reads a normalized customer
+  paginates customers in deterministic ID order
+  rejects invalid plan price 1.5
+  cancels subscriptions safely on repeat requests
+  rejects malformed root shapes and invalid customer attributes
+  requires authentication before creating resources
+  exposes overlap conflicts and scoped reference validation
+  returns JSON when a referenced resource does not exist
+  rejects invalid plan price true
+
+Invoices and balance API
+  paginates customer invoices with an ID tiebreaker
+  rejects new late usage after real issuance while preserving original replay bodies
+  issues, replays and reads an auditable invoice
+  returns an empty balance for customers without postings
+  keeps invoice lists scoped to their customer
+  uses ledger postings rather than invoice status to calculate the balance
+  reports separate ledger-derived receivables in each currency
+
+ApiExceptions
+  preserves a known HTTP status outside controller handlers
+  hides internal failure details in its JSON fallback
+
+StripeIntegration::ProcessEvent
+  processes a refund before payment/failure notifications and never regresses a settled invoice
+  ignores unsupported event types without constructing an API client
+  records a payment once across duplicate deliveries and distinct event IDs
+  keeps a fully refunded invoice settled when a later snapshot omits its refunds
+  rejects cumulative over-refunds before persisting any payment/refund effect
+  keeps a refund notification retryable until its canonical refund settles
+  recognizes partial refunds without duplicating previous refunds
+  sends a failed unpaid invoice to payment_failed without fabricating a payment
+  leaves unknown mappings recoverable and supports an operation-backed mapping race
+  caps cumulative refunds against previously posted effects even if a provider snapshot is incomplete
+  rolls back all financial effects if marking the event processed fails
+  rejects a live or mismatched canonical resource even when the event says test mode
+
+Health endpoints
+  reports Redis failure and closes the connection
+  serves public JSON liveness without API authentication
+  reports database failure without exposing connection details
+  checks the real database and Redis connections
+
+StripeIntegration::Gateway
+  encodes an attached invoice item amount using the current SDK contract
+  sends the pinned API version, persisted payload and idempotency key through the actual SDK
+  keeps clients separate across threads and replaces the slot when credentials change
+  still validates configuration before using a previously cached client
+  reuses the SDK client across jobs on one thread instead of accumulating transport pools
+  classifies SDK transport failures as retryable without leaking provider error bodies
+  paginates beyond the first refund page
+
+Billing::ReadCache
+  returns the computed value even when writing the cache fails
+  invalidates committed invoice/ledger changes even with an old customer object
+  bypasses cached values inside a write transaction and preserves old reads after rollback
+  does not fill a new version from an old Active Record query-cache snapshot
+  does not store oversized payloads or uncached page requests
+  reuses a bounded, expiring serialized balance
+  falls back to the database when Redis reads fail and temporarily avoids repeated connection attempts
+  recovers from malformed cached JSON without using it as a balance
+  keeps a late cache fill from poisoning the version committed by a concurrent writer
+
+StripeIntegration::CollectInvoice
+  persists one collection intent and hands one controlled invoice to Stripe
+  recovers a lost customer creation response without another POST
+  recovers a lost finalization response by reading the same invoice
+  keeps pending invoice items out of the controlled invoice
+  stops rather than recreating an unknown operation after its safe replay window
+  recovers a lost invoice creation response without another POST
+  rejects amounts outside the deliberate application collection range
+  recovers a lost item creation response without another POST
+  does not reset the original operation window during manual replay
+  cannot mutate a persisted request payload or first-attempt timestamp
+
+Billing::GenerateInvoice
+  includes the month start and final microsecond but excludes its end
+  issues a month exactly when its final boundary is reached
+  requires an exact UTC month boundary
+  rejects a month outside the subscription active interval
+  rejects empty periods and leaves them open for late usage
+  rejects an open month
+  keeps contract and invoice pricing stable after plan changes
+  rolls back every effect when posting fails after allocation
+  returns the existing invoice without allocating or posting again
+  rejects monetary overflow before creating any financial rows
+  atomically creates an invoice, snapshot, allocation and balanced issuance journal
+
+StripeIntegration::ProcessEvent
+  stores one receipt and one outbox record under concurrent webhook deliveries
+  applies one payment and each partial refund once across distinct concurrent events
+  makes one remote collection and performs network work outside database transactions
+
+LedgerlyBenchmark::Metrics
+  reads actual event timing columns and protects observation endpoints with authentication
+
+Billing::Subscriptions
+  cancels a future subscription as an empty interval
+  defaults a new contract to the current time
+  snapshots plan pricing and normalizes an explicit start to UTC
+  turns overlap violations into a recoverable conflict
+  cancels at the current time and preserves that timestamp on replay
+  rejects invalid calendar timestamps
+
+LedgerlyBenchmark::Provider
+  returns matching full payment identities and both partial/full refund fixtures
+  resolves the nested current InvoicePayment filter and refuses any provider writes
+
+Versioned invoice reads
+  refreshes a cached header when a payment failure changes state without posting money
+  refreshes cached headers after payment/refund reconciliation and keeps equivalent cached responses
+
+PaginationParams
+  rejects invalid per_page "-1"
+  rejects invalid page ""
+  rejects a page size above the maximum
+  rejects invalid per_page "abc"
+  rejects invalid per_page {"page" => "1"}
+  rejects invalid page {"page" => "1"}
+  rejects invalid per_page "01"
+  rejects invalid page "01"
+  rejects invalid per_page " 1"
+  rejects invalid page "abc"
+  rejects invalid per_page "1.5"
+  defaults to page one with 25 results
+  calculates a bounded page offset
+  rejects invalid page " 1"
+  rejects invalid per_page ""
+  rejects invalid page "1.5"
+  rejects invalid per_page "0"
+  rejects invalid page "-1"
+  rejects invalid page "0"
+  rejects invalid per_page ["1"]
+  rejects invalid page ["1"]
+
+Finished in 3.88 seconds (files took 1.11 seconds to load)
+225 examples, 0 failures
+
+Randomized with seed 33336
+
+Coverage report generated for RSpec to coverage/index.html
+Line coverage: 1257 / 1289 (97.51%)
+Branch coverage: 234 / 275 (85.09%)
+Inspecting 151 files
+.......................................................................................................................................................
+
+151 files inspected, no offenses detected
+
+Tip: Based on detected gems, the following RuboCop extension libraries might be helpful:
+  * rubocop-rspec_rails (https://rubygems.org/gems/rubocop-rspec_rails)
+
+You can opt out of this message by adding the following to your config (see https://docs.rubocop.org/rubocop/plugins.html#plugin-suggestions for more options):
+  AllCops:
+    SuggestExtensions: false
+No errors! Great job.
+PASS: valid types accepted; wrong result records, webhook records and scalar use rejected
+Checking for out-of-date RBIs...
+
+Nothing to do, all RBIs are up-to-date.
+Loading DSL extension classes... Done
+Loading Rails application... Done
+Loading DSL compiler classes... Done
+Checking for out-of-date RBIs...
+
+Skipping stale RBI removal because `--only` is set.
+
+Nothing to do, all RBIs are up-to-date.
+Hold on, I am eager loading the application.
+All is good!

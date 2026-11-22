@@ -1,0 +1,86 @@
+{
+  "peak_pending": 88,
+  "highest_points": [
+    {
+      "at": "2026-11-22T20:39:49.840616Z",
+      "pending": 88
+    },
+    {
+      "at": "2026-11-22T20:39:49.864328Z",
+      "pending": 88
+    },
+    {
+      "at": "2026-11-22T20:39:49.834974Z",
+      "pending": 87
+    },
+    {
+      "at": "2026-11-22T20:39:49.842081Z",
+      "pending": 87
+    },
+    {
+      "at": "2026-11-22T20:39:49.845488Z",
+      "pending": 87
+    },
+    {
+      "at": "2026-11-22T20:39:49.851070Z",
+      "pending": 87
+    },
+    {
+      "at": "2026-11-22T20:39:49.861821Z",
+      "pending": 87
+    },
+    {
+      "at": "2026-11-22T20:39:49.870855Z",
+      "pending": 87
+    },
+    {
+      "at": "2026-11-22T20:39:49.875477Z",
+      "pending": 87
+    },
+    {
+      "at": "2026-11-22T20:39:49.833739Z",
+      "pending": 86
+    },
+    {
+      "at": "2026-11-22T20:39:49.842286Z",
+      "pending": 86
+    },
+    {
+      "at": "2026-11-22T20:39:49.843801Z",
+      "pending": 86
+    },
+    {
+      "at": "2026-11-22T20:39:49.845754Z",
+      "pending": 86
+    },
+    {
+      "at": "2026-11-22T20:39:49.850250Z",
+      "pending": 86
+    },
+    {
+      "at": "2026-11-22T20:39:49.855039Z",
+      "pending": 86
+    },
+    {
+      "at": "2026-11-22T20:39:49.871262Z",
+      "pending": 86
+    },
+    {
+      "at": "2026-11-22T20:39:49.877199Z",
+      "pending": 86
+    },
+    {
+      "at": "2026-11-22T20:39:49.831932Z",
+      "pending": 85
+    },
+    {
+      "at": "2026-11-22T20:39:49.842497Z",
+      "pending": 85
+    },
+    {
+      "at": "2026-11-22T20:39:49.847529Z",
+      "pending": 85
+    }
+  ],
+  "scope": "All accepted timed event lifetimes, including drain; timestamp estimate, not commit order. Receipt timestamps precede receipt commit; processed timestamps precede processing commit."
+}

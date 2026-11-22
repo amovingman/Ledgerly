@@ -1,0 +1,29 @@
+{
+  "database_time": "2026-11-22T20:27:45.472994+00:00",
+  "total": 37800,
+  "processed": 37800,
+  "ignored": 0,
+  "received": 0,
+  "dead": 0,
+  "review": 0,
+  "retried_events": 0,
+  "max_attempts": 1,
+  "receipt_to_attempt_ms": [
+    3.35,
+    103.26784999999984,
+    400.8344000000003
+  ],
+  "completion_ms": [
+    23.819499999999998,
+    174.13784999999896,
+    466.7514300000001
+  ],
+  "max_event_id": 134198,
+  "queues": {
+    "webhooks": 0
+  },
+  "oldest_webhook_queue_latency_seconds": 0.0,
+  "retry_size": 0,
+  "scheduled_size": 0,
+  "dead_size": 0
+}

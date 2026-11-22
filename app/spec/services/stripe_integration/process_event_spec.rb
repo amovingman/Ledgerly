@@ -35,6 +35,19 @@ RSpec.describe StripeIntegration::ProcessEvent do
     expect([StripeRefund.count, StripeRefund.sum(:amount), invoice.reload.status]).to eq([1, 20, 'paid'])
   end
 
+  it 'keeps a fully refunded invoice settled when a later snapshot omits its refunds' do
+    invoice, gateway = paid_stripe_invoice(refunds: [20, 50])
+    process_stripe(receive_stripe(stripe_payload(object_id: invoice.stripe_invoice_id)), gateway)
+    gateway.objects['refund'].clear
+
+    event = receive_stripe(stripe_payload(object_id: invoice.stripe_invoice_id))
+    process_stripe(event, gateway)
+
+    expect(invoice.reload.status).to eq('refunded')
+    expect(event.reload.status).to eq('processed')
+    expect([StripePayment.count, StripeRefund.count, LedgerTransaction.count]).to eq([1, 2, 4])
+  end
+
   it 'keeps a refund notification retryable until its canonical refund settles' do
     invoice, gateway = paid_stripe_invoice(refunds: [20])
     refund = gateway.objects['refund'].values.first

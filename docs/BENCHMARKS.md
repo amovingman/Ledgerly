@@ -2,6 +2,10 @@
 
 Follow [Milestone 3 in ROADMAP.md](../ROADMAP.md#milestone-3--baseline-load-and-optimization-week-3). The baseline was recorded before optional indexes, query changes, or Redis read caching. The [optimized comparison](benchmarks/2026-11-21-optimized-v1/README.md) preserves matched after-runs, profiling, failures and full-dataset correctness replay. [The first baseline report](benchmarks/2026-11-21-baseline-v1/README.md) contains both read passes, a successful conservative-rate probe, and the overloaded higher-rate trial. Results are local measurements, not production capacity guarantees.
 
+The later [2026-11-22 sustained follow-up](benchmarks/2026-11-22-sustained-v1/README.md) profiles the published typed release, runs five-/seven-minute trials, records the two-vCPU failure and a four-vCPU throughput result, and retains the stricter queue-guard miss. It uses a separately prepared fresh-payment variant; its measurements do not replace the original mixed-fixture results below.
+
+The subsequent [queue-spike follow-up](benchmarks/2026-11-22-queue-v2/README.md) retains all process/thread experiments and adds denser pending reconstruction. A clean three-worker seven-minute run passes both <100 peak guards and every >=5,000/min window; resource increases and PG quota-period tuning are explicit.
+
 [Measured source snapshots](benchmarks/source-snapshots/README.md) include a hash-verified baseline application archive and the published Milestone 3 optimized revision, so reproduction does not depend on an unpublished intermediate commit.
 
 ## Isolated environment

@@ -1,0 +1,161 @@
+{
+  "payments": 200,
+  "stages": {
+    "receipt": {
+      "calls": 200,
+      "wall_seconds": 0.3804493890129379,
+      "cpu_seconds": 0.2762565089999922,
+      "sql": 800
+    },
+    "StripeEvent#valid?": {
+      "calls": 600,
+      "wall_seconds": 0.0174030058333301,
+      "cpu_seconds": 0.017039875999996568,
+      "sql": 0
+    },
+    "OutboxRecord#valid?": {
+      "calls": 200,
+      "wall_seconds": 0.0035949889570474625,
+      "cpu_seconds": 0.0034799600000039455,
+      "sql": 0
+    },
+    "StripeIntegration::ProcessEvent#call": {
+      "calls": 200,
+      "wall_seconds": 5.312895564995415,
+      "cpu_seconds": 1.8686187290000007,
+      "sql": 5600
+    },
+    "StripeIntegration::Gateway#retrieve": {
+      "calls": 600,
+      "wall_seconds": 1.9473819969643955,
+      "cpu_seconds": 0.26388823200000133,
+      "sql": 0
+    },
+    "StripeIntegration::ResolveSnapshot#call": {
+      "calls": 200,
+      "wall_seconds": 3.4304343960247934,
+      "cpu_seconds": 0.6162100510000015,
+      "sql": 400
+    },
+    "StripeIntegration::Gateway#list": {
+      "calls": 400,
+      "wall_seconds": 1.3024523840285838,
+      "cpu_seconds": 0.21879177999999722,
+      "sql": 0
+    },
+    "StripeIntegration::PostEffects#call": {
+      "calls": 200,
+      "wall_seconds": 1.6223847559740534,
+      "cpu_seconds": 1.0849420600000006,
+      "sql": 4000
+    },
+    "Invoice#valid?": {
+      "calls": 400,
+      "wall_seconds": 0.044334013960906304,
+      "cpu_seconds": 0.04230191800000327,
+      "sql": 0
+    },
+    "StripeIntegration::PostEffects#post_payment": {
+      "calls": 200,
+      "wall_seconds": 0.8152258250120212,
+      "cpu_seconds": 0.5321074619999986,
+      "sql": 1800
+    },
+    "LedgerEntry#valid?": {
+      "calls": 400,
+      "wall_seconds": 0.020070282022061292,
+      "cpu_seconds": 0.01988604200000288,
+      "sql": 0
+    },
+    "LedgerTransaction#valid?": {
+      "calls": 200,
+      "wall_seconds": 0.04080734696617583,
+      "cpu_seconds": 0.03931166899999483,
+      "sql": 0
+    },
+    "StripeIntegration::PostEffects#post_journal": {
+      "calls": 200,
+      "wall_seconds": 0.47471101197152166,
+      "cpu_seconds": 0.3107674680000052,
+      "sql": 800
+    },
+    "StripePayment#valid?": {
+      "calls": 200,
+      "wall_seconds": 0.07403241897554835,
+      "cpu_seconds": 0.06444936500000287,
+      "sql": 200
+    },
+    "StripeIntegration::PostEffects#update_status": {
+      "calls": 200,
+      "wall_seconds": 0.32320671902562026,
+      "cpu_seconds": 0.24401788199999963,
+      "sql": 1000
+    }
+  },
+  "gc_seconds": 0.18009061700000606,
+  "initial_gc": {
+    "count": 24,
+    "time": 223,
+    "marking_time": 171,
+    "sweeping_time": 52,
+    "heap_allocated_pages": 575,
+    "heap_empty_pages": 0,
+    "heap_allocatable_slots": 0,
+    "heap_available_slots": 635591,
+    "heap_live_slots": 526549,
+    "heap_free_slots": 109042,
+    "heap_final_slots": 0,
+    "heap_marked_slots": 469162,
+    "heap_eden_pages": 575,
+    "total_allocated_pages": 575,
+    "total_freed_pages": 0,
+    "total_allocated_objects": 1523426,
+    "total_freed_objects": 996877,
+    "malloc_increase_bytes": 217968,
+    "malloc_increase_bytes_limit": 16777216,
+    "minor_gc_count": 18,
+    "major_gc_count": 6,
+    "compact_count": 0,
+    "read_barrier_faults": 0,
+    "total_moved_objects": 0,
+    "remembered_wb_unprotected_objects": 0,
+    "remembered_wb_unprotected_objects_limit": 3009,
+    "old_objects": 468648,
+    "old_objects_limit": 601846,
+    "oldmalloc_increase_bytes": 454280,
+    "oldmalloc_increase_bytes_limit": 24159190
+  },
+  "final_gc": {
+    "count": 31,
+    "time": 445,
+    "marking_time": 277,
+    "sweeping_time": 167,
+    "heap_allocated_pages": 767,
+    "heap_empty_pages": 0,
+    "heap_allocatable_slots": 0,
+    "heap_available_slots": 811546,
+    "heap_live_slots": 729170,
+    "heap_free_slots": 82376,
+    "heap_final_slots": 0,
+    "heap_marked_slots": 491111,
+    "heap_eden_pages": 767,
+    "total_allocated_pages": 767,
+    "total_freed_pages": 0,
+    "total_allocated_objects": 3349072,
+    "total_freed_objects": 2619902,
+    "malloc_increase_bytes": 16960,
+    "malloc_increase_bytes_limit": 16777216,
+    "minor_gc_count": 24,
+    "major_gc_count": 7,
+    "compact_count": 0,
+    "read_barrier_faults": 0,
+    "total_moved_objects": 0,
+    "remembered_wb_unprotected_objects": 0,
+    "remembered_wb_unprotected_objects_limit": 4675,
+    "old_objects": 490245,
+    "old_objects_limit": 935090,
+    "oldmalloc_increase_bytes": 2478200,
+    "oldmalloc_increase_bytes_limit": 23685480
+  },
+  "note": "Sequential real SDK/local HTTP; inclusive nested timings; diagnostic only."
+}

@@ -1,0 +1,145 @@
+{
+  "captured_at": "2026-11-22T20:22:45.319728+00:00",
+  "vm": {
+    "cpus": "4",
+    "memory_bytes": "4094005248",
+    "architecture": "aarch64"
+  },
+  "containers": [
+    {
+      "name": "/ledgerly-benchmark-api-1",
+      "image_name": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "limits": {
+        "NanoCpus": 1000000000,
+        "Memory": 536870912,
+        "MemorySwap": 1073741824,
+        "Ulimits": null
+      },
+      "rails_threads": "8",
+      "spike_profile": "1",
+      "command": [
+        "bin/rails",
+        "server",
+        "-b",
+        "0.0.0.0"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-sidekiq-1",
+      "image_name": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "limits": {
+        "NanoCpus": 1000000000,
+        "Memory": 536870912,
+        "MemorySwap": 1073741824,
+        "Ulimits": null
+      },
+      "rails_threads": "4",
+      "spike_profile": "1",
+      "command": [
+        "bundle",
+        "exec",
+        "sidekiq",
+        "-C",
+        "config/sidekiq.yml"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-sidekiq-2",
+      "image_name": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "limits": {
+        "NanoCpus": 1000000000,
+        "Memory": 536870912,
+        "MemorySwap": 1073741824,
+        "Ulimits": null
+      },
+      "rails_threads": "4",
+      "spike_profile": "1",
+      "command": [
+        "bundle",
+        "exec",
+        "sidekiq",
+        "-C",
+        "config/sidekiq.yml"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-benchmark-postgres-1",
+      "image_name": "postgres:17.12-bookworm",
+      "image_id": "sha256:837bed18782820fe967067cb5328b02b0d9992c1be9a37ee0c9c492cfc03af3b",
+      "limits": {
+        "NanoCpus": 1000000000,
+        "Memory": 805306368,
+        "MemorySwap": 1610612736,
+        "Ulimits": null
+      },
+      "rails_threads": null,
+      "spike_profile": null,
+      "command": [
+        "postgres"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-benchmark-provider-1",
+      "image_name": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "limits": {
+        "NanoCpus": 500000000,
+        "Memory": 134217728,
+        "MemorySwap": 268435456,
+        "Ulimits": null
+      },
+      "rails_threads": "8",
+      "spike_profile": "1",
+      "command": [
+        "bundle",
+        "exec",
+        "puma",
+        "-t",
+        "8:8",
+        "-b",
+        "tcp://0.0.0.0:4242",
+        "script/benchmarks/provider.ru"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-recovery-1",
+      "image_name": "ledgerly-queue:profile",
+      "image_id": "sha256:e53d8f350bdd37b50a789702ecde80cad92de2f06285c26a2d037682631492f1",
+      "limits": {
+        "NanoCpus": 500000000,
+        "Memory": 268435456,
+        "MemorySwap": 536870912,
+        "Ulimits": null
+      },
+      "rails_threads": "8",
+      "spike_profile": "1",
+      "command": [
+        "bin/rails",
+        "runner",
+        "script/recovery_loop.rb"
+      ]
+    },
+    {
+      "name": "/ledgerly-benchmark-benchmark-redis-1",
+      "image_name": "redis:8.2.3-bookworm",
+      "image_id": "sha256:0908d9af26bf9b985e984a40a5eb82eed229b07a3317eee6843832c3cc3a9619",
+      "limits": {
+        "NanoCpus": 500000000,
+        "Memory": 134217728,
+        "MemorySwap": 268435456,
+        "Ulimits": null
+      },
+      "rails_threads": null,
+      "spike_profile": null,
+      "command": [
+        "redis-server",
+        "--appendonly",
+        "yes"
+      ]
+    }
+  ],
+  "changes": "Worker processes 1\u21922, threads/process 8\u21924; total worker threads stay 8. Aggregate worker caps 1\u21922 CPU, 512MiB\u21921GiB. VM/API/provider/PG caps unchanged."
+}

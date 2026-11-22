@@ -1,0 +1,202 @@
+diff --git a/app/app/services/stripe_integration/post_effects.rb b/app/app/services/stripe_integration/post_effects.rb
+index 1c73d80..1791d8e 100644
+--- a/app/app/services/stripe_integration/post_effects.rb
++++ b/app/app/services/stripe_integration/post_effects.rb
+@@ -18,22 +18,23 @@ module StripeIntegration
+         return if @event.terminal?
+ 
+         @invoice.reload
+-        @invoice.update!(stripe_invoice_id: @snapshot[:remote].fetch('id'))
+-        apply_payment_snapshot
+-        update_status
++        remote_id = @snapshot[:remote].fetch('id')
++        @invoice.update!(stripe_invoice_id: remote_id) unless @invoice.stripe_invoice_id == remote_id
++        update_status(apply_payment_snapshot)
+         @event.update!(status: 'processed', processed_at: Time.current, last_error: nil)
+       end
+     end
+ 
+     private
+ 
+-    sig { void }
++    sig { returns(T.nilable(StripePayment)) }
+     def apply_payment_snapshot
+       snapshot = @snapshot[:payment]
+       return unless snapshot
+ 
+       payment = post_payment(snapshot)
+       snapshot[:refunds].each { |refund| post_refund(payment, refund) }
++      payment
+     end
+ 
+     sig { params(snapshot: StripeIntegration::Types::Payment).returns(T::Hash[Symbol, T.untyped]) }
+@@ -98,14 +99,16 @@ module StripeIntegration
+                                                             LedgerEntry.new(account: credit_account, credit: amount)])
+     end
+ 
+-    sig { void }
+-    def update_status
+-      payment = @invoice.reload.stripe_payment
++    sig { params(payment: T.nilable(StripePayment)).void }
++    def update_status(payment)
++      # Reuse the verified payment posted under this customer lock. Without a
++      # payment snapshot, consult the local effect before changing its state.
++      payment ||= @invoice.stripe_payment
+       if payment
+         status = payment.stripe_refunds.sum(:amount) == payment.amount ? 'refunded' : 'paid'
+-        @invoice.update!(status: status)
++        @invoice.update!(status: status) unless @invoice.status == status
+       elsif @event.event_type == 'invoice.payment_failed'
+-        @invoice.update!(status: 'payment_failed')
++        @invoice.update!(status: 'payment_failed') unless @invoice.status == 'payment_failed'
+       end
+     end
+   end
+diff --git a/app/bin/ci b/app/bin/ci
+index 0cf9bfc..b0bbd78 100755
+--- a/app/bin/ci
++++ b/app/bin/ci
+@@ -3,6 +3,7 @@ require 'fileutils'
+ 
+ FileUtils.chdir File.expand_path('..', __dir__) do
+   abort 'Refusing to run checks from a production environment' if ENV['RAILS_ENV'] == 'production'
++  FileUtils.mkdir_p('tmp')
+   ENV['RAILS_ENV'] = 'test'
+   system('bin/rails', 'db:prepare', exception: true)
+   system('bundle', 'exec', 'rspec', exception: true)
+diff --git a/app/config/initializers/benchmark.rb b/app/config/initializers/benchmark.rb
+index 2cf50a3..16759bb 100644
+--- a/app/config/initializers/benchmark.rb
++++ b/app/config/initializers/benchmark.rb
+@@ -7,6 +7,11 @@ if Rails.env.benchmark?
+   # SDK API-base options do not inherit the global Stripe.api_base setting.
+   # Override only this isolated environment; preserve the actual SDK and HTTP path.
+   Rails.application.config.after_initialize do
++    if ENV['BENCHMARK_PROFILE_SPIKES'] == '1'
++      require Rails.root.join('lib/ledgerly_benchmark/queue_profile')
++      LedgerlyBenchmark::QueueProfile.install
++    end
++
+     StripeIntegration::Gateway.prepend(Module.new do
+       private
+ 
+diff --git a/app/lib/ledgerly_benchmark/metrics.rb b/app/lib/ledgerly_benchmark/metrics.rb
+index 91c49c9..6991a53 100644
+--- a/app/lib/ledgerly_benchmark/metrics.rb
++++ b/app/lib/ledgerly_benchmark/metrics.rb
+@@ -60,7 +60,8 @@ module LedgerlyBenchmark
+ 
+       connection = ActiveRecord::Base.connection
+       processing = JSON.parse(connection.select_value(<<~SQL.squish))
+-        SELECT json_build_object('total',count(*),'processed',count(*) FILTER (WHERE status='processed'),
++        SELECT json_build_object('database_time',clock_timestamp(),'total',count(*),
++          'processed',count(*) FILTER (WHERE status='processed'),
+           'ignored',count(*) FILTER (WHERE status='ignored'),'received',count(*) FILTER (WHERE status='received'),
+           'dead',count(*) FILTER (WHERE status='dead'),'review',count(*) FILTER (WHERE status='review'),
+           'retried_events',count(*) FILTER (WHERE attempts>1),'max_attempts',COALESCE(max(attempts),0),
+diff --git a/app/spec/services/stripe_integration/process_event_spec.rb b/app/spec/services/stripe_integration/process_event_spec.rb
+index 0b76bb7..2d75ff7 100644
+--- a/app/spec/services/stripe_integration/process_event_spec.rb
++++ b/app/spec/services/stripe_integration/process_event_spec.rb
+@@ -35,6 +35,19 @@ RSpec.describe StripeIntegration::ProcessEvent do
+     expect([StripeRefund.count, StripeRefund.sum(:amount), invoice.reload.status]).to eq([1, 20, 'paid'])
+   end
+ 
++  it 'keeps a fully refunded invoice settled when a later snapshot omits its refunds' do
++    invoice, gateway = paid_stripe_invoice(refunds: [20, 50])
++    process_stripe(receive_stripe(stripe_payload(object_id: invoice.stripe_invoice_id)), gateway)
++    gateway.objects['refund'].clear
++
++    event = receive_stripe(stripe_payload(object_id: invoice.stripe_invoice_id))
++    process_stripe(event, gateway)
++
++    expect(invoice.reload.status).to eq('refunded')
++    expect(event.reload.status).to eq('processed')
++    expect([StripePayment.count, StripeRefund.count, LedgerTransaction.count]).to eq([1, 2, 4])
++  end
++
+   it 'keeps a refund notification retryable until its canonical refund settles' do
+     invoice, gateway = paid_stripe_invoice(refunds: [20])
+     refund = gateway.objects['refund'].values.first
+diff --git a/compose.benchmark.yaml b/compose.benchmark.yaml
+index 76b5150..67917f0 100644
+--- a/compose.benchmark.yaml
++++ b/compose.benchmark.yaml
+@@ -4,10 +4,11 @@ x-benchmark: &benchmark
+   image: ${BENCHMARK_IMAGE:-ledgerly-benchmark:baseline}
+   pull_policy: never
+   init: true
+-  environment:
++  environment: &benchmark-environment
+     RAILS_ENV: benchmark
+-    RAILS_MAX_THREADS: "5"
++    RAILS_MAX_THREADS: ${BENCHMARK_THREADS:-5}
+     READ_CACHE_ENABLED: ${READ_CACHE_ENABLED:-0}
++    BENCHMARK_PROFILE_SPIKES: ${BENCHMARK_PROFILE_SPIKES:-0}
+     SECRET_KEY_BASE: ledgerly-benchmark-local-only-secret-key-base-not-a-production-secret
+     API_KEY: ledgerly-benchmark-local
+     STRIPE_SECRET_KEY: sk_test_benchmark
+@@ -30,7 +31,8 @@ services:
+     volumes: [benchmark_postgres:/var/lib/postgresql/data]
+     networks: [isolated]
+     mem_limit: 768m
+-    cpus: 1.0
++    cpu_period: ${BENCHMARK_DB_CPU_PERIOD:-100000}
++    cpu_quota: ${BENCHMARK_DB_CPU_QUOTA:-100000}
+     healthcheck:
+       test: [CMD-SHELL, 'pg_isready -U ledgerly_benchmark -d ledgerly_benchmark']
+       interval: 3s
+@@ -80,6 +82,9 @@ services:
+ 
+   sidekiq:
+     <<: *benchmark
++    environment:
++      <<: *benchmark-environment
++      RAILS_MAX_THREADS: ${BENCHMARK_WORKER_THREADS:-${BENCHMARK_THREADS:-5}}
+     command: [bundle, exec, sidekiq, -C, config/sidekiq.yml]
+     depends_on:
+       seed: { condition: service_completed_successfully }
+diff --git a/scripts/benchmark.py b/scripts/benchmark.py
+index 03acb0d..ff562ac 100755
+--- a/scripts/benchmark.py
++++ b/scripts/benchmark.py
+@@ -69,16 +69,19 @@ def event(identity, invoice, kind='invoice.paid'):
+                       separators=(',', ':')).encode()
+ 
+ 
+-def run_arrivals(rate, duration, work, raw_path):
++def run_arrivals(rate, duration, work, raw_path, workers=32, max_inflight=64, on_start=None):
+     results = []
+     lock = threading.Lock()
+-    capacity = threading.BoundedSemaphore(64)
++    capacity = threading.BoundedSemaphore(max_inflight)
+     start = time.monotonic() + .1
++    started_at_unix = time.time() + .1
++    if on_start:
++        on_start({'offering_started_at_unix': started_at_unix})
+     dropped = 0
+ 
+     def execute(index, scheduled):
+         actual = time.monotonic()
+-        row = {'index': index, 'start_delay_ms': (actual - scheduled) * 1000}
++        row = {'index': index, 'start_delay_ms': (actual - scheduled) * 1000, 'started_seconds': actual - start}
+         try:
+             method, path, payload, signed = work(index)
+             code, body, headers, size = request(method, path, payload, signed)
+@@ -100,7 +103,7 @@ def run_arrivals(rate, duration, work, raw_path):
+                 results.append(row)
+             capacity.release()
+ 
+-    with concurrent.futures.ThreadPoolExecutor(max_workers=32) as pool:
++    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
+         for index in range(int(rate * duration)):
+             scheduled = start + index / rate
+             delay = scheduled - time.monotonic()
+@@ -113,6 +116,7 @@ def run_arrivals(rate, duration, work, raw_path):
+     elapsed = time.monotonic() - start
+     raw_path.write_text(''.join(json.dumps(row, sort_keys=True) + '\n' for row in sorted(results, key=lambda r: r['index'])))
+     return {'offered_requests': int(rate * duration), 'completed_requests': len(results), 'dropped_arrivals': dropped,
++            'offering_started_at_unix': started_at_unix, 'workers': workers, 'max_inflight': max_inflight,
+             'failures': sum(not row['valid'] for row in results), 'arrival_rate_per_second': rate,
+             'offering_duration_seconds': duration, 'including_tail_seconds': elapsed,
+             'http_latency_ms': distribution([row['http_ms'] for row in results]),

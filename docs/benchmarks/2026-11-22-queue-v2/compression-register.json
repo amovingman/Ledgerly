@@ -1,0 +1,80 @@
+{
+  "after-worker1-slow.ndjson.gz": {
+    "raw_sha256": "59ff2a70d45dd88842aa14edb6e4c993e08a40c331a0a7ef51cdab5f1a0ed2f4",
+    "raw_bytes": 157336,
+    "rows": 394,
+    "gzip_sha256": "5fea73e72764450968c06e2e72b5373ce6119842ab969d91666f907aa0e8b6b0"
+  },
+  "after-worker2-slow.ndjson.gz": {
+    "raw_sha256": "86c1d981493c41f8368e8c1761bea84097635758ae7e9f39c581c5f6bdb6c47b",
+    "raw_bytes": 147654,
+    "rows": 370,
+    "gzip_sha256": "20220cc024fa5f456224b223f8179a9f29d4128c64dd85d4ca340c2cfcac9d27"
+  },
+  "before-slow-jobs.ndjson.gz": {
+    "raw_sha256": "ebaa6d97c2c5967162497cc8823f742c465e3c487391472ed19a4d42cbc3e17c",
+    "raw_bytes": 661885,
+    "rows": 1660,
+    "gzip_sha256": "19d31aa5f527d6e3410c390a2af085002f7b41deb97cc8814d8ace0e81711fd9"
+  },
+  "one-worker/webhooks.ndjson.gz": {
+    "raw_sha256": "0de747f1c6d5a88067addfa75dd9c8802fefa07ecfd63e5db238fd0f83bdb2f6",
+    "raw_bytes": 13452990,
+    "rows": 42000,
+    "gzip_sha256": "0584444f40adf26197b2bc6d83a349c55394c65907273b63d39cb9803d79e433"
+  },
+  "short-db-period/webhooks.ndjson.gz": {
+    "raw_sha256": "c7d5ff56484360cc7748046b8416f960c7f1060802b331937d1744aeef571f77",
+    "raw_bytes": 13403659,
+    "rows": 42000,
+    "gzip_sha256": "8e0685de51a1eb1f0b1c361a381cfa5f269803c6e6a728a89a3984cd4e4e48f7"
+  },
+  "short-period-worker1-slow.ndjson.gz": {
+    "raw_sha256": "2e016bdeea5e2021a211ac68d8f60f31266384bbb7c341d953330e6e7da6d2e2",
+    "raw_bytes": 257045,
+    "rows": 643,
+    "gzip_sha256": "56a328c200a237ce91763370661fc792474c5c5b878bca0e25d06169555142cb"
+  },
+  "short-period-worker2-slow.ndjson.gz": {
+    "raw_sha256": "77d377d5a46d36bed9b5b28386464c44cc3a94cd8482998ef46328c3cbe7ed99",
+    "raw_bytes": 226778,
+    "rows": 568,
+    "gzip_sha256": "8c9ff2ab027a2925323127da4fc7923dda5026b01861cf341ce1cac5002d0378"
+  },
+  "six-worker1-slow.ndjson.gz": {
+    "raw_sha256": "73672e774b795e332081f89a26608da5102ad07e0bea1c808417c258d16af1c0",
+    "raw_bytes": 1018967,
+    "rows": 2551,
+    "gzip_sha256": "5df4c0e02f265b995e7a7f2b0964fe8b8890fe0fc6bc9681252857a1d185a855"
+  },
+  "six-worker2-slow.ndjson.gz": {
+    "raw_sha256": "32a56f54f9afe63e41e79fc12e035c3881ccdfbb9aff80d1cdb21f0dd7265e46",
+    "raw_bytes": 1051243,
+    "rows": 2629,
+    "gzip_sha256": "2c91eae60f4637fbd6e6e06b241027bc8700cda4041b2aa464e0a69f5e95359f"
+  },
+  "three-workers-clean/webhooks.ndjson.gz": {
+    "raw_sha256": "6812b79eafae60a04f02762019ab49b83f327378de0338577d5b40fcf9a5b31c",
+    "raw_bytes": 13459064,
+    "rows": 42000,
+    "gzip_sha256": "082cf1cc16684f35d4cba796eeea594961646a92d59b501e65bedb330b266f22"
+  },
+  "two-workers-clean-confirmation/webhooks.ndjson.gz": {
+    "raw_sha256": "e725f335519697536a364a52ce2e9c20c4a16a59cf4ed710cfa4e91d03ae3d30",
+    "raw_bytes": 13431935,
+    "rows": 42000,
+    "gzip_sha256": "4978d2ba22e65008caffed894304f62013a486158d7f63f4446930182609d57a"
+  },
+  "two-workers-four-threads/webhooks.ndjson.gz": {
+    "raw_sha256": "5eb5b1ddda141b87e54a40db5097056aec5d1abec7c1cc2d43b3f2483e59afec",
+    "raw_bytes": 13376204,
+    "rows": 42000,
+    "gzip_sha256": "275f69bad22fc60cf2a3602fca72c83493c3e042e2fcd3e279630bfd3299d4cf"
+  },
+  "two-workers-six-threads/webhooks.ndjson.gz": {
+    "raw_sha256": "33c0e85ccf6dc5a4f73c15cab650b6367213a73b99808ddf607d5053eae8226b",
+    "raw_bytes": 13440039,
+    "rows": 42000,
+    "gzip_sha256": "7e2937800ce7963bf7fa94b603c5eee0e652ff0c0fd4f307156b5a3c42631248"
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "passed": false,
+  "arguments": {
+    "rate": 100.0,
+    "duration": 300,
+    "workers": 64,
+    "max_inflight": 256,
+    "run_id": "optimized_v2",
+    "image": "ledgerly-throughput:optimized",
+    "output": ".tooling/throughput/optimized"
+  },
+  "provider": "Read-only local HTTP stub, unchanged 2ms minimum per SDK call; no external Stripe",
+  "clock_calibration": {
+    "samples": [
+      {
+        "rtt_seconds": 0.010322093963623047,
+        "offset_seconds": 0.13985610008239746,
+        "offset_min": 0.13469505310058594,
+        "offset_max": 0.14501714706420898
+      },
+      {
+        "rtt_seconds": 0.004575014114379883,
+        "offset_seconds": 0.13791584968566895,
+        "offset_min": 0.13562822341918945,
+        "offset_max": 0.14020323753356934
+      },
+      {
+        "rtt_seconds": 0.002410888671875,
+        "offset_seconds": 0.1382005214691162,
+        "offset_min": 0.1369950771331787,
+        "offset_max": 0.1394059658050537
+      },
+      {
+        "rtt_seconds": 0.0016889572143554688,
+        "offset_seconds": 0.13795852661132812,
+        "offset_min": 0.1371140480041504,
+        "offset_max": 0.13880300521850586
+      },
+      {
+        "rtt_seconds": 0.0018229484558105469,
+        "offset_seconds": 0.13802242279052734,
+        "offset_min": 0.13711094856262207,
+        "offset_max": 0.13893389701843262
+      }
+    ],
+    "selected": {
+      "rtt_seconds": 0.0016889572143554688,
+      "offset_seconds": 0.13795852661132812,
+      "offset_min": 0.1371140480041504,
+      "offset_max": 0.13880300521850586
+    }
+  },
+  "http": {
+    "offered_requests": 30000,
+    "completed_requests": 30000,
+    "dropped_arrivals": 0,
+    "offering_started_at_unix": 1795375971.30252,
+    "workers": 64,
+    "max_inflight": 256,
+    "failures": 0,
+    "arrival_rate_per_second": 100.0,
+    "offering_duration_seconds": 300,
+    "including_tail_seconds": 300.027081625,
+    "http_latency_ms": {
+      "p50": 6.454833499986989,
+      "p95": 192.4740982499975,
+      "p99": 398.15681374999974,
+      "max": 1068.1174580000034
+    },
+    "scheduled_to_completion_ms": {
+      "p50": 8.090562500008502,
+      "p95": 194.58325660001918,
+      "p99": 576.2937378299814,
+      "max": 1228.9278749999967
+    },
+    "generator_start_delay_ms": {
+      "p50": 1.7286460000001114,
+      "p95": 2.4960482499905012,
+      "p99": 13.890668749975209,
+      "max": 581.3928339999848
+    },
+    "sql_queries_per_request": {
+      "p50": 7.0,
+      "p95": 7.0,
+      "p99": 7.0,
+      "max": 8
+    },
+    "sql_time_ms": {
+      "p50": 1.29,
+      "p95": 48.75225,
+      "p99": 107.31903999999903,
+      "max": 485.042
+    },
+    "cache_status_counts": {
+      "hit": 0,
+      "miss": 0,
+      "off": 30000
+    },
+    "duplicate_acknowledgments": 3000,
+    "response_hashes": []
+  },
+  "at_end_of_offering": {
+    "database_time": "2026-11-22T19:37:51.8296+00:00",
+    "total": 27000,
+    "processed": 27000,
+    "ignored": 0,
+    "received": 0,
+    "dead": 0,
+    "review": 0,
+    "retried_events": 0,
+    "max_attempts": 1,
+    "receipt_to_attempt_ms": [
+      11.2295,
+      1170.1851999999992,
+      2082.6927799999967
+    ],
+    "completion_ms": [
+      55.540499999999994,
+      1239.117,
+      2168.0221399999996
+    ],
+    "max_event_id": 140648,
+    "queues": {
+      "webhooks": 0
+    },
+    "oldest_webhook_queue_latency_seconds": 0.0,
+    "retry_size": 0,
+    "scheduled_size": 0,
+    "dead_size": 0
+  },
+  "after_drain": {
+    "database_time": "2026-11-22T19:37:51.893315+00:00",
+    "total": 27000,
+    "processed": 27000,
+    "ignored": 0,
+    "received": 0,
+    "dead": 0,
+    "review": 0,
+    "retried_events": 0,
+    "max_attempts": 1,
+    "receipt_to_attempt_ms": [
+      11.2295,
+      1170.1851999999992,
+      2082.6927799999967
+    ],
+    "completion_ms": [
+      55.540499999999994,
+      1239.117,
+      2168.0221399999996
+    ],
+    "max_event_id": 140648,
+    "queues": {
+      "webhooks": 0
+    },
+    "oldest_webhook_queue_latency_seconds": 0.0,
+    "retry_size": 0,
+    "scheduled_size": 0,
+    "dead_size": 0
+  },
+  "unique_accepted_events": 27000,
+  "completed_per_minute": {
+    "0": 5398,
+    "1": 5401,
+    "2": 5399,
+    "3": 5216,
+    "4": 5576
+  },
+  "minimum_complete_minute": 5216,
+  "processed_per_minute_during_offering": 5399.512574750893,
+  "observation_including_drain_seconds": 300.55470758399997,
+  "drain_error": null,
+  "observer_errors": [],
+  "queue_trend_events_per_second": 0.012740259466987957,
+  "bounded_queue": false,
+  "peak_received": 145,
+  "expected_new_payments": 24000,
+  "actual_new_payments": 24000,
+  "integrity_passed": true,
+  "before": {
+    "fixture_version": "v1",
+    "seed": 20261121,
+    "counts": {
+      "customers": 1000,
+      "plans": 80,
+      "subscriptions": 1460,
+      "invoices": 50000,
+      "invoice_line_items": 50000,
+      "usage_events": 150000
+    },
+    "violations": {
+      "invoice_totals": 0,
+      "usage_allocations": 0,
+      "journal_balance": 0,
+      "payment_identity": 0,
+      "refund_totals": 0,
+      "invoice_states": 0,
+      "issuance_identity": 0,
+      "refund_identity": 0
+    },
+    "financial_counts": {
+      "stripe_payments": 0,
+      "stripe_refunds": 0,
+      "ledger_transactions": 50000,
+      "ledger_entries": 100000,
+      "stripe_events": 0,
+      "outbox_records": 0
+    },
+    "invoice_statuses": {
+      "issued": 50000
+    },
+    "database_bytes": 178468531
+  },
+  "after_warmup": {
+    "fixture_version": "v1",
+    "seed": 20261121,
+    "counts": {
+      "customers": 1000,
+      "plans": 80,
+      "subscriptions": 1460,
+      "invoices": 50000,
+      "invoice_line_items": 50000,
+      "usage_events": 150000
+    },
+    "violations": {
+      "invoice_totals": 0,
+      "usage_allocations": 0,
+      "journal_balance": 0,
+      "payment_identity": 0,
+      "refund_totals": 0,
+      "invoice_states": 0,
+      "issuance_identity": 0,
+      "refund_identity": 0
+    },
+    "financial_counts": {
+      "stripe_payments": 100,
+      "stripe_refunds": 0,
+      "ledger_transactions": 50100,
+      "ledger_entries": 100200,
+      "stripe_events": 100,
+      "outbox_records": 100
+    },
+    "invoice_statuses": {
+      "paid": 100,
+      "issued": 49900
+    },
+    "database_bytes": 178468531
+  },
+  "after": {
+    "fixture_version": "v1",
+    "seed": 20261121,
+    "counts": {
+      "customers": 1000,
+      "plans": 80,
+      "subscriptions": 1460,
+      "invoices": 50000,
+      "invoice_line_items": 50000,
+      "usage_events": 150000
+    },
+    "violations": {
+      "invoice_totals": 0,
+      "usage_allocations": 0,
+      "journal_balance": 0,
+      "payment_identity": 0,
+      "refund_totals": 0,
+      "invoice_states": 0,
+      "issuance_identity": 0,
+      "refund_identity": 0
+    },
+    "financial_counts": {
+      "stripe_payments": 24100,
+      "stripe_refunds": 0,
+      "ledger_transactions": 74100,
+      "ledger_entries": 148200,
+      "stripe_events": 27100,
+      "outbox_records": 27100
+    },
+    "invoice_statuses": {
+      "issued": 25900,
+      "paid": 24100
+    },
+    "database_bytes": 196605619
+  }
+}

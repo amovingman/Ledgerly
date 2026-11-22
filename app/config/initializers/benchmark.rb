@@ -7,6 +7,11 @@ if Rails.env.benchmark?
   # SDK API-base options do not inherit the global Stripe.api_base setting.
   # Override only this isolated environment; preserve the actual SDK and HTTP path.
   Rails.application.config.after_initialize do
+    if ENV['BENCHMARK_PROFILE_SPIKES'] == '1'
+      require Rails.root.join('lib/ledgerly_benchmark/queue_profile')
+      LedgerlyBenchmark::QueueProfile.install
+    end
+
     StripeIntegration::Gateway.prepend(Module.new do
       private
 

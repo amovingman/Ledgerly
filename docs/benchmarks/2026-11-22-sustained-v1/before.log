@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/sustained.py", line 147, in <module>
+    main()
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/sustained.py", line 107, in main
+    at_end = bench.get('/_benchmark/stats?since='+str(since))
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/benchmark.py", line 44, in get
+    status, body, _, _ = request('GET', path)
+  File "/Users/user/Downloads/Work Projects/Ledgerdy/scripts/benchmark.py", line 34, in request
+    response = LOCAL.connection.getresponse()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1349, in getresponse
+    response.begin()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response

@@ -1,0 +1,21 @@
+ pid  |        state        | wait_event_type | wait_event |       age       |                                                                                   query                                                                                    
+------+---------------------+-----------------+------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 3980 | idle                | Client          | ClientRead | 00:00:13.697011 | COMMIT
+ 3993 | idle                | Client          | ClientRead | 00:00:00.140387 | SELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2
+ 3998 | idle                | Client          | ClientRead | 00:00:00.026933 | SELECT pg_advisory_unlock(1453859124034388260)
+ 4009 | idle                | Client          | ClientRead | 00:00:00.045378 | SELECT "outbox_records"."id" FROM "outbox_records" WHERE "outbox_records"."dispatched_at" IS NULL AND "outbox_records"."available_at" <= $1 AND "outbox_records"."id" = $2
+ 4011 | idle                | Client          | ClientRead | 00:00:00.088706 | COMMIT
+ 3981 | idle in transaction | Client          | ClientRead | 00:00:00.081693 | SELECT "stripe_events".* FROM "stripe_events" WHERE "stripe_events"."id" = $1 LIMIT $2
+ 3992 | idle in transaction |                 |            | 00:00:00.046839 | SELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2 FOR UPDATE
+ 3994 | idle in transaction | Client          | ClientRead | 00:00:00.356312 | SELECT "customers".* FROM "customers" WHERE "customers"."id" = $1 LIMIT $2 FOR UPDATE
+ 3995 | idle in transaction | Client          | ClientRead | 00:00:00.021696 | SELECT "stripe_payments".* FROM "stripe_payments" WHERE "stripe_payments"."charge_id" = $1 LIMIT $2
+ 3996 | idle in transaction | Client          | ClientRead | 00:00:00.023883 | UPDATE "customers" SET read_version = read_version + 1 WHERE "customers"."id" = $1
+ 3997 | idle in transaction | Client          | ClientRead | 00:00:00.008066 | INSERT INTO "ledger_entries" ("ledger_transaction_id", "account", "debit", "credit", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"
+ 3999 | idle in transaction | Client          | ClientRead | 00:00:00.026023 | SELECT "stripe_payments".* FROM "stripe_payments" WHERE "stripe_payments"."invoice_id" = $1 LIMIT $2
+ 4010 | idle in transaction | Client          | ClientRead | 00:00:00.079787 | INSERT INTO "outbox_records" ("stripe_event_id", "invoice_collection_id", "attempts", "available_at", "dispatched_at", "last_error", "created_at", "updated_at") VALUES ($
+ 4012 | idle in transaction | Client          | ClientRead | 00:00:00.039353 | INSERT INTO "outbox_records" ("stripe_event_id", "invoice_collection_id", "attempts", "available_at", "dispatched_at", "last_error", "created_at", "updated_at") VALUES ($
+ 4013 | idle in transaction |                 |            | 00:00:00.009188 | UPDATE "outbox_records" SET "attempts" = $1, "dispatched_at" = $2, "updated_at" = $3 WHERE "outbox_records"."id" = $4
+ 4014 | idle in transaction | Client          | ClientRead | 00:00:00.022672 | SELECT "stripe_events".* FROM "stripe_events" WHERE "stripe_events"."id" = $1 LIMIT $2
+ 4015 | idle in transaction | Client          | ClientRead | 00:00:00.074078 | INSERT INTO "outbox_records" ("stripe_event_id", "invoice_collection_id", "attempts", "available_at", "dispatched_at", "last_error", "created_at", "updated_at") VALUES ($
+(17 rows)
+
