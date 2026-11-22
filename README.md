@@ -2,7 +2,7 @@
 
 Ledgerly is a Rails API project for metered usage, invoicing, and reliable Stripe reconciliation. The application lives in `app/`; the existing reference repositories are separate from application code.
 
-Work follows [ROADMAP.md](ROADMAP.md), the source of truth for milestones, acceptance checks, decisions, and measured evidence. Milestone 0 establishes the development foundation. Milestone 1 is adding core billing models and API endpoints; see [the core API reference](docs/API.md) and [billing rules](docs/BILLING_RULES.md) for implemented contracts. Stripe webhooks and collection remain in Milestone 2. No throughput or latency benchmark has been achieved.
+Work follows [ROADMAP.md](ROADMAP.md), the source of truth for milestones, acceptance checks, decisions, and measured evidence. Milestone 0 establishes the development foundation. Milestone 1 provides core billing models, idempotent usage ingestion, atomic invoicing, and ledger-derived balance endpoints; see [the core API reference](docs/API.md) and [billing rules](docs/BILLING_RULES.md) for implemented contracts. Stripe webhooks and collection remain in Milestone 2. No throughput or latency benchmark has been achieved.
 
 ## Foundation stack
 
@@ -121,4 +121,4 @@ The check prepares the test database and runs RSpec, RuboCop, and Sorbet. The in
 
 GitHub Actions runs on pushes and pull requests using the pinned Ruby version, locked dependencies, PostgreSQL and Redis services, and the same quality checks. See [.github/workflows/ci.yml](.github/workflows/ci.yml). Actual verification results and any remaining limitations are recorded in the [roadmap work log](ROADMAP.md#work-log).
 
-The next milestone adds the core data model and API while preserving the billing and idempotency rules in [ROADMAP.md](ROADMAP.md#billing-and-reliability-rules).
+Milestone 1 verification, including live HTTP concurrency, is saved in [docs/verification/milestone-1/README.md](docs/verification/milestone-1/README.md). The next milestone adds Stripe collection, webhook reconciliation, and failure recovery while preserving the billing and idempotency rules in [ROADMAP.md](ROADMAP.md#billing-and-reliability-rules).

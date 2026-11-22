@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "customer_id": 1,
+  "subscription_id": 1,
+  "period_start": "2026-10-01T00:00:00.000000Z",
+  "usage_statuses": [
+    200,
+    200,
+    200,
+    201
+  ],
+  "unique_usage_ids": 1,
+  "invoice_statuses": [
+    200,
+    200,
+    200,
+    201
+  ],
+  "unique_invoice_ids": 1,
+  "invoice_count": 1,
+  "invoice_amount": 70,
+  "journal_entries": 2,
+  "ledger_debits": 70,
+  "ledger_credits": 70,
+  "balances": [
+    {
+      "currency": "USD",
+      "amount": 70
+    }
+  ],
+  "immutable_usage_replay_after_issuance": true,
+  "late_usage_status": 409
+}

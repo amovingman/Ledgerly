@@ -1,7 +1,7 @@
 # Ledgerly Project Roadmap
 
 Created: 2026-11-21
-Status: Milestone 1 in progress — core models, API, and atomic accounting.
+Status: Milestone 1 complete — ready for Milestone 2 (Stripe integration and recovery).
 Project name: Ledgerly. The current workspace directory is named `Ledgerdy`.
 
 ## How to use this file
@@ -66,9 +66,9 @@ Keep Stripe network calls outside long-running database transactions. Persist in
 | `invoices` | Subscription, billing period, currency, amount, lifecycle, unique Stripe invoice ID; unique subscription and billing period |
 | `invoice_line_items` | Invoice, metric, aggregated quantity, snapshotted price, amount, usage allocation reference |
 | `ledger_transactions` | Journal type, invoice/payment/refund reference, unique business-effect key |
-| `ledger_entries` | Journal, account, debit, credit, currency, invoice; nonnegative amounts and exactly one positive side per row |
-| `stripe_events` | Unique Stripe event ID, type, raw payload, processing state, attempts, last error, processing timestamps |
-| `outbox_records` | Durable dispatch intent, destination job, reference, availability and dispatch state |
+| `ledger_entries` | Journal, account, debit, credit; invoice/currency via the journal; nonnegative amounts and exactly one positive side per row |
+| `stripe_events` (Milestone 2) | Unique Stripe event ID, type, raw payload, processing state, attempts, last error, processing timestamps |
+| `outbox_records` (Milestone 2) | Durable dispatch intent, destination job, reference, availability and dispatch state |
 
 Add foreign keys and correctness constraints from the start. Preserve those in the baseline; defer optional performance indexes to the optimization milestone. Journal balance needs transaction-level validation and tests; row-level checks alone cannot enforce a total across multiple entries.
 
@@ -96,7 +96,7 @@ Acceptance: a clean checkout can boot the services, create/migrate the database,
 - [x] Implement paginated customer invoice lists, invoice detail, and ledger-derived balance endpoints.
 - [x] Add request/service tests for validation, authentication, boundary timestamps, price snapshots, duplicate requests, payload conflicts, rollback, and concurrent invoice generation.
 
-Acceptance status: application checks passed (138 specs, including real multi-connection races); final hosted CI, clean schema acceptance, and live API smoke verification are pending.
+Acceptance status: passed from a clean GitHub checkout and fresh schema load. All 138 specs, lint, initial typing, autoload checks and hosted CI passed. Live four-request HTTP duplicate tests produced one event/invoice and balanced entries. See [Milestone 1 evidence](docs/verification/milestone-1/README.md).
 
 Acceptance: repeated and concurrent usage requests have one stored result; repeated and concurrent invoice generation produces one invoice; no usage is billed in two invoices; failed generation leaves no partial invoice or ledger state; every journal balances.
 
@@ -151,10 +151,10 @@ Targets/examples come from the proposal. Only the actual-result column records a
 | Claim | Target / example | Required proof | Actual result |
 | --- | --- | --- | --- |
 | Event throughput | 5,000+ events/minute | Signed load test; accepted deliveries and completed unique events/minute; duration, errors, backlog and queue latency | Not measured |
-| Duplicate billing prevention | Zero duplicates in the tested scenarios | Concurrent, repeated and shuffled event replay; unique logical payment/refund journals; outgoing collection count; balanced ledger assertions | Not tested |
+| Duplicate billing prevention | Zero duplicates in the tested scenarios | Concurrent, repeated and shuffled event replay; unique logical payment/refund journals; outgoing collection count; balanced ledger assertions | Core concurrent usage/invoice checks passed; Stripe duplicate-charge/replay scenarios remain untested. [Evidence](docs/verification/milestone-1/README.md) |
 | Dataset size | At least 50,000 invoices | Seed command, deterministic seed, counts, and integrity checks | Not generated |
 | Heavy-endpoint latency | Example: p95 480 ms → 90 ms | Comparable baseline/optimized runs with identical fixtures and resources; request failures; cold/warm cache disclosure | Not measured |
-| RSpec coverage | Greater than 90%; stretch 94% | Full-suite command, SimpleCov configuration and report showing actual line coverage | Foundation only: 102/110 lines (92.72%), 44 specs; full billing coverage pending. [Evidence](docs/verification/milestone-0/README.md) |
+| RSpec coverage | Greater than 90%; stretch 94% | Full-suite command, SimpleCov configuration and report showing actual line coverage | Milestone 1: 447/456 application lines (98.02%), 138 specs; Stripe/recovery coverage pending. [Evidence](docs/verification/milestone-1/README.md) |
 
 Suggested evidence layout, to create as measurements are produced:
 
@@ -211,6 +211,8 @@ Milestone 1 billing decisions are defined in [docs/BILLING_RULES.md](docs/BILLIN
 
 | 2026-11-21 | Added atomic invoice issuance, one-time allocation, balanced immutable journals, invoice reads and per-currency receivable balances | Full container check: 138 passing specs; 73 linted files clean; scoped Sorbet passing. Real four-thread duplicates produce one event/invoice/journal; ingestion/issuance race, rollback after allocation, month boundaries and integer overflow are verified. | Verify the committed schema from scratch, live API workflow, and hosted CI before marking Milestone 1 complete. |
 
+| 2026-11-21 | Completed Milestone 1 acceptance against clean GitHub source `2a1aa1d` and a fresh schema-loaded test database | [Evidence](docs/verification/milestone-1/README.md): 138 specs passing, 73 linted files clean, scoped typing/autoload passing; [hosted CI green](https://github.com/amovingman/Ledgerly/actions/runs/44964611834). Real HTTP concurrency verified one event and one invoice, balanced postings, immutable replay and late-usage rejection. | Milestone 2: verify Stripe contracts/version and implement durable collection/webhook processing with recovery. |
+
 ## Next action
 
-Finish Milestone 1 acceptance: verify the updated schema in a fresh isolated test database, exercise the live API workflow, save evidence, and inspect hosted CI. Stripe integration has not started.
+Start Milestone 2 by checking the current official Stripe SDK/API contracts, pinning the SDK/API version, and designing the persisted outgoing-operation and webhook/outbox state transitions. Billing collection and Stripe webhook reconciliation have not started.

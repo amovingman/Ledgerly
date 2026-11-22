@@ -1,0 +1,204 @@
+ Container ledgerly-m1-clean-redis-1 Running
+ Container ledgerly-m1-clean-postgres-1 Running
+ Container ledgerly-m1-clean-redis-1 Waiting
+ Container ledgerly-m1-clean-postgres-1 Waiting
+ Container ledgerly-m1-clean-redis-1 Healthy
+ Container ledgerly-m1-clean-postgres-1 Healthy
+ Container ledgerly-m1-clean-setup-1 Starting
+ Container ledgerly-m1-clean-setup-1 Started
+ Container ledgerly-m1-clean-setup-1 Waiting
+ Container ledgerly-m1-clean-setup-1 Exited
+ Container ledgerly-m1-clean-checks Creating
+ Container ledgerly-m1-clean-checks Created
+Created database 'ledgerly_m1_acceptance_test'
+
+Randomized with seed 4636
+
+API authentication
+  rejects malformed JSON with the documented envelope
+  filters sensitive parameters
+  fails closed for an unconfigured key ""
+  rejects invalid credentials ("Bearer wrong")
+  returns service status for an authenticated request
+  rejects invalid credentials ("Basic foundation-test-key")
+  fails closed for an unconfigured key nil
+  returns JSON for the unmapped root route
+  fails closed for an unconfigured key "   "
+  rejects invalid credentials ("Bearer foundation-test-key extra")
+  rejects missing credentials (nil)
+  returns JSON for an unknown route
+
+ApiExceptions
+  hides internal failure details in its JSON fallback
+  preserves a known HTTP status outside controller handlers
+
+Billing database constraints
+  prevents a ledger row from having two positive sides
+  enforces usage idempotency uniqueness in the customer scope
+  requires a full calendar month in PostgreSQL
+  rejects zero quantities without model validation
+  allows only one issuance journal for an invoice even under a different effect key
+  prevents multiple invoices for one subscription month
+  allows overlapping subscriptions for different metrics
+  enforces exact invoice line multiplication
+  prevents invoices from referencing another customer subscription
+  prevents usage from referencing another customer subscription
+  rejects overlapping customer and metric subscriptions in PostgreSQL
+  prevents duplicate customer emails even when model validation is bypassed
+  allows adjacent subscription intervals
+
+ApplicationController
+  renders missing database resources as JSON
+  exposes validated pagination to API controllers
+  renders model validation errors as JSON
+  renders missing required input as a JSON client error
+  renders invalid pagination as a JSON client error
+
+Invoices and balance API
+  reports separate ledger-derived receivables in each currency
+  uses ledger postings rather than invoice status to calculate the balance
+  rejects new late usage after real issuance while preserving original replay bodies
+  returns an empty balance for customers without postings
+  paginates customer invoices with an ID tiebreaker
+  issues, replays and reads an auditable invoice
+  keeps invoice lists scoped to their customer
+
+Core billing models
+  requires a supported currency and positive integral plan price
+  keeps posted journal entries read-only through the models
+  prevents new rows from being appended to a posted journal
+  rejects unbalanced journals before persisting any rows
+  normalizes customer identity and rejects invalid email addresses
+  rejects a journal in a different currency from its invoice
+  rejects two-sided ledger entries at the model layer
+  rejects missing ledger amounts without raising a type error
+  requires cancellation to have an effective end timestamp
+  creates a balanced complete journal
+
+Billing::GenerateInvoice
+  accepts exactly one overlapping subscription under simultaneous creation
+  stores one usage event under simultaneous duplicate requests
+  creates one invoice, allocation and balanced journal under simultaneous generation
+  either includes racing usage in the invoice or explicitly rejects it as closed
+
+Usage ingestion API
+  returns a conflict for changed payloads
+  does not attach usage to another customer subscription
+  rejects malformed JSON on the real ingestion route
+  requires an idempotency header
+  replays an immutable response and creates only one event
+
+Billing::IngestUsage
+  rejects a mismatched metric
+  rejects an invalid key nil
+  rejects invalid occurrence timestamp "2026-01-15T00:00:00"
+  rejects invalid quantity true
+  includes the start and excludes the subscription end
+  rejects a changed quantity without altering the original event
+  rejects an invalid key "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  allows the same key for distinct customers
+  rejects invalid quantity -1
+  returns an original result after cancellation and invoice issuance
+  rejects future usage
+  rejects an invalid key "spaces are invalid"
+  rejects invalid quantity 0
+  rejects invalid quantity "10"
+  rejects new late usage after an invoice closes the period
+  returns the original event for a repeated key and normalized payload
+  rejects an invalid key ""
+  rejects invalid quantity 1000000001
+  scopes keys to the customer across different subscriptions
+  rejects invalid occurrence timestamp "2026-02-31T00:00:00Z"
+  rejects invalid occurrence timestamp "2026-01-15T00:00:00.1234567Z"
+  rejects invalid occurrence timestamp 123
+  rejects invalid quantity 1.5
+
+PaginationParams
+  rejects invalid page "0"
+  rejects invalid page "01"
+  rejects invalid per_page "abc"
+  rejects invalid page ""
+  rejects invalid page "-1"
+  rejects invalid page "abc"
+  rejects invalid per_page "-1"
+  defaults to page one with 25 results
+  rejects invalid page "1.5"
+  rejects invalid page {"page" => "1"}
+  rejects invalid per_page "01"
+  rejects invalid per_page "1.5"
+  calculates a bounded page offset
+  rejects invalid per_page ""
+  rejects invalid page ["1"]
+  rejects invalid per_page ["1"]
+  rejects a page size above the maximum
+  rejects invalid per_page "0"
+  rejects invalid per_page {"page" => "1"}
+  rejects invalid page " 1"
+  rejects invalid per_page " 1"
+
+Billing::GenerateInvoice
+  issues a month exactly when its final boundary is reached
+  rejects a month outside the subscription active interval
+  returns the existing invoice without allocating or posting again
+  rejects empty periods and leaves them open for late usage
+  rejects monetary overflow before creating any financial rows
+  rejects an open month
+  rolls back every effect when posting fails after allocation
+  atomically creates an invoice, snapshot, allocation and balanced issuance journal
+  includes the month start and final microsecond but excludes its end
+  keeps contract and invoice pricing stable after plan changes
+  requires an exact UTC month boundary
+
+Core resource API
+  cancels subscriptions safely on repeat requests
+  creates and reads a normalized customer
+  rejects invalid plan price 0
+  rejects a page size above the API limit
+  exposes overlap conflicts and scoped reference validation
+  rejects invalid plan price "7"
+  returns JSON when a referenced resource does not exist
+  creates, reads and lists metered plans
+  paginates customers in deterministic ID order
+  rejects malformed root shapes and invalid customer attributes
+  requires authentication before creating resources
+  rejects invalid plan price 1.5
+  rejects invalid plan price true
+  returns a conflict for duplicate customer identity
+  creates a subscription using server-side price and lifecycle snapshots
+
+Health endpoints
+  reports Redis failure and closes the connection
+  reports database failure without exposing connection details
+  checks the real database and Redis connections
+  serves public JSON liveness without API authentication
+
+Billing::Subscriptions
+  cancels at the current time and preserves that timestamp on replay
+  cancels a future subscription as an empty interval
+  defaults a new contract to the current time
+  snapshots plan pricing and normalizes an explicit start to UTC
+  rejects invalid calendar timestamps
+  turns overlap violations into a recoverable conflict
+
+Finished in 1.34 seconds (files took 0.85042 seconds to load)
+138 examples, 0 failures
+
+Randomized with seed 4636
+
+Coverage report generated for RSpec to coverage/index.html
+Line coverage: 447 / 456 (98.02%)
+Branch coverage: 88 / 94 (93.61%)
+Inspecting 73 files
+.........................................................................
+
+73 files inspected, no offenses detected
+
+Tip: Based on detected gems, the following RuboCop extension libraries might be helpful:
+  * rubocop-rspec_rails (https://rubygems.org/gems/rubocop-rspec_rails)
+
+You can opt out of this message by adding the following to your config (see https://docs.rubocop.org/rubocop/plugins.html#plugin-suggestions for more options):
+  AllCops:
+    SuggestExtensions: false
+No errors! Great job.
+Hold on, I am eager loading the application.
+All is good!

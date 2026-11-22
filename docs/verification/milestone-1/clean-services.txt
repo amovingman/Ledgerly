@@ -1,0 +1,7 @@
+NAME                           IMAGE                      COMMAND                  SERVICE    CREATED         STATUS                     PORTS
+ledgerly-m1-clean-api-1        ledgerly-app:development   "bin/rails server -b…"   api        3 minutes ago   Up 3 minutes (healthy)     127.0.0.1:3001->3000/tcp
+ledgerly-m1-clean-checks       ledgerly-app:development   "sh -c 'bin/rails db…"   api        3 minutes ago   Exited (0) 3 minutes ago
+ledgerly-m1-clean-postgres-1   postgres:17.12-bookworm    "docker-entrypoint.s…"   postgres   3 minutes ago   Up 3 minutes (healthy)     5432/tcp
+ledgerly-m1-clean-redis-1      redis:8.2.3-bookworm       "docker-entrypoint.s…"   redis      3 minutes ago   Up 3 minutes (healthy)     6379/tcp
+ledgerly-m1-clean-setup-1      ledgerly-app:development   "bin/rails db:prepare"   setup      3 minutes ago   Exited (0) 3 minutes ago
+ledgerly-m1-clean-sidekiq-1    ledgerly-app:development   "bundle exec sidekiq…"   sidekiq    3 minutes ago   Up 3 minutes (healthy)     3000/tcp
