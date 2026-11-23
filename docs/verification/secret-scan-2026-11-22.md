@@ -82,6 +82,15 @@ Representative customer and sign-in screenshots were inspected visually: they sh
 
 Detailed redacted scanner output and the local analysis are under ignored `.tooling/security-audit/`. The official scanner release is [Gitleaks v8.30.1](https://github.com/gitleaks/gitleaks/releases/tag/v8.30.1). This is a credential/privacy review, not a dependency-vulnerability assessment or production penetration test.
 
+## Publication — 2026-11-22
+
+After the audit and cleanup, the user explicitly requested committing and pushing the README, roadmap and this sanitized report, followed by making `amovingman/Ledgerly` public. Commit [`9d5be84`](https://github.com/amovingman/Ledgerly/commit/9d5be8411fd0000afba656794f2bedb905784eb5) contains exactly those three documents. A subsequent documentation-only follow-up records these observed publication results.
+
+- Final preflight found no configured-private-value matches or credential/claim-link candidates across 898 current files, 13 reachable commits and recursively inspected archives. Gitleaks found zero matches in the three publication documents. All 64 local documentation links and nine README shell examples passed validation.
+- GitHub's authenticated metadata and a separate unauthenticated API request both confirmed **public** visibility. Anonymous raw-file responses for all three documents matched the published commit byte for byte.
+- Anonymous requests for `.env` and a private `.tooling` audit file returned HTTP 404. All reachable Git trees were checked for `.env`, `.tooling`, the Rails master key and the local Rails secret file; none of those paths were present.
+- This visibility change exposes the existing Git author metadata and sandbox evidence described above; no history was rewritten. `.env` and `.tooling` remain local and ignored. [Hosted CI](https://github.com/amovingman/Ledgerly/actions/workflows/ci.yml) records checks against each pushed commit.
+
 ## Follow-up
 
 - Completed: removed seven obsolete credential-bearing files and redacted the active listener log. Keep `.env` and future generated credential/log files private.
